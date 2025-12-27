@@ -1,0 +1,51 @@
+.code-sample {
+  max-width: 640px;
+  margin: 1.5rem auto 2rem;
+  background: #0b1220;
+  color: #9be15d;
+  padding: 1rem 1.25rem;
+  border-radius: 8px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono",
+    "Courier New", monospace;
+  font-size: 0.95rem;
+  box-shadow: 0 10px 30px rgba(2, 6, 23, 0.6);
+  position: relative;
+  overflow: hidden;
+}
+.code-sample p {
+  opacity: 0;
+  transform: translateY(8px);
+  white-space: nowrap;
+  will-change: transform, opacity;
+  animation: slideUp 1s ease forwards 0.3s;
+}
+
+@keyframes slideUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.code-sample .cursor {
+  width: 2px;
+  height: 1.2em;
+  background: #9be15d;
+  position: absolute;
+  right: 1rem;
+  bottom: 0.9rem;
+  animation: blink 1s steps(2, start) infinite;
+  border-radius: 1px;
+}
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .code-sample {
+    font-size: 0.9rem;
+    padding: 0.75rem;
+  }
+}

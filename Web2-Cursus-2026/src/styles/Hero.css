@@ -1,0 +1,7 @@
+.hero {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  justify-content: center;
+  margin: 2rem 0;
+}
