@@ -13,8 +13,44 @@ import NeedToKnowSymbol from "./components/NeedToKnowSymbol.jsx";
 import JavaScriptChapter from "./pages/JavaScriptChapter.jsx";
 import JSMascot from "./components/JSMascot.jsx";
 import ChapterCover from "./components/ChapterCover.jsx";
+import HttpsChapter from "./pages/HttpsChapter.jsx";
 
 function App() {
+  const jsLinks = [
+    {
+      to: "/javascript/introductie",
+      label: "Introductie",
+      symbol: NiceToKnowSymbol,
+    },
+    { to: "/javascript/ecma", label: "ECMA", symbol: NeedToKnowSymbol },
+    {
+      to: "/javascript/js-engine",
+      label: "JS-Engine",
+      symbol: NeedToKnowSymbol,
+    },
+    {
+      to: "/javascript/basics",
+      label: "Basisprincipes",
+      symbol: NeedToKnowSymbol,
+    },
+    {
+      to: "/javascript/variables",
+      label: "Variabelen",
+      symbol: NeedToKnowSymbol,
+    },
+    {
+      to: "/javascript/datatypes",
+      label: "Datatypes",
+      symbol: NeedToKnowSymbol,
+    },
+    {
+      to: "/javascript/objects",
+      label: "Objecten",
+      symbol: NeedToKnowSymbol,
+    },
+    { to: "/javascript/arrays", label: "Arrays", symbol: NeedToKnowSymbol },
+  ];
+
   return (
     <BrowserRouter>
       <Navbar bg="dark" data-bs-theme="dark" fixed="top">
@@ -56,20 +92,86 @@ function App() {
         <Route path="/howtolearn" element={<HowToLearn />} />
         <Route
           path="/het-internet"
-          element={<CoursePage slug="Het-Internet" symbol={NiceToKnowSymbol} />}
+          element={
+            <CoursePage
+              folder="internet"
+              course="Het-Internet"
+              symbol={NiceToKnowSymbol}
+            />
+          }
         />
         <Route
           path="/developer-tools"
           element={
-            <CoursePage slug="Developer-Tools" symbol={NeedToKnowSymbol} />
+            <CoursePage
+              folder="devtools"
+              course="Developer-Tools"
+              symbol={NeedToKnowSymbol}
+            />
           }
         />
-        <Route
-          path="/https"
-          element={<CoursePage slug="HTTPS" symbol={NeedToKnowSymbol} />}
-        />
+        <Route path="/https" element={<HttpsChapter />}>
+          <Route
+            index
+            path="/https"
+            element={
+              <CoursePage
+                folder="https"
+                course="Introductie"
+                symbol={NeedToKnowSymbol}
+              />
+            }
+          />
+          <Route
+            index
+            path="/https/request-methods"
+            element={
+              <CoursePage
+                folder="https"
+                course="Request-Methods"
+                symbol={NeedToKnowSymbol}
+              />
+            }
+          />
+          <Route
+            index
+            path="/https/status-codes"
+            element={
+              <CoursePage
+                folder="https"
+                course="Status-Codes"
+                symbol={NeedToKnowSymbol}
+              />
+            }
+          />
+          <Route
+            index
+            path="/https/browser-cache"
+            element={
+              <CoursePage
+                folder="https"
+                course="Browser-Cache"
+                symbol={NiceToKnowSymbol}
+              />
+            }
+          />
+          <Route
+            index
+            path="/https/oefeningen"
+            element={
+              <CoursePage
+                folder="https"
+                course="Oefeningen"
+                title="Oefeningen"
+              />
+            }
+          />
+        </Route>
 
-        <Route path="/javascript" element={<JavaScriptChapter />}>
+        <Route
+          path="/javascript"
+          element={<JavaScriptChapter links={jsLinks} />}
+        >
           <Route
             index
             element={
@@ -79,15 +181,61 @@ function App() {
               />
             }
           />
-          <Route
+
+          {jsLinks.map(({ to, label, symbol }) => (
+            <Route
+              path={to.replace("/javascript/", "")}
+              element={
+                <CoursePage
+                  folder="javascript"
+                  course={label.replace(" ", "-")}
+                  symbol={symbol}
+                />
+              }
+            />
+          ))}
+
+          {/* <Route
             path="introductie"
             element={
               <CoursePage
-                slug="JavaScript-Introductie"
+                folder="javascript"
+                course="Introductie"
+                symbol={NiceToKnowSymbol}
+              />
+            }
+          />
+          <Route
+            path="ecma"
+            element={
+              <CoursePage
+                folder="javascript"
+                course="ECMA"
                 symbol={NeedToKnowSymbol}
               />
             }
           />
+          <Route
+            path="js-engine"
+            element={
+              <CoursePage
+                folder="javascript"
+                course="JS-Engine"
+                symbol={NeedToKnowSymbol}
+              />
+            }
+          />
+
+          <Route
+            path="basics"
+            element={
+              <CoursePage
+                folder="javascript"
+                course="Basisprincipes"
+                symbol={NeedToKnowSymbol}
+              />
+            }
+          /> */}
         </Route>
       </Routes>
     </BrowserRouter>

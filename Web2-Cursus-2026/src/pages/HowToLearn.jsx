@@ -6,27 +6,30 @@ function HowToLearn() {
   return (
     <div>
       <PageTitle title="Hoe te verwerken" />
-      <p>Alle leerstof in deze cursus is voorzien van een symbool dat aangeeft hoe belangrijk deze is.</p>
+      <p>
+        Alle leerstof in deze cursus is voorzien van een symbool dat aangeeft
+        hoe belangrijk deze is.
+      </p>
       <FlexRow>
-        <Card style={{ width: "18rem" }}>
+        <Card style={{ width: "18rem", height: "25rem" }}>
           <Card.Img
             variant="top"
-            src="src/assets/need-to-know.png"
+            src="/images/need-to-know.png"
             style={{ width: "50%", alignSelf: "center" }}
           />
           <Card.Body>
             <Card.Title>Need to know</Card.Title>
             <Card.Text>
-              Leerstof die je absoluut moet kennen / kunnen om verder te kunnen in de
-              cursus en te slagen voor de eindtermen.
+              Leerstof die je absoluut moet kennen / kunnen om verder te kunnen
+              in de cursus en te slagen voor de eindtermen.
             </Card.Text>
           </Card.Body>
         </Card>
 
-        <Card style={{ width: "18rem" }}>
+        <Card style={{ width: "18rem", height: "25rem" }}>
           <Card.Img
             variant="top"
-            src="src/assets/nice-to-know.png"
+            src="/images/nice-to-know.png"
             style={{ width: "50%", alignSelf: "center" }}
           />
           <Card.Body>

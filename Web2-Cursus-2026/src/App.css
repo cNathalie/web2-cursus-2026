@@ -45,3 +45,8 @@
 .read-the-docs {
   color: #888;
 }
+
+.fakeLink {
+  color: blue;
+  cursor: pointer;
+}

@@ -1,5 +1,7 @@
 {
   "dependencies": {
+    "dompurify": "^3.3.1",
+    "html-react-parser": "^5.2.11",
     "rehype-raw": "^7.0.0",
     "rehype-sanitize": "^6.0.0"
   }

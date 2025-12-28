@@ -3,23 +3,28 @@ import TextViewer from "../components/Textviewer";
 import Spinner from "react-bootstrap/Spinner";
 import ChapterHeader from "../components/ChapterHeader";
 
-const CoursePage = ({ slug, symbol }) => {
+const CoursePage = ({ folder, course, symbol }) => {
   const [content, setContent] = useState("");
   const [loading, setLoading] = useState(true);
   const [err, setErr] = useState(null);
 
   useEffect(() => {
     setLoading(true);
-    import(`../content/${slug}.md?raw`)
+    import(`../content/${folder}/${course}.md?raw`)
       .then((mod) => {
         setContent(mod.default || mod);
         setLoading(false);
       })
       .catch((e) => {
         setErr("Kon het hoofdstuk niet laden.");
+        {
+          {
+            console.log(e);
+          }
+        }
         setLoading(false);
       });
-  }, [slug]);
+  }, [course]);
 
   if (loading)
     return (
@@ -38,9 +43,19 @@ const CoursePage = ({ slug, symbol }) => {
 
   return (
     <div>
-      <ChapterHeader title={slug.replace("-", " ")} symbol={symbol} />
+      <ChapterHeader title={course.replace("-", " ")} symbol={symbol} />
       <TextViewer markdown={content} />
-      <a href="#">Back to top</a>
+      <a
+        href="#"
+        style={{
+          position: "fixed",
+          bottom: "20px",
+          right: "20px",
+          color: "grey",
+        }}
+      >
+        Terug naar boven
+      </a>
     </div>
   );
 };
