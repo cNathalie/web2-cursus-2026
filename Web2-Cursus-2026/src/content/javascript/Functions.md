@@ -1,0 +1,359 @@
+Functies zijn één van de fundamentele bouwblokken in JavaScript.
+
+Een functie is een JavaScript procedure; een verzameling van instructies dat een taak uitvoert of een waarde berekent.
+
+---
+
+## Declaratie
+
+Om een functie te gebruiken, moet je deze eerst declareren. Dit doe je door de functie een naam te geven en de instructies die de functie moet uitvoeren tussen accolades te plaatsen.
+
+```javacript
+function greet() {
+    console.log('Hello, world!');
+}
+```
+
+Deze functie heet `greet` en zal de string `'Hello, world!'` loggen naar de console wanneer deze wordt aangeroepen.
+
+We maken gebruik van het keyword `function`.
+
+We kunnen ook een functie maken waarmee we één of meerdere parameters meegeven:
+
+```javacript
+function greet(name) {
+    console.log(`Hello, ${name}!`);
+}
+
+greet('John');
+```
+
+Deze functie heet `greet` en zal de string `'Hello, John!'` loggen naar de console wanneer deze wordt aangeroepen. De parameter in een string.
+
+Een functie heeft vaak een `return` waarde:
+
+```javacript
+function add(a, b) {
+    return a + b;
+}
+
+const sum = add(2, 3);
+console.log(sum); // 5
+```
+
+Deze functie heet `add` en zal de som van de twee parameters `a` en `b` teruggeven.
+
+---
+
+## Functies aanroepen
+
+Om een functie aan te roepen, schrijf je de naam van de functie gevolgd door ronde haakjes. Als de functie parameters verwacht, geef je deze mee tussen de haakjes.
+
+```javascript
+myFunction();
+
+myFunctionWithParams("hello", "world");
+```
+
+---
+
+## Het `return` keyword begrijpen
+
+Het `return` keyword wordt gebruikt om een waarde terug te geven vanuit een functie. Wanneer de functie een waarde teruggeeft, kan je deze waarde opslaan in een variabele.
+
+- Een `return` statement stopt verdere uitvoering van de function body.
+
+```javascript
+function add(a, b) {
+  return a + b;
+  console.log("Deze code wordt niet uitgevoerd");
+}
+```
+
+- `return` kan meerdere malen in de function body voorkomen:
+
+```javascript
+function add(a, b) {
+  if (a < 0) {
+    return "a is negatief";
+  }
+  return a + b;
+}
+```
+
+- Als je een `return` statement gebruikt zonder waarde, zal de functie onmiddellijk stoppen en `undefined` teruggeven.
+
+```javascript
+function myFunc() {
+  return;
+}
+
+const result = myFunc();
+
+console.log(result); // undefined
+```
+
+---
+
+## Arrow functions
+
+Arrow functions zijn een nieuwe manier om functies te schrijven in ES6. Ze zijn korter en hebben een andere syntax dan reguliere functies.
+
+Een arrow functie wordt gedeclareerd met een arrow operator `=>`.
+
+```javascript
+const greet1 = () => {
+  console.log("Hello, world!");
+};
+
+greet1();
+```
+
+Deze functie heet `greet` en zal de string `'Hello, world!'` loggen naar de console wanneer deze wordt aangeroepen.
+
+- Als de functie maar één statement bevat, kan je de accolades en het `return` keyword weglaten.
+
+```javascript
+const greet2 = () => console.log("Hello, world!");
+greet2();
+```
+
+- Als de functie één parameter heeft, kan je de ronde haakjes weglaten.
+
+```javascript
+const greet3 = (name) => console.log(`Hello, ${name}!`);
+greet3("John");
+```
+
+- Als de functie enkel de return waarde van één expressie is, kan je het `return` statement weglaten.
+
+```javascript
+const add = (a, b) => a + b;
+const sum = add(2, 3);
+console.log(sum); // 5
+```
+
+### Opgelet
+
+Via een array functie ken je een waarde toe aan variabele.
+
+De waarde van die variabele is de functie (een functie object).
+
+Wanneer je de variabele gebruikt zonder ronde haakjes (); dan refereer je naar de waarde van de variabele = het functie object. Maar je roept de functie niet aan!
+
+```javascript
+const greet4 = () => console.log("Hello, world!");
+
+greet4; // Doet niets
+
+greet4(); // Voert de functie uit
+```
+
+---
+
+## Function body
+
+De body van een functie is de code die tussen de accolades staat. Dit is de code die wordt uitgevoerd wanneer de functie wordt aangeroepen.
+
+De body van een functie kan bestaan uit één of meerdere statements.
+
+### Opgelet
+
+Veranderingen in de function body aan parameters van een primitief type zijn niet zichtbaar in de scope van de aanroeper:
+
+```javascript
+function changeValue(value) {
+  value = 10;
+}
+
+let x = 5;
+
+changeValue(x);
+
+console.log(x); // Wat verwacht je hier?
+
+// Je moet de nieuwe waarde teruggeven
+function changeValue2(value) {
+  return 10;
+}
+
+x = changeValue2(x);
+
+console.log(x);
+```
+
+Veranderingen in de function body aan parameters van een object type zijn wel zichtbaar in de scope van de aanroeper:
+
+```javascript
+function changeValue(obj) {
+  obj.value = 10;
+}
+
+let x = { value: 5 };
+
+changeValue(x);
+
+console.log(x.value); // Wat verwacht je hier?
+```
+
+---
+
+## Rest parameter
+
+De rest parameter syntax laat je een onbepaald aantal argumenten doorgeven aan een functie als een array.
+
+De rest parameter wordt aangeduid met drie puntjes `...` gevolgd door de naam van de array waarin de argumenten worden opgeslagen.
+
+```javascript
+function printEveryArg(...args) {
+  for (let arg of args) {
+    console.log(arg);
+  }
+}
+
+printEveryArg(1, 2, 3, 4, 5);
+printEveryArg("a", "b", "c");
+printEveryArg(true, false);
+```
+
+Deze functie heet `printEveryArg` en zal elk argument loggen naar de console wanneer deze wordt aangeroepen.
+
+De rest parameter kan enkel de laatste parameter zijn in de functiedeclaratie.
+
+```javascript
+// Juist
+const printAllWithTitle = (title, ...args) => {
+    console.log(title)
+    for (let arg of args) {
+        console.log(arg);
+    }
+}
+
+printAllWithTitle("Fruit", "appel", "peer", "banaan");
+printAllWithTitle("Nummers", 1, 2, 3, 4);
+
+// Fout
+const printAllWrong = (...args, title) => {
+    console.log(title)
+    for (let arg of args) {
+        console.log(arg);
+    }
+} // Uncaught SyntaxError: Rest parameter must be last formal parameter
+
+```
+
+---
+
+## Hoisting
+
+Functie-declaraties worden gehoist. Dit betekent dat je een functie kan aanroepen voordat je deze hebt gedeclareerd.
+Concreet betekend dit dat je een functie ergens helemaal onderaan in je JS-file kan declareren, en die toch bovenaan in je file kan aanroepen.
+
+```javascript
+greet();
+
+// ... andere code
+
+function greet() {
+  console.log("Hello, world!");
+}
+```
+
+Deze code zal de string `'Hello, world!'` loggen naar de console wanneer deze wordt aangeroepen.
+
+---
+
+## Doorgeven als parameter
+
+Functies kunnen ook worden doorgegeven als parameters aan andere functies.
+
+```javascript
+function greet() {
+  console.log("Hello, world!");
+}
+
+function callGreet(parameter) {
+  parameter();
+}
+
+callGreet(greet);
+```
+
+Deze code zal de string `'Hello, world!'` loggen naar de console wanneer deze wordt aangeroepen.
+
+---
+
+## Scope
+
+De scope van een variabele is de context waarin de variabele bestaat. In JavaScript zijn er twee soorten scope: globale scope en block/lokale scope.
+
+Variabelen die gedeclareerd zijn **buiten een functie** hebben een **globale scope**. Deze variabelen zijn beschikbaar in de gehele code.
+
+Variabelen die gedeclareerd zijn **binnen een functie** hebben een **lokale scope**. Deze variabelen zijn enkel beschikbaar binnen de functie.
+
+**Block scope:**
+
+Variabelen die gedeclareerd zijn binnen een block hebben een **block scope**. Een block is een set van accolades `{}` en kan bijvoorbeeld een functie body of een if statement zijn.
+
+Bekijk onderstaande situaties heel goed; goei ze zeker ook eens afzonderlijk in de Console en bekijk de output.
+
+```javascript
+// Situatie 1
+const myFunc = () => {
+  let bool = true;
+  if (true) {
+    let x = 5;
+    console.log(bool); // true
+    console.log(x); // 5
+  }
+};
+
+myFunc();
+
+// Situatie 2
+const myFunc2 = () => {
+  let bool = true;
+  if (true) {
+    let x = 5;
+    console.log(bool); // true
+    console.log(x); // 5
+  }
+  console.log(bool);
+};
+
+myFunc2();
+
+// Situatie 3
+const myFunc3 = () => {
+  let bool = true;
+  if (true) {
+    let x = 5;
+    console.log(bool); // true
+    console.log(x); // 5
+  }
+  console.log(bool);
+  console.log(x); // ReferenceError: x is not defined
+};
+
+myfunc3();
+
+// Situatie 4
+const myFunc4 = () => {
+  let bool = true;
+  if (true) {
+    let x = 5;
+  }
+};
+
+console.log(bool);
+```
+
+Merk op dat JavaScript je niet zal tegenhouden om variabelen aan te roepen op plaatsen waar deze eigenlijk niet toegankelijk zijn.
+
+---
+
+## Vervuiling van de Scope
+
+Vervuiling van de scope treedt op wanneer er variabelen worden gedeclareerd in de globale scope die dezelfde naam hebben als variabelen in de lokale scope.
+
+Dit kan leiden tot onverwachte resultaten en bugs in je code. Om vervuiling van de scope te voorkomen, gebruik je best unieke, betekenisvolle namen voor je variabelen.

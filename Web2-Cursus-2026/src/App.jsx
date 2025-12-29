@@ -14,43 +14,9 @@ import JavaScriptChapter from "./pages/JavaScriptChapter.jsx";
 import JSMascot from "./components/JSMascot.jsx";
 import ChapterCover from "./components/ChapterCover.jsx";
 import HttpsChapter from "./pages/HttpsChapter.jsx";
+import { navigation } from "./navigation.js";
 
 function App() {
-  const jsLinks = [
-    {
-      to: "/javascript/introductie",
-      label: "Introductie",
-      symbol: NiceToKnowSymbol,
-    },
-    { to: "/javascript/ecma", label: "ECMA", symbol: NeedToKnowSymbol },
-    {
-      to: "/javascript/js-engine",
-      label: "JS-Engine",
-      symbol: NeedToKnowSymbol,
-    },
-    {
-      to: "/javascript/basics",
-      label: "Basisprincipes",
-      symbol: NeedToKnowSymbol,
-    },
-    {
-      to: "/javascript/variables",
-      label: "Variabelen",
-      symbol: NeedToKnowSymbol,
-    },
-    {
-      to: "/javascript/datatypes",
-      label: "Datatypes",
-      symbol: NeedToKnowSymbol,
-    },
-    {
-      to: "/javascript/objects",
-      label: "Objecten",
-      symbol: NeedToKnowSymbol,
-    },
-    { to: "/javascript/arrays", label: "Arrays", symbol: NeedToKnowSymbol },
-  ];
-
   return (
     <BrowserRouter>
       <Navbar bg="dark" data-bs-theme="dark" fixed="top">
@@ -67,12 +33,25 @@ function App() {
                 Developer Tools
               </NavDropdown.Item>
               <NavDropdown.Item href="/https">HTTPS</NavDropdown.Item>
-              <NavDropdown.Item href="/javascript">JavaScript</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">DOM-Tree</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Events</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">
+              <NavDropdown.Divider />
+              <NavDropdown.Item href="/javascript">
+                JavaScript Basis
+              </NavDropdown.Item>
+              <NavDropdown.Item href="/dom-tree">DOM-Tree</NavDropdown.Item>
+              <NavDropdown.Item href="/events">Events</NavDropdown.Item>
+              <NavDropdown.Item href="/css-manipulatie">
                 CSS-Manipulatie
               </NavDropdown.Item>
+              <NavDropdown.Item href="/types">Types</NavDropdown.Item>
+              <NavDropdown.Item href="/elementen-en-attributen">
+                Elementen en Attributen
+              </NavDropdown.Item>
+              <NavDropdown.Item href="/forms">Forms</NavDropdown.Item>
+              <NavDropdown.Item href="/timers">Timers</NavDropdown.Item>
+              <NavDropdown.Item href="/advanced-dom">
+                Advanced DOM
+              </NavDropdown.Item>
+              <NavDropdown.Item href="/types">Objecten</NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item href="#action/3.3">Fetch API</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.3">JSON</NavDropdown.Item>
@@ -83,6 +62,7 @@ function App() {
                 Hoe te verwerken
               </NavDropdown.Item>
             </NavDropdown>
+            <Nav.Link href="/proefwerk">Project</Nav.Link>
           </Nav>
         </Container>
       </Navbar>
@@ -110,67 +90,27 @@ function App() {
             />
           }
         />
-        <Route path="/https" element={<HttpsChapter />}>
-          <Route
-            index
-            path="/https"
-            element={
-              <CoursePage
-                folder="https"
-                course="Introductie"
-                symbol={NeedToKnowSymbol}
-              />
-            }
-          />
-          <Route
-            index
-            path="/https/request-methods"
-            element={
-              <CoursePage
-                folder="https"
-                course="Request-Methods"
-                symbol={NeedToKnowSymbol}
-              />
-            }
-          />
-          <Route
-            index
-            path="/https/status-codes"
-            element={
-              <CoursePage
-                folder="https"
-                course="Status-Codes"
-                symbol={NeedToKnowSymbol}
-              />
-            }
-          />
-          <Route
-            index
-            path="/https/browser-cache"
-            element={
-              <CoursePage
-                folder="https"
-                course="Browser-Cache"
-                symbol={NiceToKnowSymbol}
-              />
-            }
-          />
-          <Route
-            index
-            path="/https/oefeningen"
-            element={
-              <CoursePage
-                folder="https"
-                course="Oefeningen"
-                title="Oefeningen"
-              />
-            }
-          />
+        <Route
+          path="/https"
+          element={<HttpsChapter links={navigation.httpsLinks} />}
+        >
+          {navigation.httpsLinks.map(({ to, label, symbol }) => (
+            <Route
+              path={to.replace("/https/", "")}
+              element={
+                <CoursePage
+                  folder="https"
+                  course={label.replace(" ", "-")}
+                  symbol={symbol}
+                />
+              }
+            />
+          ))}
         </Route>
 
         <Route
           path="/javascript"
-          element={<JavaScriptChapter links={jsLinks} />}
+          element={<JavaScriptChapter links={navigation.jsLinks} />}
         >
           <Route
             index
@@ -182,7 +122,7 @@ function App() {
             }
           />
 
-          {jsLinks.map(({ to, label, symbol }) => (
+          {navigation.jsLinks.map(({ to, label, symbol }) => (
             <Route
               path={to.replace("/javascript/", "")}
               element={
@@ -194,48 +134,6 @@ function App() {
               }
             />
           ))}
-
-          {/* <Route
-            path="introductie"
-            element={
-              <CoursePage
-                folder="javascript"
-                course="Introductie"
-                symbol={NiceToKnowSymbol}
-              />
-            }
-          />
-          <Route
-            path="ecma"
-            element={
-              <CoursePage
-                folder="javascript"
-                course="ECMA"
-                symbol={NeedToKnowSymbol}
-              />
-            }
-          />
-          <Route
-            path="js-engine"
-            element={
-              <CoursePage
-                folder="javascript"
-                course="JS-Engine"
-                symbol={NeedToKnowSymbol}
-              />
-            }
-          />
-
-          <Route
-            path="basics"
-            element={
-              <CoursePage
-                folder="javascript"
-                course="Basisprincipes"
-                symbol={NeedToKnowSymbol}
-              />
-            }
-          /> */}
         </Route>
       </Routes>
     </BrowserRouter>
