@@ -10,11 +10,10 @@ import HowToLearn from "./pages/HowToLearn.jsx";
 import CoursePage from "./pages/CoursePage.jsx";
 import NiceToKnowSymbol from "./components/NiceToKnowSymbol.jsx";
 import NeedToKnowSymbol from "./components/NeedToKnowSymbol.jsx";
-import JavaScriptChapter from "./pages/JavaScriptChapter.jsx";
 import JSMascot from "./components/JSMascot.jsx";
 import ChapterCover from "./components/ChapterCover.jsx";
-import HttpsChapter from "./pages/HttpsChapter.jsx";
 import { navigation } from "./navigation.js";
+import Chapter from "./pages/Chapter.jsx";
 
 function App() {
   return (
@@ -25,7 +24,7 @@ function App() {
           <Nav className="me-auto">
             <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link href="/about">Over de cursus</Nav.Link>
-            <NavDropdown title="Hoofdstukken" id="basic-nav-dropdown">
+            <NavDropdown title="Hoofdstukken">
               <NavDropdown.Item href="/het-internet">
                 Het Internet
               </NavDropdown.Item>
@@ -62,7 +61,7 @@ function App() {
                 Hoe te verwerken
               </NavDropdown.Item>
             </NavDropdown>
-            <Nav.Link href="/proefwerk">Project</Nav.Link>
+            <Nav.Link href="/project">Project</Nav.Link>
           </Nav>
         </Container>
       </Navbar>
@@ -92,7 +91,13 @@ function App() {
         />
         <Route
           path="/https"
-          element={<HttpsChapter links={navigation.httpsLinks} />}
+          element={
+            <Chapter
+              chapter="HTTPS"
+              links={navigation.httpsLinks}
+              expand="lg"
+            />
+          }
         >
           {navigation.httpsLinks.map(({ to, label, symbol }) => (
             <Route
@@ -110,7 +115,13 @@ function App() {
 
         <Route
           path="/javascript"
-          element={<JavaScriptChapter links={navigation.jsLinks} />}
+          element={
+            <Chapter
+              chapter="JavaScript"
+              links={navigation.jsLinks}
+              expand={false}
+            />
+          }
         >
           <Route
             index
@@ -131,6 +142,35 @@ function App() {
                   course={label.replace(" ", "-")}
                   symbol={symbol}
                 />
+              }
+            />
+          ))}
+        </Route>
+
+        <Route
+          path="/project"
+          element={
+            <Chapter
+              chapter="Project"
+              links={navigation.projectLinks}
+              expand="lg"
+            />
+          }
+        >
+          <Route
+            index
+            element={
+              <ChapterCover
+                title="A project begins with an idea, but grows with curiosity, courage, and a lot of debugging."
+              />
+            }
+          />
+
+          {navigation.projectLinks.map(({ to, label }) => (
+            <Route
+              path={to.replace("/project/", "")}
+              element={
+                <CoursePage folder="project" course={label.replace(" ", "-")} />
               }
             />
           ))}

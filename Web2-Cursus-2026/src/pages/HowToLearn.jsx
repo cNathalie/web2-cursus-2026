@@ -42,6 +42,8 @@ function HowToLearn() {
           </Card.Body>
         </Card>
       </FlexRow>
+      <br />
+      <p>We maken gebruik van Visual Studio Code, je kan deze downloaden via <a href="https://www.academicsoftware.eu/login">academic software</a>.</p>
     </div>
   );
 }

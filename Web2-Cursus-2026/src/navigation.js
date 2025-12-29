@@ -61,4 +61,11 @@ export const navigation = {
     },
     { to: "/javascript/arrays", label: "Arrays", symbol: NeedToKnowSymbol },
   ],
+
+  projectLinks: [
+    { to: "/project/intro", label: "Introductie" },
+    { to: "/project/onderwerp", label: "Onderwerp" },
+    { to: "/project/github-classroom", label: "GitHub Classroom" },
+    { to: "/project/startpunt", label: "Startpunt" },
+  ],
 };
