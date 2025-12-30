@@ -1,57 +1,39 @@
-export const script = () => {
+const BASE = (import.meta.env.BASE_URL || "/").replace(/\/?$/, "/");
+
+const logStatus = (r) =>
+  console.log(`Status: ${r.status} ${r.statusText} | ok=${r.ok}`);
+const logError = (e) => console.error("Network error:", e);
+
+export function script() {
   const link1 = document.querySelector("[data-id=link1]");
-  link1.addEventListener("click", () => simulate200OK());
-  link1.classList.add("fakeLink");
-
   const link2 = document.querySelector("[data-id=link2]");
-  link2.addEventListener("click", () => simulate404Error());
-  link2.classList.add("fakeLink");
-
   const link3 = document.querySelector("[data-id=link3]");
-  link3.addEventListener("click", () => simulateClientError());
-  link3.classList.add("fakeLink");
-
   const link4 = document.querySelector("[data-id=link4]");
-  link4.addEventListener("click", () => simulateUnauthorized());
+
+  if (!link1 || !link2 || !link3 || !link4) return () => {};
+
+  const on200 = () =>
+    fetch(`${BASE}simulate200`).then(logStatus).catch(logError);
+  const on404 = () =>
+    fetch(`${BASE}simulate404`).then(logStatus).catch(logError);
+  const on500 = () =>
+    fetch(`${BASE}simulate500`).then(logStatus).catch(logError);
+  const on401 = () =>
+    fetch(`${BASE}simulate401`).then(logStatus).catch(logError);
+
+  link1.addEventListener("click", on200);
+  link1.classList.add("fakeLink");
+  link2.addEventListener("click", on404);
+  link2.classList.add("fakeLink");
+  link3.addEventListener("click", on500);
+  link3.classList.add("fakeLink");
+  link4.addEventListener("click", on401);
   link4.classList.add("fakeLink");
 
-  const simulate200OK = () => {
-    fetch("/simulate200")
-      .then((response) => {
-        if (response.ok) {
-          console.log("Simulated 200 OK:", response.status);
-        }
-      })
-      .catch((error) => console.error("Error:", error));
+  return () => {
+    link1.removeEventListener("click", on200);
+    link2.removeEventListener("click", on404);
+    link3.removeEventListener("click", on500);
+    link4.removeEventListener("click", on401);
   };
-
-  const simulate404Error = () => {
-    fetch("/simulate404")
-      .then((response) => {
-        if (!response.ok) {
-          console.log("Simulated 404 error:", response.status);
-        }
-      })
-      .catch((error) => console.error("Error:", error));
-  };
-
-  const simulateClientError = () => {
-    fetch("/simulate500")
-      .then((response) => {
-        if (!response.ok) {
-          console.log("Simulated 500 error:", response.status);
-        }
-      })
-      .catch((error) => console.error("Error:", error));
-  };
-
-  const simulateUnauthorized = () => {
-    fetch("/simulate401")
-      .then((response) => {
-        if (!response.ok) {
-          console.log("Simulated 401 error:", response.status);
-        }
-      })
-      .catch((error) => console.error("Error:", error));
-  };
-};
+}
