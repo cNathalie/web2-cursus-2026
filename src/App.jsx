@@ -20,6 +20,7 @@ import { LinkContainer } from "react-router-bootstrap";
 function App() {
   return (
     <BrowserRouter basename="/web2-cursus-2026">
+      <ImageBasePrefixer />
       <Navbar bg="dark" data-bs-theme="dark" fixed="top">
         <Container>
           <LinkContainer to="/">
