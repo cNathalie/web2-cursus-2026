@@ -14,57 +14,89 @@ import JSMascot from "./components/JSMascot.jsx";
 import ChapterCover from "./components/ChapterCover.jsx";
 import { navigation } from "./navigation.js";
 import Chapter from "./pages/Chapter.jsx";
+import { Link } from "react-router-dom";
 
 function App() {
   return (
     <BrowserRouter basename="/web2-cursus-2026">
       <Navbar bg="dark" data-bs-theme="dark" fixed="top">
         <Container>
-          <Navbar.Brand href="/">Web 2</Navbar.Brand>
+          <Navbar.Brand as={Link} to="/">
+            Web 2
+          </Navbar.Brand>
           <Nav className="me-auto">
-            <Nav.Link href="/">Home</Nav.Link>
-            <Nav.Link href="/about">Over de cursus</Nav.Link>
+            <Nav.Link as={Link} to="/">
+              Home
+            </Nav.Link>
+            <Nav.Link as={Link} to="/about">
+              Over de cursus
+            </Nav.Link>
             <NavDropdown title="Hoofdstukken">
-              <NavDropdown.Item href="/het-internet">
+              <NavDropdown.Item as={Link} to="/het-internet">
                 Het Internet
               </NavDropdown.Item>
-              <NavDropdown.Item href="/developer-tools">
+              <NavDropdown.Item as={Link} to="/developer-tools">
                 Developer Tools
               </NavDropdown.Item>
-              <NavDropdown.Item href="/https">HTTPS</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/https">
+                HTTPS
+              </NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="/javascript">
+              <NavDropdown.Item as={Link} to="/javascript">
                 JavaScript Basis
               </NavDropdown.Item>
-              <NavDropdown.Item href="/dom-tree">DOM-Tree</NavDropdown.Item>
-              <NavDropdown.Item href="/events">Events</NavDropdown.Item>
-              <NavDropdown.Item href="/css-manipulatie">
+              <NavDropdown.Item as={Link} to="/dom-tree">
+                DOM-Tree
+              </NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/events">
+                Events
+              </NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/css-manipulatie">
                 CSS-Manipulatie
               </NavDropdown.Item>
-              <NavDropdown.Item href="/types">Types</NavDropdown.Item>
-              <NavDropdown.Item href="/elementen-en-attributen">
+              <NavDropdown.Item as={Link} to="/types">
+                Types
+              </NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/elementen-en-attributen">
                 Elementen en Attributen
               </NavDropdown.Item>
-              <NavDropdown.Item href="/forms">Forms</NavDropdown.Item>
-              <NavDropdown.Item href="/timers">Timers</NavDropdown.Item>
-              <NavDropdown.Item href="/advanced-dom">
+              <NavDropdown.Item as={Link} to="/forms">
+                Forms
+              </NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/timers">
+                Timers
+              </NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/advanced-dom">
                 Advanced DOM
               </NavDropdown.Item>
-              <NavDropdown.Item href="/types">Objecten</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/types">
+                Objecten
+              </NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.3">Fetch API</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">JSON</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Storage</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">TypeScript</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="#action/3.3">
+                Fetch API
+              </NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="#action/3.3">
+                JSON
+              </NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="#action/3.3">
+                Storage
+              </NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="#action/3.3">
+                TypeScript
+              </NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="/howtolearn">
+              <NavDropdown.Item as={Link} to="/howtolearn">
                 Hoe te verwerken
               </NavDropdown.Item>
             </NavDropdown>
-            <Nav.Link href="/project">Project</Nav.Link>
+            <Nav.Link as={Link} to="/project">
+              Project
+            </Nav.Link>
           </Nav>
         </Container>
       </Navbar>
+
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/about" element={<About />} />
