@@ -15,6 +15,7 @@ import ChapterCover from "./components/ChapterCover.jsx";
 import { navigation } from "./navigation.js";
 import Chapter from "./pages/Chapter.jsx";
 import { LinkContainer } from "react-router-bootstrap";
+import MdxPage from "./pages/MdxPage.jsx";
 
 function App() {
   return (
@@ -104,7 +105,7 @@ function App() {
         <Route
           path="/het-internet"
           element={
-            <CoursePage
+            <MdxPage
               folder="internet"
               course="Het-Internet"
               symbol={NiceToKnowSymbol}
@@ -169,7 +170,7 @@ function App() {
             <Route
               path={to.replace("/javascript/", "")}
               element={
-                <CoursePage
+                <MdxPage
                   folder="javascript"
                   course={label.replace(" ", "-")}
                   symbol={symbol}

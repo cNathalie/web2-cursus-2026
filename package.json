@@ -13,6 +13,8 @@
     "deploy": "gh-pages -d dist -a"
   },
   "dependencies": {
+    "@mdx-js/react": "^3.1.1",
+    "@mdx-js/rollup": "^3.1.1",
     "bootstrap": "^5.3.8",
     "dompurify": "^3.3.1",
     "gh-pages": "^6.3.0",
