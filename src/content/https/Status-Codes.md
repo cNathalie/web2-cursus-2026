@@ -1,0 +1,99 @@
+HTTP-statuscodes zijn drie-cijferige codes die worden verzonden door een server als reactie op een verzoek van een client.  
+Deze codes geven aan of een specifiek HTTP-verzoek is geslaagd, mislukt of een andere status heeft.  
+Statuscodes worden gebruikt om de communicatie tussen de client en de server te vergemakkelijken en om de oorzaak van eventuele problemen te identificeren.  
+Er zijn vijf verschillende categorieën van statuscodes, elk met een specifieke betekenis en reeks codes.
+
+---
+
+## 1xx - Informatief (Informational)
+
+**Betekenis:** Informatieve statuscodes geven aan dat het verzoek is ontvangen en wordt verwerkt.  
+**Voorbeeld:** 100 Continue, 101 Switching Protocols.
+
+**Kenmerken:**
+
+- De server heeft het verzoek ontvangen en is bezig met het verwerken ervan.
+- De client moet wachten op verdere instructies van de server.
+
+---
+
+## 2xx - Succes (Success)
+
+**Betekenis:** Succesvolle statuscodes geven aan dat het verzoek succesvol is verwerkt en voltooid.  
+**Voorbeeld:** 200 OK, 201 Created.
+
+**Kenmerken:**
+
+- Het verzoek is succesvol verwerkt en de server heeft een geldige reactie gegeven.
+- De client kan de ontvangen gegevens gebruiken of verdergaan met andere acties.
+
+---
+
+## 3xx - Omleiding (Redirection)
+
+**Betekenis:** Omleidingsstatuscodes geven aan dat de client extra actie moet ondernemen om het verzoek te voltooien.  
+**Voorbeeld:** 301 Moved Permanently, 302 Found.
+
+**Kenmerken:**
+
+- De client moet een andere locatie of URI gebruiken om het verzoek te voltooien.
+- De server geeft aan waar de client het verzoek opnieuw kan indienen.
+
+---
+
+## 4xx - Clientfout (Client Error)
+
+**Betekenis:** Clientfoutstatuscodes geven aan dat er een probleem is met het verzoek van de client.  
+**Voorbeeld:** 400 Bad Request, 404 Not Found.
+
+**Kenmerken:**
+
+- De client heeft een ongeldig verzoek ingediend of er is een fout in de URI.
+- De server kan het verzoek niet verwerken vanwege een fout van de client.
+
+---
+
+## 5xx - Serverfout (Server Error)
+
+**Betekenis:** Serverfoutstatuscodes geven aan dat er een probleem is met de server die het verzoek verwerkt.  
+**Voorbeeld:** 500 Internal Server Error, 503 Service Unavailable.
+
+**Kenmerken:**
+
+- De server heeft een fout gemaakt bij het verwerken van het verzoek van de client.
+- De client moet wachten tot de server het probleem heeft opgelost.
+
+---
+
+![HTTP Status Codes](/images/http-status-codes.jpg)
+
+---
+
+## 418 - I'm a teapot
+
+![Good to know](/images/nice-to-know.png)
+
+**Verhaal:**  
+HTTP-statuscode 418 I'm a teapot is een grap die is ontstaan uit het Hyper Text Coffee Pot Control Protocol (HTCPCP), een aprilgrap die in 1998 werd gepubliceerd door de Internet Engineering Task Force (IETF). Het protocol beschrijft een protocol voor het besturen van koffiepotten, en statuscode 418 werd toegevoegd om aan te geven dat een theepot geen koffie kan zetten.
+
+**Betekenis:**  
+De server weigert koffie te zetten omdat het een theepot is.
+
+**Voorbeeld:**  
+418 I'm a teapot.
+
+**Kenmerken:**
+
+- De server is een theepot en kan geen koffie zetten.
+- De client moet een ander verzoek indienen om koffie te krijgen.
+
+---
+
+## Conclusie
+
+HTTP-statuscodes zijn een essentieel onderdeel van het HTTP-protocol en spelen een cruciale rol in de communicatie tussen clients en servers.  
+Door de betekenis en het gebruik van statuscodes te begrijpen, kunnen ontwikkelaars problemen identificeren, fouten oplossen en de prestaties van webapplicaties verbeteren.  
+Het is belangrijk om vertrouwd te raken met de verschillende categorieën van statuscodes en hun specifieke codes, zodat je effectief kunt reageren op de reacties van servers en de gebruikerservaring kunt optimaliseren.
+
+Uitgebreide informatie over HTTP-statuscodes kan je vinden op volgende website:  
+[Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status)

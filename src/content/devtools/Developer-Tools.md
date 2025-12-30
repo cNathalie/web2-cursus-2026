@@ -1,0 +1,83 @@
+## Wat zijn Developer Tools?
+
+**Betekenis:**  
+Developer Tools zijn een set van webontwikkelingstools die zijn ingebouwd in de meeste webbrowsers. Deze tools zijn ontworpen om webontwikkelaars te helpen bij het debuggen, testen en analyseren van websites. Met Developer Tools kunnen ontwikkelaars de structuur, stijl en prestaties van een website inspecteren en bewerken.
+
+**Kenmerken:**
+- Inspecteer HTML, CSS en JavaScript van een webpagina.
+- Test en debug JavaScript-code.
+- Simuleer verschillende netwerkomstandigheden.
+- Meet de prestaties van een website.
+- Optimaliseer de laadtijd van een website.
+
+## Hoe Developer Tools openen?
+
+**Stap 1:** Open een webpagina in je browser.  
+**Stap 2:** Klik met de rechtermuisknop op de webpagina.  
+**Stap 3:** Selecteer "Inspecteren" / "Inspect" in het contextmenu.  
+**Stap 4:** De Developer Tools worden geopend aan de onderkant of zijkant van het browservenster.  
+(Shortcut: <kbd>F12</kbd> )
+
+![Developer tools|screenshot](/images/dev-tools.png)
+
+# Onderdelen van Developer Tools
+
+## Elements
+
+De Elements-tab geeft een visuele weergave van de HTML-structuur van de webpagina.  
+Hier kun je de DOM (Document Object Model) inspecteren en bewerken, CSS-stijlen toevoegen of verwijderen, en de lay-out van de pagina aanpassen.  
+Deze wijzigingen zijn alleen zichtbaar in de lokale kopie van de webpagina en worden niet opgeslagen op de server.
+
+Selecteer een element in de Elements-tab om de bijbehorende HTML- en CSS-code te bekijken en te bewerken.
+
+## Console
+
+De Console-tab toont foutmeldingen, waarschuwingen en logberichten die worden gegenereerd door de webpagina.  
+Hier kun je JavaScript-code uitvoeren en testen, variabelen controleren en debuggen, en interactieve opdrachten invoeren.  
+De Console is een krachtige tool voor het testen en debuggen van JavaScript-code, maak hier dus zeker gebruik van!
+
+Typ JavaScript-code in de Console en druk op Enter om de code uit te voeren. De uitvoer wordt weergegeven in de Console.
+
+**Voorbeelden:**
+```javascript
+console.log("Hello, world!");
+
+const element = document.getElementById("selectMe"); 
+console.log(element.textContent)
+const x = 5; console.log(x);
+```
+
+Wanneer je een (web)applicatie ontwikkelt en de applicatie doet niet wat je verwacht, dan is de Console-tab de eerste plaats waar je moet kijken om eventuele fouten op te sporen want daar worden foutmeldingen en waarschuwingen weergegeven.
+
+## Sources
+De Sources-tab geeft een overzicht van alle bronbestanden die worden gebruikt door de webpagina, zoals HTML-, CSS- en JavaScript-bestanden.
+Hier kun je door de bestanden navigeren, breakpoints instellen, code wijzigen en opslaan, en de bestanden debuggen.
+De Sources-tab is handig voor het analyseren en bewerken van de broncode van een webpagina.
+
+## Network
+De Network-tab toont alle netwerkverzoeken die worden gedaan door de webpagina, zoals HTTP-requests en -responses, afbeeldingen, scripts en stylesheets (CSS).
+
+Open de Netwerk-tab en laad deze webpagina opnieuw om alle netwerkverzoeken te bekijken.
+Er zijn er maar een paar, maar als je bijvoorbeeld naar een website zoals Google gaat, dan zul je zien dat er veel meer netwerkverzoeken worden gedaan.
+
+## Performance
+De Performance-tab biedt inzicht in de laadtijd en prestaties van de webpagina.
+Hier kun je de laadtijd van de pagina meten, netwerkanalyses uitvoeren, geheugenprofielen bekijken, en bottlenecks identificeren.
+De Performance-tab is handig voor het optimaliseren van de prestaties van een website en het verbeteren van de gebruikerservaring.
+
+## Memory
+De Memory-tab toont het geheugengebruik van de webpagina en identificeert geheugenlekken.
+Hier kun je het geheugengebruik van de pagina monitoren, geheugenprofielen maken, en geheugenlekken opsporen.
+De Memory-tab is handig voor het optimaliseren van de geheugenprestaties van een website en het voorkomen van geheugenlekken.
+
+## Application
+De Application-tab geeft een overzicht van de lokale opslag van de webpagina, zoals cookies, cachegegevens en databases.
+Hier kun je cookies beheren, cachegegevens wissen, databases bekijken en bewerken, en offlinegegevens beheren.
+De Application-tab is handig voor het beheren en debuggen van de lokale opslag van een website.
+
+## Nooit meer vergeten
+Developer Tools zijn een krachtige set van webontwikkelingstools die zijn ingebouwd in de meeste webbrowsers.
+Gebruik je Developer Tools om je webontwikkelingsvaardigheden te verbeteren en efficiënter te werken.
+Tijdens deze volledige opleiding én je toekomstige carrière als ontwikkelaar zul je vaak gebruik maken van Developer Tools, vooral de in het rood gemarkeerde onderdelen.
+
+![Developer tools](/images/dev-tools-worship.jpg)

@@ -1,0 +1,40 @@
+Protocollen die worden gebruikt voor het verzenden van gegevens over het internet.
+
+---
+
+## HTTP
+
+HTTP (HyperText Transfer Protocol) is het basisprotocol dat wordt gebruikt voor het laden van webpagina's. Het werkt volgens een client-server model, waarbij de client (bijvoorbeeld een webbrowser) verzoeken stuurt naar een server, en de server antwoorden terugstuurt. Hier zijn enkele kernpunten:
+
+- **Verzoeken en Antwoorden**:  
+  Een HTTP-verzoek bestaat uit een methode (zoals GET of POST), een URL, en optioneel headers en een body. De server antwoordt met een statuscode (zoals 200 voor succes of 404 voor niet gevonden), headers, en een body met de gevraagde gegevens.
+- **Stateless**:  
+  HTTP is stateless, wat betekent dat elk verzoek onafhankelijk is en de server geen informatie bewaart over eerdere verzoeken.
+- **Poort 80**:  
+  HTTP-verkeer wordt meestal verzonden via poort 80.
+
+## HTTPS
+
+HTTPS (HyperText Transfer Protocol Secure) is de beveiligde versie van HTTP. Het voegt een laag encryptie toe om de gegevens die tussen de client en de server worden verzonden te beschermen. Hier zijn enkele kernpunten:
+
+- **Encryptie**:  
+  HTTPS gebruikt SSL (Secure Sockets Layer) of TLS (Transport Layer Security) om de gegevens te versleutelen. Dit voorkomt dat derden de gegevens kunnen onderscheppen of manipuleren.
+- **Certificaten**:  
+  HTTPS vereist een SSL/TLS-certificaat dat door een vertrouwde certificaatautoriteit (CA) is uitgegeven. Dit certificaat bevestigt de identiteit van de server.
+- **Poort 443**:  
+  HTTPS-verkeer wordt meestal verzonden via poort 443.
+
+![](images/https.png)
+
+## Voordelen van HTTPS
+
+- **Beveiliging**:  
+  HTTPS beschermt de integriteit en vertrouwelijkheid van gegevens tussen de gebruiker en de site.
+- **Vertrouwen**:  
+  Gebruikers zijn eerder geneigd om een site te vertrouwen die HTTPS gebruikt, vooral bij het invoeren van gevoelige informatie zoals wachtwoorden of creditcardgegevens.
+- **SEO**:  
+  Zoekmachines zoals Google geven de voorkeur aan HTTPS-sites, wat kan leiden tot een betere ranking in zoekresultaten.
+
+## Samenvatting
+
+HTTP en HTTPS zijn essentiële protocollen voor het web. HTTP is eenvoudig en snel, maar biedt geen beveiliging. HTTPS voegt een cruciale laag van beveiliging toe door gegevens te versleutelen en de identiteit van de server te verifiëren, wat essentieel is voor het beschermen van gebruikersgegevens en het opbouwen van vertrouwen.

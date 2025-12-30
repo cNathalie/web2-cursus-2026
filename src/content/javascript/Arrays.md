@@ -1,0 +1,157 @@
+Arrays zijn geordende veramelingen van elementen.
+
+De elementen mogen in JavaScript van een verschillend type zijn.
+
+---
+
+## Array declareren
+
+Om een array te declareren, gebruik je de volgende syntax:
+
+```javascript
+// Een lege array
+const emptyArray = [];
+
+// Een array met waardes
+const fruits = ["apple", "banana", "orange"];
+```
+
+Je kan ook een array declareren met de Array constructor:
+
+```javascript
+const array = new Array();
+const fruits = new Array("apple", "banana", "orange");
+```
+
+JavaScript arrays zijn **dynamisch**. Dit betekend dat je bij het declareren geen grootte hoeft mee te geven en dat de grootte van een array kan veranderen nadat deze is gedeclareerd. Ze kunnen dus groeien en krimpen.
+
+```javascript
+const fruits = ["apple", "banana", "orange"];
+fruits.push("pear");
+console.log(fruits); // ['apple', 'banana', 'orange', 'pear']
+```
+
+---
+
+## Index
+
+De elementen in een array worden geïndexeerd. De index van een element is een numerieke waarde die de positie van het element in de array aangeeft.
+
+De index van een array begint ALTIJD bij 0. Dit betekent dat het eerste element in een array de index 0 heeft, het tweede element de index 1, enzovoort.
+
+Index is niet hetzelfde als `length`!
+
+
+![Zero based fun](/images/zero-based-fun.png)
+
+---
+
+## Methodes voor arrays
+
+JavaScript arrays hebben verschillende methodes die je kan gebruiken om elementen toe te voegen, te verwijderen, te sorteren, te filteren, enzovoort.
+
+Hier zijn enkele van de meest gebruikte array methodes:
+
+- `length`: geeft het aantal elementen in de array terug
+- `indexOf`: geeft de index van een element terug
+- `concat`: voegt twee arrays samen
+- `reverse`: draait de volgorde van de elementen om
+- `sort`: sorteert de elementen van de array
+
+Zo gebruik je ze op een array:
+```javascript
+const fruits = ['apple', 'banana', 'orange'];
+
+// Vraag de lengte op = het aantal elementen in de array
+console.log(fruits.length);
+
+//Vraag de index van een bepaald element op
+console.log(fruits.indexOf('banana'));
+
+const vegetables = ['carrot', 'tomato'];
+
+// Voeg fruit en groenten samen in één array
+const food = fruits.concat(vegetables);
+console.log(food);
+
+// Draai de volgorde van de elementen om
+food.reverse()
+console.log(food);
+```
+---
+
+## Stack
+
+Een stack is een datastructuur waarin elementen worden toegevoegd en verwijderd volgens het Last In First Out (LIFO) principe. Dit betekent dat het laatste element dat aan de stack wordt toegevoegd, het eerste element is dat wordt verwijderd.
+
+Je kan een stack implementeren met een array. De `push()` methode voegt een element toe aan het einde van de array en de `pop()` methode verwijdert het laatste element van de array.
+
+Dit zijn alle stack methodes:
+
+- `push()`: voegt een element toe aan het einde van de array
+- `pop()`: verwijdert het laatste element van de array en returnt het
+- `peek()`: geeft het laatste element van de array terug zonder het te verwijderen
+- `isEmpty()`: controleert of de stack leeg is
+- `size()`: geeft het aantal elementen in de stack terug
+- `shift()`: verwijdert het eerste element van de array en returnt het
+- `unshift()`: voegt een element toe aan het begin van de array en returnt de nieuwe lengte van de array
+
+Zo gebruik je ze op een array:
+```javascript
+const stack = [];
+stack.push(1);
+stack.push(2);
+stack.push(3);
+
+console.log(stack); // [1, 2, 3]
+
+const last = stack.pop();
+
+console.log(last); // 3
+console.log(stack); // [1, 2]
+
+stack.push(4);
+
+console.log(stack); // [1, 2, 4]
+
+let index = 1;
+console.log(stack[index]); // 2
+
+index = 3;
+console.log(stack[index]); // undefined
+
+console.log(stack[stack.length - 1]); // 2
+
+const newLength = stack.unshift(0);
+console.log(newLength); // 4
+
+console.log(stack); // [0, 1, 2, 4]
+
+const first = stack.shift();
+console.log(first); // 0
+
+console.log(stack); // [1, 2, 4]
+```
+---
+
+## Multidimensionele arrays
+
+Een multidimensionele array is een array waarvan de elementen ook arrays zijn. Hiermee kan je complexe datastructuren maken zoals matrices en tabellen.
+
+Je kan een multidimensionele array declareren door arrays in arrays te nesten:
+
+```javascript
+const multiArray = [
+  [1, 2, 3],
+  [4, 5, 6],
+  [7, 8, 9],
+];
+```
+
+Je kan de elementen van een multidimensionele array benaderen door meerdere indexen te gebruiken:
+
+```javascript
+console.log(multiArray[0][0]); // 1
+console.log(multiArray[1][2]); // 6
+console.log(multiArray[2][1]); // 8
+```

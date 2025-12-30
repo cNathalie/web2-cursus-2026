@@ -1,0 +1,68 @@
+HTTP-requestmethodes zijn de verschillende manieren waarop een client (zoals een webbrowser) met een server kan communiceren om gegevens op te vragen, toe te voegen, bij te werken of te verwijderen.  
+Deze methodes vormen de basis van de interactie tussen webapplicaties en servers, en maken het mogelijk om dynamische en interactieve websites te bouwen.  
+De vier belangrijkste HTTP-methodes zijn **GET**, **POST**, **PUT** en **DELETE**, die elk een specifieke rol spelen in het beheren van gegevens op de server.
+
+---
+
+## GET
+
+**Doel:** Ophalen van gegevens van de server.  
+**Gebruik:** Wordt gebruikt om gegevens op te vragen zonder de server te wijzigen.  
+**Voorbeeld:** Een webpagina laden of een lijst met producten opvragen.
+
+**Kenmerken:**
+
+- Verzoeken bevatten geen body.
+- Gegevens worden meestal via de URL verzonden.
+
+## PUT
+
+**Doel:** Bijwerken of vervangen van bestaande gegevens op de server.  
+**Gebruik:** Wordt gebruikt om een specifieke resource volledig te vervangen.  
+**Voorbeeld:** Bestaande productinformatie bijwerken.
+
+**Kenmerken:**
+
+- Verzoeken bevatten een body met de gegevens die moeten worden bijgewerkt.
+
+## POST
+
+**Doel:** Verzenden van gegevens naar de server om een nieuwe resource te creëren.  
+**Gebruik:** Wordt gebruikt om nieuwe gegevens toe te voegen.  
+**Voorbeeld:** Een nieuw product toevoegen aan de database.
+
+**Kenmerken:**
+
+- Verzoeken bevatten een body met de gegevens die moeten worden toegevoegd.
+
+## DELETE
+
+**Doel:** Verwijderen van bestaande gegevens van de server.  
+**Gebruik:** Wordt gebruikt om een specifieke resource te verwijderen.  
+**Voorbeeld:** Een product verwijderen uit de database.
+
+**Kenmerken:**
+
+- Verzoeken bevatten meestal geen body, maar de id van de resource in de URL.
+
+## Er zijn nog meer HTTP Request Methods:
+
+- HEAD
+- OPTIONS
+- TRACE
+- CONNECT
+- PATCH
+
+![Request Methods](/images/request-methods.png)
+
+Tijdens deze opleiding én in het werkveld zijn **GET, PUT, POST, DELETE** de meest gebruikte.
+
+---
+
+> Deze vier methodes zouden een belletje moeten doen rinkelen.  
+> Ze zijn namelijk gelinkt aan de CRUD-operaties die je hebt geleerd in de lessen Database.
+>
+> - GET = Read
+> - PUT = Update
+> - POST = Create
+> - DELETE = Delete
