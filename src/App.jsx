@@ -74,16 +74,16 @@ function App() {
                 <NavDropdown.Item>Objecten</NavDropdown.Item>
               </LinkContainer>
               <NavDropdown.Divider />
-              <LinkContainer to="#action/3.3">
+              <LinkContainer to="/fetch-api">
                 <NavDropdown.Item>Fetch API</NavDropdown.Item>
               </LinkContainer>
-              <LinkContainer to="#action/3.3">
+              <LinkContainer to="/json">
                 <NavDropdown.Item>JSON</NavDropdown.Item>
               </LinkContainer>
-              <LinkContainer to="#action/3.3">
+              <LinkContainer to="/storage">
                 <NavDropdown.Item>Storage</NavDropdown.Item>
               </LinkContainer>
-              <LinkContainer to="#action/3.3">
+              <LinkContainer to="/typescript">
                 <NavDropdown.Item>TypeScript</NavDropdown.Item>
               </LinkContainer>
               <NavDropdown.Divider />
