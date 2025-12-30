@@ -14,7 +14,7 @@ In 1983 werd het TCP/IP-protocol (Transmission Control Protocol/Internet Protoco
 
 In 1989 stelde Tim Berners-Lee, een Britse wetenschapper, een systeem voor dat bekend zou worden als het World Wide Web (WWW). Het WWW maakte gebruik van hypertext om documenten te koppelen en toegankelijk te maken via het internet. In 1991 werd de eerste website gelanceerd, en het WWW begon snel aan populariteit te winnen.
 
-![Digitaal model](/images/tim-berners-lee.png)
+![Digitaal model](public/images/tim-berners-lee.png)
 
 ## De jaren 1990 en verder
 
