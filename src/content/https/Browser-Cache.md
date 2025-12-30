@@ -6,7 +6,7 @@ Wanneer een gebruiker een webpagina bezoekt, controleert de browser eerst of er 
 Als dat het geval is, wordt de pagina sneller geladen en hoeft de browser niet opnieuw alle gegevens van de server te downloaden.  
 Dit kan de laadtijd van de pagina aanzienlijk verkorten en de algehele gebruikerservaring verbeteren.
 
-![Browser cache](/images/browser-cache.png)
+![Browser cache](public/images/browser-cache.png)
 
 De browser cache kan echter ook problemen veroorzaken als de opgeslagen gegevens verouderd of beschadigd zijn.  
 In dat geval kan de browser problemen ondervinden bij het laden van de pagina of verkeerde gegevens weergeven.  

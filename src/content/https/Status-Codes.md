@@ -65,13 +65,13 @@ Er zijn vijf verschillende categorieën van statuscodes, elk met een specifieke 
 
 ---
 
-![HTTP Status Codes](/images/http-status-codes.jpg)
+![HTTP Status Codes](public/images/http-status-codes.jpg)
 
 ---
 
 ## 418 - I'm a teapot
 
-![Good to know](/images/nice-to-know.png)
+![Good to know](public/images/nice-to-know.png)
 
 **Verhaal:**  
 HTTP-statuscode 418 I'm a teapot is een grap die is ontstaan uit het Hyper Text Coffee Pot Control Protocol (HTCPCP), een aprilgrap die in 1998 werd gepubliceerd door de Internet Engineering Task Force (IETF). Het protocol beschrijft een protocol voor het besturen van koffiepotten, en statuscode 418 werd toegevoegd om aan te geven dat een theepot geen koffie kan zetten.

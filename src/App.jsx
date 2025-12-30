@@ -15,12 +15,10 @@ import ChapterCover from "./components/ChapterCover.jsx";
 import { navigation } from "./navigation.js";
 import Chapter from "./pages/Chapter.jsx";
 import { LinkContainer } from "react-router-bootstrap";
-import ImageBasePrefixer from "./components/ImageBasePrefixer.jsx";
 
 function App() {
   return (
     <BrowserRouter basename="/web2-cursus-2026">
-      <ImageBasePrefixer />
       <Navbar bg="dark" data-bs-theme="dark" fixed="top">
         <Container>
           <LinkContainer to="/">

@@ -14,7 +14,7 @@ function HowToLearn() {
         <Card style={{ width: "18rem", height: "25rem" }}>
           <Card.Img
             variant="top"
-            src="/images/need-to-know.png"
+            src="public/images/need-to-know.png"
             style={{ width: "50%", alignSelf: "center" }}
           />
           <Card.Body>
@@ -29,7 +29,7 @@ function HowToLearn() {
         <Card style={{ width: "18rem", height: "25rem" }}>
           <Card.Img
             variant="top"
-            src="/images/nice-to-know.png"
+            src="public/images/nice-to-know.png"
             style={{ width: "50%", alignSelf: "center" }}
           />
           <Card.Body>
@@ -43,7 +43,10 @@ function HowToLearn() {
         </Card>
       </FlexRow>
       <br />
-      <p>We maken gebruik van Visual Studio Code, je kan deze downloaden via <a href="https://www.academicsoftware.eu/login">academic software</a>.</p>
+      <p>
+        We maken gebruik van Visual Studio Code, je kan deze downloaden via{" "}
+        <a href="https://www.academicsoftware.eu/login">academic software</a>.
+      </p>
     </div>
   );
 }

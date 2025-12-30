@@ -11,7 +11,7 @@ Als je Node.js nog niet hebt, moet je dat eerst installeren.
 
 Open de **terminal** van je pc en voer volgende stappen uit:
 
-![Cmd](/images/cmd.png)
+![Cmd](public/images/cmd.png)
 
 ##### 1. Controleer of Node.js al geïnstalleerd is
 
@@ -72,20 +72,20 @@ Nu je alle nodige tools geïnstalleerd hebt, kan je het project voor het eerst d
 
 1. Open de map in Visual Studio Code
 2. Klik bovenaan in het menu op **Terminal** > **New Terminal**
-   ![New Terminal](/images/new-terminal.png)
+   ![New Terminal](public/images/new-terminal.png)
 3. Er verschijnt nu onderaan een Terminal
-   ![Terminal](/images/terminal-open.png)
+   ![Terminal](public/images/terminal-open.png)
 4. Als deze automatisch op `powershell` staat, open dan een nieuwe **Command Prompt**
-   ![Terminal](/images/terminal-cmd.png)
+   ![Terminal](public/images/terminal-cmd.png)
 5. Controleer dat je in de root folder (StudentenProject) zit en geef het commando `npm ci` in en druk op <kbd>Enter</kbd>.
    Dit commando zorgt ervoor dat alle nodige _packages_ worden geïnstalleerd, je hoeft dit enkel te doen wanneer je het project voor de eerste keer opstart.
-   ![Terminal](/images/terminal-npmci.png)
+   ![Terminal](public/images/terminal-npmci.png)
 6. Wanneer het vorige commando succesvol is afgerond, geef je een nieuw commando in: `npm run dev` <kbd>Enter</kbd>.
    Dit commando zorgt ervoor dat je omgeving wordt gebouwdt en te bekijken is in je browser op het adres dat wordt getoont.
    Druk met <kbd>CTRL</kbd> + linkermuisklik op de URL om naar de (lokale) site van je project te gaan.
-   ![Terminal](/images/terminal-npmrundev.png)
+   ![Terminal](public/images/terminal-npmrundev.png)
 7. Je krijgt nu de startpagina van het project te zien.
-   ![Start](/images/startvite.png)
+   ![Start](public/images/startvite.png)
 
 Wanneer je dus in het vervolg het resultaat van je project wil bekijken, moet je het opstarten met het commando `npm run dev` via de terminal.
 
@@ -93,29 +93,19 @@ Wanneer je dus in het vervolg het resultaat van je project wil bekijken, moet je
 
 Het starterspakket voorziet je van een nette mappenstructuur.
 
-![Mappenstructuur](/images/startpunt.png)
+![Mappenstructuur](public/images/startpunt.png)
 
 We bespreken kort alle folders en files die je kan zien:
 
-- **StudentenProject**: root folder 
-    - **node_modules**: Deze map wordt automatisch aangemaakt wanneer je ``npm ci`` uitvoert.
-  Ze bevat alle packages en dependencies die Vite en jouw project nodig hebben. **Je verandert hier zelf nooit iets!**
-    - **public**: Bestanden in deze map worden onbewerkt gekopieerd naar de uiteindelijke build.
-Gebruik dit voor statische bestanden zoals afbeeldingen, lettertypes of icons die je rechtstreeks wil kunnen aanspreken.
-        - **images**: Hier kan je afbeeldingen plaatsen die niet door Vite verwerkt moeten worden en die publiek beschikbaar mogen zijn. 
-    - **src**: Dit is de belangrijkste map van je project. Hier staat alle code die jij zelf schrijft en die Vite verwerkt.
-        - **pages**: Hier plaats je al je aparte HTML‑pagina’s: bv. about.html, contact.html, gallery.html,… Dit houdt je project overzichtelijk.
-        - **scripts**: In deze map komen al je JavaScript‑bestanden. Denk aan index.js, interactieve elementen, functies, modules …
-        - **styles**: Hier komen al je CSS‑bestanden te staan. Je kan werken met één grote stylesheet of meerdere kleinere, zoals layout.css, colors.css, navigation.css, …
-    - **.gitignore**: Dit bestand vertelt Git (versiebeheer, wij gebruiken GitHub op dit te managen) welke mappen en bestanden het moet negeren. Zo komt bv. node_modules niet mee in je repo (want die map is veel te groot en wordt automatisch opnieuw aangemaakt).
-    - **index.html**: Dit is de pagina die opent wanneer je de website start met Vite. Van hieruit kan je doorlinken naar extra pagina’s in /src/pages. Verplaats deze niet.
-    - **package-lock.json**: Dit bestand bewaart exact welke versies van alle dependencies geïnstalleerd zijn. Het zorgt ervoor dat iedereen die jouw project installeert exact dezelfde versies krijgt.
-    - **package.json**: Een heel belangrijk configuratiebestand. Hierin staan alle dependencies, scripts (zoals npm run dev) en projectinformatie.Vite wordt hier als dependency vermeld.
-    
-Het is van groot belang dat je **nooit** zelf iets wijzigt aan *.gitignore*, *package-lock.json* en *package.json*!
+- **StudentenProject**: root folder - **node_modules**: Deze map wordt automatisch aangemaakt wanneer je `npm ci` uitvoert.
+  Ze bevat alle packages en dependencies die Vite en jouw project nodig hebben. **Je verandert hier zelf nooit iets!** - **public**: Bestanden in deze map worden onbewerkt gekopieerd naar de uiteindelijke build.
+  Gebruik dit voor statische bestanden zoals afbeeldingen, lettertypes of icons die je rechtstreeks wil kunnen aanspreken. - **images**: Hier kan je afbeeldingen plaatsen die niet door Vite verwerkt moeten worden en die publiek beschikbaar mogen zijn. - **src**: Dit is de belangrijkste map van je project. Hier staat alle code die jij zelf schrijft en die Vite verwerkt. - **pages**: Hier plaats je al je aparte HTML‑pagina’s: bv. about.html, contact.html, gallery.html,… Dit houdt je project overzichtelijk. - **scripts**: In deze map komen al je JavaScript‑bestanden. Denk aan index.js, interactieve elementen, functies, modules … - **styles**: Hier komen al je CSS‑bestanden te staan. Je kan werken met één grote stylesheet of meerdere kleinere, zoals layout.css, colors.css, navigation.css, … - **.gitignore**: Dit bestand vertelt Git (versiebeheer, wij gebruiken GitHub op dit te managen) welke mappen en bestanden het moet negeren. Zo komt bv. node_modules niet mee in je repo (want die map is veel te groot en wordt automatisch opnieuw aangemaakt). - **index.html**: Dit is de pagina die opent wanneer je de website start met Vite. Van hieruit kan je doorlinken naar extra pagina’s in /src/pages. Verplaats deze niet. - **package-lock.json**: Dit bestand bewaart exact welke versies van alle dependencies geïnstalleerd zijn. Het zorgt ervoor dat iedereen die jouw project installeert exact dezelfde versies krijgt. - **package.json**: Een heel belangrijk configuratiebestand. Hierin staan alle dependencies, scripts (zoals npm run dev) en projectinformatie.Vite wordt hier als dependency vermeld.
+
+Het is van groot belang dat je **nooit** zelf iets wijzigt aan _.gitignore_, _package-lock.json_ en _package.json_!
 Hoe deze bestanden zijn opgebouwd en wat ze precies doen is leerstof die wordt besproken in Web3, je hoeft je hier dus helemaal nog niet mee bezig te houden. Het is voldoende om te weten dat ze van essentiëel belang zijn voor je project en je ze best met rust laat.
 
 ## Visual Studio Code Extensions
 
 Het is handig om volgende extenties te installeren in Visual Studio Code:
+
 - Prettier van prettier.io

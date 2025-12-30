@@ -121,4 +121,4 @@ Gebruik `let` en `const` in plaats van `var`.
 
 Het is daarnaast ook aangeraden om in eerste instantie `const` te gebruiken. Wanneer je zeker weet dat de waarde van de variabele zal veranderen, kan je de declaratie nadien nog aanpassen naar `let`. Zo vermijd je onverwachte resultaten en bugs in je code.
 
-![Var](/images/var-in-prison.jpg)
+![Var](public/images/var-in-prison.jpg)

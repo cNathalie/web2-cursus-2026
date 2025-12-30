@@ -2,11 +2,11 @@
 
 JavaScript is een programmeertaal die gebruikt wordt om webpagina's interactief te maken. JavaScript wordt uitgevoerd in de browser van de gebruiker. De browser is de run-time omgeving van JavaScript.
 
-![Browsers](/images/browsers.png)
+![Browsers](public/images/browsers.png)
 
 JavaScript kan ook gebruikt worden om servers te programmeren. In dat geval wordt JavaScript uitgevoerd in een server-side run-time omgeving zoals Node.js.
 
-![NodeJs](/images/nodejs.jpg)
+![NodeJs](public/images/nodejs.jpg)
 
 ---
 
@@ -32,17 +32,19 @@ Bijvoorbeeld:
 
 Het is belangrijk om de uitvoering van de JavaScript code te laten wachten tot de HTML pagina volledig geladen is. Daarom plaats je de `<script>` tag volledig onderaan, vlak voor de `</body> `tag.
 
-![Script](/images/script-tag.png)
+![Script](public/images/script-tag.png)
 
 ## `console.log()`
 
 De `console.log()` methode wordt gebruikt om berichten te loggen naar de console van de browser. Dit is handig om te controleren of je code correct werkt en om waarden van variabelen te bekijken. Tussen de haakjes van `console.log()`plaats je de waarde of de naam van de variabele die je wil loggen.
 
-Probeer het eens uit de in de Console van je Browser Developer Tools: 
+Probeer het eens uit de in de Console van je Browser Developer Tools:
+
 - `console.log(new Date().toString())`
 - `console.log('Dit is de cursus Web 2')`
 
-Vergelijk met C#: 
+Vergelijk met C#:
+
 ```C#
 Console.WriteLine()
 ```

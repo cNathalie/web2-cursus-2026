@@ -1,5 +1,3 @@
-
-
 ## Inleiding
 
 Een object is een container voor gegevens. Een object kan meerdere waarden bevatten, die we eigenschappen of properties noemen. Een eigenschap bestaat uit een naam en een waarde (key-value pair). De naam van een eigenschap is een string, en de waarde kan van elk type zijn.
@@ -9,13 +7,13 @@ Aangezien de waarde van een property van elk soort type kan zijn, kan het ook ee
 #### Een JavaScript object is een variabele met meerdere waardes in opgeslagen:
 
 ```javascript
-const person = { 
-    name: 'John', 
-    age: 30, 
-    isMarried: false,
-    greet: function() { 
-        console.log('Hello, my name is ' + this.name);
-    } 
+const person = {
+  name: "John",
+  age: 30,
+  isMarried: false,
+  greet: function () {
+    console.log("Hello, my name is " + this.name);
+  },
 };
 ```
 
@@ -32,16 +30,16 @@ Je kan ook een object instantiëren met de `new` operator en een constructor fun
 ```javascript
 // Declareer eerst je constructor functie:
 function Person(name, age, isMarried) {
-    this.name = name;
-    this.age = age;
-    this.isMarried = isMarried;
-    this.greet = function() {
-        console.log('Hello, my name is ' + this.name);
-    }
+  this.name = name;
+  this.age = age;
+  this.isMarried = isMarried;
+  this.greet = function () {
+    console.log("Hello, my name is " + this.name);
+  };
 }
 
 // Roep je functie op met parameters:
-const person = new Person('John', 30, false);
+const person = new Person("John", 30, false);
 
 // Roep de methode greet aan:
 person.greet();
@@ -60,7 +58,7 @@ Om de eigenschappen en methoden van een object te benaderen, gebruiken we de dot
 
 ```javascript
 console.log(person.name); // John
-console.log(person['age']); // 30
+console.log(person["age"]); // 30
 person.greet(); // Hello, my name is John
 ```
 
@@ -76,40 +74,47 @@ Je kan ook een property verwijderen uit een object:
 
 ```javascript
 delete person.isMarried;
-console.log(person); 
+console.log(person);
 // { name: 'John', age: 30, greet: [Function: greet] }
 ```
+
 ---
 
 ## Vergelijken van objecten
 
 Objecten worden vergeleken door referentie, niet door waarde. Dit betekent dat twee objecten alleen gelijk zijn als ze naar dezelfde locatie in het geheugen verwijzen.
+
 ```javascript
-const person1 = { name: 'John' };
-const person2 = { name: 'John' };
+const person1 = { name: "John" };
+const person2 = { name: "John" };
 
 console.log(person1 === person2); // false
 ```
+
 In dit voorbeeld hebben we twee objecten `person1` en `person2` gemaakt met dezelfde eigenschap `name`. Omdat ze naar verschillende locaties in het geheugen verwijzen, zijn ze niet gelijk.
 
 Wanneer we person2 gelijk maken aan person1, dan verwijzen ze naar dezelfde locatie in het geheugen en zijn ze wel gelijk:
+
 ```javascript
-const person1 = { name: 'John' };
+const person1 = { name: "John" };
 const person2 = person1;
 
 console.log(person1 === person2); // true
 ```
+
 ---
 
 ## Date objecten
 
 JavaScript heeft een ingebouwd `Date` object dat wordt gebruikt om datums en tijden te representeren. Je kan een nieuw `Date` object maken met de `new` operator en de constructor functie `Date`.
+
 ```javascript
 const today = new Date();
 console.log(today);
 ```
+
 Dit zal het huidige datum en tijd weergeven in de console. Je kan ook een specifieke datum en tijd instellen door parameters mee te geven aan de constructor functie.
 
 Datum en tijd is een complex onderwerp in het ontwikkelen van software. Gelukkig zijn er ook libraries zoals [Moment.js](https://momentjs.com/) die je kan gebruiken om met datums en tijden te werken.
 
-![Timezones](/images/timezones.png)
+![Timezones](public/images/timezones.png)

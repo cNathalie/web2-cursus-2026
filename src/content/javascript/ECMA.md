@@ -13,7 +13,7 @@ De nieuwste versie van ECMA-Script is **ES14**, die in 2023 werd uitgebracht.
 
 Toch focussen we in deze cursus voornamelijk op **ES6**, de versie die in 2015 werd uitgebracht en die ondersteund wordt door de meeste moderne browsers.
 
-![ECMA](/images/ecma.png)
+![ECMA](public/images/ecma.png)
 
 ---
 

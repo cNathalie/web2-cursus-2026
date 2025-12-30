@@ -41,8 +41,7 @@ De index van een array begint ALTIJD bij 0. Dit betekent dat het eerste element 
 
 Index is niet hetzelfde als `length`!
 
-
-![Zero based fun](/images/zero-based-fun.png)
+![Zero based fun](public/images/zero-based-fun.png)
 
 ---
 
@@ -59,25 +58,27 @@ Hier zijn enkele van de meest gebruikte array methodes:
 - `sort`: sorteert de elementen van de array
 
 Zo gebruik je ze op een array:
+
 ```javascript
-const fruits = ['apple', 'banana', 'orange'];
+const fruits = ["apple", "banana", "orange"];
 
 // Vraag de lengte op = het aantal elementen in de array
 console.log(fruits.length);
 
 //Vraag de index van een bepaald element op
-console.log(fruits.indexOf('banana'));
+console.log(fruits.indexOf("banana"));
 
-const vegetables = ['carrot', 'tomato'];
+const vegetables = ["carrot", "tomato"];
 
 // Voeg fruit en groenten samen in één array
 const food = fruits.concat(vegetables);
 console.log(food);
 
 // Draai de volgorde van de elementen om
-food.reverse()
+food.reverse();
 console.log(food);
 ```
+
 ---
 
 ## Stack
@@ -97,6 +98,7 @@ Dit zijn alle stack methodes:
 - `unshift()`: voegt een element toe aan het begin van de array en returnt de nieuwe lengte van de array
 
 Zo gebruik je ze op een array:
+
 ```javascript
 const stack = [];
 stack.push(1);
@@ -132,6 +134,7 @@ console.log(first); // 0
 
 console.log(stack); // [1, 2, 4]
 ```
+
 ---
 
 ## Multidimensionele arrays

@@ -53,7 +53,7 @@ De vier belangrijkste HTTP-methodes zijn **GET**, **POST**, **PUT** en **DELETE*
 - CONNECT
 - PATCH
 
-![Request Methods](/images/request-methods.png)
+![Request Methods](public/images/request-methods.png)
 
 Tijdens deze opleiding én in het werkveld zijn **GET, PUT, POST, DELETE** de meest gebruikte.
 

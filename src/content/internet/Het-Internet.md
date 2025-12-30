@@ -1,5 +1,5 @@
-Het internet, zoals we het nu kennen, heeft een fascinerende geschiedenis die teruggaat tot de jaren 1960.
----
+## Het internet, zoals we het nu kennen, heeft een fascinerende geschiedenis die teruggaat tot de jaren 1960.
+
 ## De beginjaren
 
 Het internet begon als een project van het Amerikaanse ministerie van Defensie. In 1969 werd [ARPANET](https://nl.wikipedia.org/wiki/ARPANET) (Advanced Research Projects Agency Network) opgericht om wetenschappers en onderzoekers in staat te stellen informatie te delen en te communiceren via een netwerk van computers. ARPANET gebruikte een techniek genaamd packet switching, waarbij gegevens in kleine pakketjes werden opgedeeld en via verschillende routes naar hun bestemming werden gestuurd.

@@ -1,4 +1,4 @@
-![GithubClassroom](/images/github-classroom.jpg)
+![GithubClassroom](public/images/github-classroom.jpg)
 Voor dit project maken we gebruik van GitHub Classroom. Via dit platform krijgt elke student automatisch een eigen GitHub‑repository toegewezen. In die repo staat een starterpakket met de fundamenten van je project, inclusief een eenvoudige vanilla Vite‑mappenstructuur. Zo begin je allemaal vanuit dezelfde basis en kan je meteen aan de slag.
 
 Vanaf het moment dat je aan je project werkt, is het de bedoeling dat je regelmatig je wijzigingen pusht naar je GitHub‑repository. Dat heeft verschillende voordelen:
@@ -41,6 +41,6 @@ Zorg eerst dat je [GitHub Desktop](https://desktop.github.com/download/) hebt ge
 5. Kies voor “For my own purpose” wanneer GitHub vraagt naar je intentie met de repo
 6. Je hebt nu lokaal het project staan in je gekozen map.Happy Coding!
 
-![git](/images/github-1.png)
+![git](public/images/github-1.png)
 
-![git](/images/github-2.png)
+![git](public/images/github-2.png)
