@@ -14,8 +14,8 @@ import JSMascot from "./components/JSMascot.jsx";
 import ChapterCover from "./components/ChapterCover.jsx";
 import { navigation } from "./navigation.js";
 import Chapter from "./pages/Chapter.jsx";
-import { Link } from "react-router-dom";
 import { LinkContainer } from "react-router-bootstrap";
+import ImageBasePrefixer from "./components/ImageBasePrefixer.jsx";
 
 function App() {
   return (
