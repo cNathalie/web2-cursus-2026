@@ -1,27 +1,27 @@
-
 import React, { useEffect, useState } from "react";
 import Spinner from "react-bootstrap/Spinner";
 import ChapterHeader from "../components/ChapterHeader";
+import "../styles/MdxPage.css";
 
-// NOTE: This component dynamically imports an MDX page.
+// This component dynamically imports an MDX page.
 export default function MdxPage({ folder, course, symbol }) {
-  // Store the component TYPE (function), or null while loading
   const [Content, setContent] = useState(null);
   const [loading, setLoading] = useState(true);
   const [err, setErr] = useState(null);
 
   useEffect(() => {
     let cancelled = false;
+    let cleanup;
+
     setLoading(true);
     setErr(null);
+    setContent(null);
 
-    // If your path is dynamic, this import will be chunk‑split by Vite/MDX plugin
     import(`../content/${folder}/${course}.mdx`)
       .then((mod) => {
         if (cancelled) return;
-        // Ensure we store a component TYPE, not an element.
         const Comp = mod.default || mod;
-        setContent(() => Comp);       // <-- note the function form
+        setContent(() => Comp);
         setLoading(false);
       })
       .catch((e) => {
@@ -31,8 +31,22 @@ export default function MdxPage({ folder, course, symbol }) {
         setLoading(false);
       });
 
-    return () => { cancelled = true };
-  }, [folder, course]);                // include folder too
+    return () => {
+      cancelled = true;
+    };
+  }, [folder, course]);
+
+  // Custom event to signal that MDX content is ready for script
+  useEffect(() => {
+    if (!Content) return;
+    const id = requestAnimationFrame(() => {
+      const evt = new CustomEvent("mdx:ready", {
+        detail: { folder, course },
+      });
+      window.dispatchEvent(evt);
+    });
+    return () => cancelAnimationFrame(id);
+  }, [Content, folder, course]);
 
   if (loading) {
     return (
@@ -52,7 +66,7 @@ export default function MdxPage({ folder, course, symbol }) {
     );
   }
 
-  if (!Content) return null; // safety
+  if (!Content) return null;
 
   return (
     <div>

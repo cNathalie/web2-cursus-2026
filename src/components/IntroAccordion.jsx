@@ -13,7 +13,7 @@ export default function IntroAccordion() {
         className="accordion-fixed text-start"
       >
         <Accordion.Item eventKey="0">
-          <Accordion.Header>Hey!</Accordion.Header>
+          <Accordion.Header>Welkom!</Accordion.Header>
           <Accordion.Body>
             <p className="mb-3">
               Fijn dat je erbij bent! In deze cursus <strong>Web 2</strong>{" "}
@@ -24,9 +24,9 @@ export default function IntroAccordion() {
               hebt geschreven.
             </p>
             <p className="mb-0">
-              De cursus bevat <strong>interactieve oefeningen</strong>,
-              rechtstreeks in de console van je browser. En nog leuker:{" "}
-              <em>de cursus is zelf een webapp, gebouwd in React</em>.
+              De cursus bevat <strong>interactieve oefeningen</strong>, die je
+              rechtstreeks in de console van je browser kunt uitvoeren. En nog
+              leuker: <em>de cursus is zelf een webapp, gebouwd in React</em>.
             </p>
           </Accordion.Body>
         </Accordion.Item>
@@ -43,6 +43,7 @@ export default function IntroAccordion() {
                 <strong>Browser developer tools:</strong> je ingebouwde
                 gereedschapskoffer.
               </li>
+              <li><strong>HTTPS:</strong> beveiliging van je webverkeer.</li>
               <li>
                 <strong>JavaScript basis:</strong> objecten, events, timers, en{" "}
                 <em>advanced</em> DOM‑manipulatie.
@@ -52,9 +53,17 @@ export default function IntroAccordion() {
                 “boom”.
               </li>
               <li>
+                <strong>Events:</strong> hoe je kunt reageren op gebruikersacties.
+              </li>
+              
+              <li>
                 <strong>CSS manipulatie met JavaScript:</strong> dynamisch
                 stijlen en veranderen.
               </li>
+              <li><strong>Forms:</strong> gebruikersinvoer verwerken.</li>
+              <li><strong>Timers:</strong> tijdgebonden acties uitvoeren.</li>
+              <li><strong>Advanced DOM:</strong> geavanceerde manipulatie van de DOM.</li>
+              <li><strong>Objecten:</strong> werken met objecten en hun eigenschappen.</li>
               <li>
                 <strong>Fetch API:</strong> data ophalen van het internet.
               </li>

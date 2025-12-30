@@ -5,7 +5,7 @@ import CodeSample from "../components/CodeSample.jsx";
 
 function LandingPage() {
   return (
-    <div className="container landing">
+    <div className="containerLanding">
       <JSMascot />
       <Hero>
         <h2>Leer JavaScript stap voor stap</h2>

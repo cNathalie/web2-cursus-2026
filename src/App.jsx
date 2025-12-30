@@ -7,7 +7,6 @@ import Nav from "react-bootstrap/Nav";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import LandingPage from "./pages/LandingPage.jsx";
 import HowToLearn from "./pages/HowToLearn.jsx";
-import CoursePage from "./pages/CoursePage.jsx";
 import NiceToKnowSymbol from "./components/NiceToKnowSymbol.jsx";
 import NeedToKnowSymbol from "./components/NeedToKnowSymbol.jsx";
 import JSMascot from "./components/JSMascot.jsx";
@@ -115,7 +114,7 @@ function App() {
         <Route
           path="/developer-tools"
           element={
-            <CoursePage
+            <MdxPage
               folder="devtools"
               course="Developer-Tools"
               symbol={NeedToKnowSymbol}
@@ -136,7 +135,7 @@ function App() {
             <Route
               path={to.replace("/https/", "")}
               element={
-                <CoursePage
+                <MdxPage
                   folder="https"
                   course={label.replace(" ", "-")}
                   symbol={symbol}
@@ -201,7 +200,7 @@ function App() {
             <Route
               path={to.replace("/project/", "")}
               element={
-                <CoursePage folder="project" course={label.replace(" ", "-")} />
+                <MdxPage folder="project" course={label.replace(" ", "-")} />
               }
             />
           ))}
