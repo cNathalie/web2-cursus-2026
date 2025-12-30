@@ -1,5 +1,6 @@
 import KnowledgeSymbol from "./KnowledgeSymbol";
+import symbol from "/images/nice-to-know.png";
 
 export default function NiceToKnowSymbol() {
-  return KnowledgeSymbol("public/images/nice-to-know.png");
+  return KnowledgeSymbol(symbol);
 }

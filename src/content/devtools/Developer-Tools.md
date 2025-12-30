@@ -19,7 +19,7 @@ Developer Tools zijn een set van webontwikkelingstools die zijn ingebouwd in de 
 **Stap 4:** De Developer Tools worden geopend aan de onderkant of zijkant van het browservenster.  
 (Shortcut: <kbd>F12</kbd> )
 
-![Developer tools|screenshot](public/images/dev-tools.png)
+![Developer tools](public/images/dev-tools.png)
 
 # Onderdelen van Developer Tools
 
@@ -89,4 +89,4 @@ Developer Tools zijn een krachtige set van webontwikkelingstools die zijn ingebo
 Gebruik je Developer Tools om je webontwikkelingsvaardigheden te verbeteren en efficiënter te werken.
 Tijdens deze volledige opleiding én je toekomstige carrière als ontwikkelaar zul je vaak gebruik maken van Developer Tools, vooral de in het rood gemarkeerde onderdelen.
 
-![Developer tools](public/images/dev-tools-worship.jpg)
+![Developer tools](../../../public/images/dev-tools-worship.jpg)
