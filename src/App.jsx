@@ -15,84 +15,85 @@ import ChapterCover from "./components/ChapterCover.jsx";
 import { navigation } from "./navigation.js";
 import Chapter from "./pages/Chapter.jsx";
 import { Link } from "react-router-dom";
+import { LinkContainer } from "react-router-bootstrap";
 
 function App() {
   return (
     <BrowserRouter basename="/web2-cursus-2026">
       <Navbar bg="dark" data-bs-theme="dark" fixed="top">
         <Container>
-          <Navbar.Brand as={Link} to="/">
-            Web 2
-          </Navbar.Brand>
+          <LinkContainer to="/">
+            <Navbar.Brand>Web 2</Navbar.Brand>
+          </LinkContainer>
           <Nav className="me-auto">
-            <Nav.Link as={Link} to="/">
-              Home
-            </Nav.Link>
-            <Nav.Link as={Link} to="/about">
-              Over de cursus
-            </Nav.Link>
+            <LinkContainer to="/">
+              <Nav.Link>Home</Nav.Link>
+            </LinkContainer>
+            <LinkContainer to="/about">
+              <Nav.Link>Over de cursus</Nav.Link>
+            </LinkContainer>
             <NavDropdown title="Hoofdstukken">
-              <NavDropdown.Item as={Link} to="/het-internet">
-                Het Internet
-              </NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/developer-tools">
-                Developer Tools
-              </NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/https">
-                HTTPS
-              </NavDropdown.Item>
+              <LinkContainer to="/het-internet">
+                <NavDropdown.Item>Het Internet</NavDropdown.Item>
+              </LinkContainer>
+              <LinkContainer to="/developer-tools">
+                <NavDropdown.Item>Developer Tools</NavDropdown.Item>
+              </LinkContainer>
+              <LinkContainer to="/https">
+                <NavDropdown.Item>HTTPS</NavDropdown.Item>
+              </LinkContainer>
               <NavDropdown.Divider />
-              <NavDropdown.Item as={Link} to="/javascript">
-                JavaScript Basis
-              </NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/dom-tree">
-                DOM-Tree
-              </NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/events">
-                Events
-              </NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/css-manipulatie">
-                CSS-Manipulatie
-              </NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/types">
-                Types
-              </NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/elementen-en-attributen">
-                Elementen en Attributen
-              </NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/forms">
-                Forms
-              </NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/timers">
-                Timers
-              </NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/advanced-dom">
-                Advanced DOM
-              </NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/types">
-                Objecten
-              </NavDropdown.Item>
+              <LinkContainer to="/javascript">
+                <NavDropdown.Item>JavaScript Basis</NavDropdown.Item>
+              </LinkContainer>
+              <LinkContainer to="/dom-tree">
+                <NavDropdown.Item>DOM-Tree</NavDropdown.Item>
+              </LinkContainer>
+              <LinkContainer to="/events">
+                <NavDropdown.Item>Events</NavDropdown.Item>
+              </LinkContainer>
+              <LinkContainer to="/css-manipulatie">
+                <NavDropdown.Item>CSS-Manipulatie</NavDropdown.Item>
+              </LinkContainer>
+              <LinkContainer to="/types">
+                <NavDropdown.Item>Types</NavDropdown.Item>
+              </LinkContainer>
+              <LinkContainer to="/elementen-en-attributen">
+                <NavDropdown.Item>Elementen en Attributen</NavDropdown.Item>
+              </LinkContainer>
+              <LinkContainer to="/forms">
+                <NavDropdown.Item>Forms</NavDropdown.Item>
+              </LinkContainer>
+              <LinkContainer to="/timers">
+                <NavDropdown.Item>Timers</NavDropdown.Item>
+              </LinkContainer>
+              <LinkContainer to="/advanced-dom">
+                <NavDropdown.Item>Advanced DOM</NavDropdown.Item>
+              </LinkContainer>
+              <LinkContainer to="/types">
+                <NavDropdown.Item>Objecten</NavDropdown.Item>
+              </LinkContainer>
               <NavDropdown.Divider />
-              <NavDropdown.Item as={Link} to="#action/3.3">
-                Fetch API
-              </NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="#action/3.3">
-                JSON
-              </NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="#action/3.3">
-                Storage
-              </NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="#action/3.3">
-                TypeScript
-              </NavDropdown.Item>
+              <LinkContainer to="#action/3.3">
+                <NavDropdown.Item>Fetch API</NavDropdown.Item>
+              </LinkContainer>
+              <LinkContainer to="#action/3.3">
+                <NavDropdown.Item>JSON</NavDropdown.Item>
+              </LinkContainer>
+              <LinkContainer to="#action/3.3">
+                <NavDropdown.Item>Storage</NavDropdown.Item>
+              </LinkContainer>
+              <LinkContainer to="#action/3.3">
+                <NavDropdown.Item>TypeScript</NavDropdown.Item>
+              </LinkContainer>
               <NavDropdown.Divider />
-              <NavDropdown.Item as={Link} to="/howtolearn">
-                Hoe te verwerken
-              </NavDropdown.Item>
+              <LinkContainer to="/howtolearn">
+                <NavDropdown.Item>Hoe te verwerken</NavDropdown.Item>
+              </LinkContainer>
             </NavDropdown>
-            <Nav.Link as={Link} to="/project">
-              Project
-            </Nav.Link>
+            <LinkContainer to="/project">
+              <Nav.Link>Project</Nav.Link>
+            </LinkContainer>
           </Nav>
         </Container>
       </Navbar>
