@@ -4,7 +4,7 @@ import react from "@vitejs/plugin-react";
 // https://vite.dev/config/
 
 export default defineConfig({
-  base: "/web2-cursus-2026",
+  base: "/web2-cursus-2026/",
   plugins: [
     react({
       babel: {
