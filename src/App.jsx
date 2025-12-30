@@ -17,7 +17,7 @@ import Chapter from "./pages/Chapter.jsx";
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/web2-cursus-2026">
       <Navbar bg="dark" data-bs-theme="dark" fixed="top">
         <Container>
           <Navbar.Brand href="/">Web 2</Navbar.Brand>
@@ -160,9 +160,7 @@ function App() {
           <Route
             index
             element={
-              <ChapterCover
-                title="A project begins with an idea, but grows with curiosity, courage, and a lot of debugging."
-              />
+              <ChapterCover title="A project begins with an idea, but grows with curiosity, courage, and a lot of debugging." />
             }
           />
 
