@@ -4,7 +4,7 @@ import react from "@vitejs/plugin-react";
 // https://vite.dev/config/
 
 export default defineConfig({
-  base: "/CursusApp-2026",
+  base: "/web2",
   plugins: [
     react({
       babel: {
@@ -20,7 +20,7 @@ export default defineConfig({
             res.statusCode = 500;
             res.setHeader("Content-Type", "text/plain; charset=utf-8");
             res.end("Simulated 500 error");
-            return; 
+            return;
           }
 
           if (req.url === "/simulate404") {
@@ -43,7 +43,7 @@ export default defineConfig({
             res.end("Simulated 401 error");
             return;
           }
-          
+
           next();
         });
       },
