@@ -67,8 +67,23 @@ const TextViewer = ({ markdown }) => {
             return <a {...finalProps} />;
           },
 
-          h1: (props) => <h1 className="display-5" {...props} />,
-          h2: (props) => <h2 className="display-6" {...props} />,
+          h1: (props) => {
+            // Remove 'user-content-' prefix from id if present
+            const { id, ...rest } = props;
+            let cleanId = id;
+            if (typeof id === "string" && id.startsWith("user-content-")) {
+              cleanId = id.replace(/^user-content-/, "");
+            }
+            return <h1 className="display-5" id={cleanId} {...rest} />;
+          },
+          h2: (props) => {
+            const { id, ...rest } = props;
+            let cleanId = id;
+            if (typeof id === "string" && id.startsWith("user-content-")) {
+              cleanId = id.replace(/^user-content-/, "");
+            }
+            return <h2 className="display-6" id={cleanId} {...rest} />;
+          },
 
           img: (props) => {
             const { flags, options } = parseFlags(props);
