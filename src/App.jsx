@@ -242,6 +242,50 @@ function App() {
             />
           ))}
         </Route>
+
+        <Route
+          path="/css-manipulatie"
+          element={
+            <MdxPage
+              folder="css-manipulation"
+              course="CSS-Manipulatie"
+              symbol={NeedToKnowSymbol}
+            />
+          }
+        />
+
+        <Route
+          path="/events"
+          element={
+            <Chapter
+              chapter="Events"
+              links={navigation.eventsLinks}
+              expand={false}
+            />
+          }
+        >
+          <Route
+            index
+            element={
+              <ChapterCover
+                title="JavaScript events:  where chaos meets opportunity, and every click is a chance for greatness (or a bug)."
+              />
+            }
+          />
+
+          {navigation.eventsLinks.map(({ to, label, symbol }) => (
+            <Route
+              path={to.replace("/events/", "")}
+              element={
+                <MdxPage
+                  folder="events"
+                  course={label.replace(" ", "-")}
+                  {...(symbol ? { symbol } : {})}
+                />
+              }
+            />
+          ))}
+        </Route>
       </Routes>
     </BrowserRouter>
   );

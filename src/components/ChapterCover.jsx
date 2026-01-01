@@ -1,3 +1,4 @@
+import PageTitle from "./PageTitle";
 export default function ChapterCover({
   imgSrc = null,
   title,
@@ -11,7 +12,7 @@ export default function ChapterCover({
         src={imgSrc}
         style={{ maxWidth: "100%", height: "auto", borderRadius: 12 }}
       />
-      <p className="mt-3 text-muted">{title}</p>
+      <PageTitle title={title} />
       {Icon && <Icon {...safeProps} />}
     </div>
   );

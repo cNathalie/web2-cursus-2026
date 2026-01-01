@@ -1,0 +1,160 @@
+Met JavaScript kunnen we ook onze CSS manipuleren. Dit betekent dat we 'on the fly' de stijl van onze HTML elementen kunnen veranderen.
+
+---
+
+## Via de `.style` property
+
+We kunnen de stijl van een element veranderen door de `.style` property te gebruiken. Deze property bevat een object met alle CSS eigenschappen van het element.
+
+De namen van de CSS eigenschappen zijn in JavaScript in camelCase geschreven, in tegenstelling tot de kebab-case in CSS. Hier heb je eens de meest gebruikte cases op een rijtje:
+
+- `camelCase`
+- `lowercase`
+- `UPPERCASE`
+- `lower-kebab-case`
+- `UPPER-KEBAB-CASE`
+- `lower_snake_case`
+- `UPPER_SNAKE_CASE`
+
+De CSS properties worden in JavaScript dus als volgt geschreven:
+
+- `background-color` wordt `backgroundColor`
+- `font-size` wordt `fontSize`
+- `border-radius` wordt `borderRadius`
+- Enzovoort...
+
+Probeer het uit:
+
+<div id="styleProperty" className="inline-dynamic-example">
+  Probeer de code uit op deze `div`.
+</div>
+
+```js
+// Haal bovenstaande div op
+const card = document.getElementById("styleProperty");
+
+// Verander de achtergrondkleur naar paars
+card.style.backgroundColor = "purple";
+```
+
+---
+
+## Aan de hand van CSS classes: .className
+
+We kunnen ook de CSS van een element veranderen door een CSS class toe te voegen of te verwijderen. Dit kunnen we doen door de .className property te gebruiken.
+
+Deze property bevat een string met alle CSS classes van het element. Net hetzelfde als je in je HTML zou schrijven. Je kan dus meerdere klasses tegelijk instellen door ze te scheiden met een spatie.
+
+Je zou dus in een string moeten knippen en plakken om bepaalde klassen toe te voegen of te verwijderen.
+
+Probeer het uit:
+
+<div id="className" className="inline-dynamic-example">
+  Probeer de code uit op deze `div`.
+</div>
+
+```js
+// Haal bovenstaande div op
+const card = document.getElementById("className");
+
+// Voeg de klasse 'red' toe
+card.className = "background-red";
+```
+
+**Opgelet**:
+Als je de `.className` property gebruikt, zal je alle klassen van het element overschrijven.
+Zoals je in het voorbeeld kon zien, was de tekst in het code block origineel onderlijnd.
+Omdat we een waarde aan className toeschreven, werd de originele waarde overschreven.
+
+Om het overschrijven te vermijden zouden we de originele klasse-string moeten concateneren met de nieuwe klasse-string:
+
+<div id="classNameConcat" className="inline-dynamic-example underline">
+  Probeer de code uit op deze `div`.
+</div>
+
+```js
+// Haal bovenstaande div op
+const card = document.getElementById("classNameConcat");
+
+// Voeg de klasse 'red' toe
+card.className += " background-red";
+```
+
+Je ziet dat nu onze tekst onderlijnd blijft, maar de achtergrondkleur is wel rood geworden.
+
+Je voelt aan dat deze manier van werken omslachtig en gevoelig voor bugs is. 
+Daarom is het beter om de ``.classList`` property te gebruiken.
+
+---
+
+## Aan de hand van CSS classes: `.classList`
+
+De `.classList` property is een object dat methodes bevat om klassen toe te voegen, te verwijderen of te togglen. Dit natuurlijk op voorwaarde dat deze CSS klasses gedefinieerd zijn in je CSS bestand!
+
+De meest gebruikte methodes zijn:
+
+- `.add('className')` - voegt een klasse toe
+- `.remove('className')` - verwijdert een klasse
+- `.toggle('className')` - voegt een klasse toe als deze nog niet bestaat, verwijdert de klasse als deze wel bestaat
+  De betekenis van toggle: In programmeren betekent "toggle" het wisselen tussen twee toestanden, zoals aan en uit, met één actie.
+
+Probeer het uit:
+
+<div id="classList" className="inline-dynamic-example">
+  Probeer de code uit op deze `div`.
+</div>
+
+```js
+// Haal bovenstaande div op
+const card = document.getElementById("classList");
+
+// Voeg de klasse 'red' toe
+card.classList.add("background-red");
+
+// Verwijder de klasse 'background-red'
+card.classList.remove("background-red");
+
+// Toggle de klasse 'underline'
+card.classList.toggle("underline");
+```
+
+## Complete lijst van benaderbare properties om CSS styling dynamisch aan te passen
+
+Hieronder vind je een lijst van veelgebruikte properties die je via JavaScript kunt aanpassen met de `.style` property van een element:
+
+- `backgroundColor`
+- `color`
+- `width`
+- `height`
+- `margin`
+- `marginTop`, `marginBottom`, `marginLeft`, `marginRight`
+- `padding`
+- `paddingTop`, `paddingBottom`, `paddingLeft`, `paddingRight`
+- `border`
+- `borderRadius`
+- `boxShadow`
+- `fontSize`
+- `fontWeight`
+- `fontFamily`
+- `textAlign`
+- `textDecoration`
+- `lineHeight`
+- `letterSpacing`
+- `opacity`
+- `display`
+- `position`
+- `top`, `bottom`, `left`, `right`
+- `zIndex`
+- `overflow`
+- `cursor`
+- `visibility`
+- `backgroundImage`
+- `backgroundPosition`
+- `backgroundSize`
+- `backgroundRepeat`
+- `transition`
+- `transform`
+
+> Let op: de property-namen zijn in camelCase, niet in kebab-case zoals in CSS.
+
+Voor een volledige lijst kun je [de documentatie van HTMLElement.style](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/style) raadplegen.

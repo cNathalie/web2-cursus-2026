@@ -46,3 +46,11 @@ img.btwn-text {
   margin-top: 10px;
   margin-bottom: 10px;
 }
+
+.background-red {
+  background-color: red;
+}
+
+.underline {
+  text-decoration: underline;
+}
