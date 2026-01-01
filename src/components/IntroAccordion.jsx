@@ -110,7 +110,7 @@ export default function IntroAccordion() {
             <p className="mb-3">
               Gedurende dit semester werk je de helft van de tijd aan een eigen
               project. Hoe je dit invult, mag je helemaal zelf kiezen. De enige
-              eis is dat je iets bouwt dat gebruikmaakt van de concepten die we
+              eis is dat je iets bouwt dat gebruik maakt van de concepten die we
               in de cursus behandelen. Belangrijk: er wordt niet verwacht dat je
               gebruik maakt van React of andere frameworks/libraries. De
               behandelde technologieën uit de cursus (HTML, CSS, JavaScript,

@@ -1,0 +1,92 @@
+Met JavaScript kan je **elementen opvragen** uit de DOM-Tree. Dit kan je doen met de document object. Het document object is een object dat de volledige DOM-Tree voorstelt. Met JavaScript kan je elementen opvragen, toevoegen, verwijderen of aanpassen.
+
+In de volgende voorbeelden gaan we elementen opvragen uit de DOM-Tree.
+
+---
+
+## JavaScript methodes
+
+Met JavaScript kan je elementen opvragen uit de DOM-Tree. Dit kan je doen met de volgende methodes:
+
+- `document.getElementById('id')` - Haal een element op met een specifieke id.
+- `document.getElementsByClassName('class')` - Haal een element op met een specifieke class.
+- ` document.getElementsByTagName('tag')` - Haal een element op met een specifieke tag.
+
+#### Voorbeelden uitvoerbaar in de console op deze pagina
+
+```javascript
+// Haal het element op met de id 'my-element'
+const element = document.getElementById("my-element");
+console.log(element);
+
+// Haal alle elementen op met de class 'my-class'
+const elements1 = document.getElementsByClassName("my-class");
+console.log(elements1);
+
+// Haal alle elementen op met de tag 'ol'
+const elements2 = document.getElementsByTagName("ol");
+console.log(elements2);
+```
+
+---
+
+## Opvragen van inhoud: tekst vs html
+
+Met JavaScript kan je de inhoud van een element opvragen. Dit kan je doen met de ``textContent``, ``innerText`` en ``innerHTML`` properties van een element.
+
+``textContent`` vraagt de tekst-node op van het element, deze wordt dus niet geparset als HTML maar blijft ‘raw’ tekst.  
+innerText geeft de tekst van een element terug, terwijl ``innerHTML`` de HTML code van een element teruggeeft.
+
+#### Probeer uit en zie het verschil
+
+```javascript
+// Haal het element op met de id 'link'
+const linkText = document.getElementById("link");
+console.log(linkText.textContent);
+
+// Haal het element op met de id 'txt-demo'
+const element = document.getElementById("txt-demo");
+console.log(element.innerText);
+console.log(element.innerHTML);
+```
+
+---
+
+## Aanpassen van de inhoud
+
+Met JavaScript kan je de inhoud van een element aanpassen. Dit kan je doen met de `textContent`, innerText en `innerHTML` properties van een element.
+
+Het voornaamste verschil tussen `textContent` en `innerHTML` is dat `textContent` de tekst van een element als raw tekst aanpast, terwijl `innerHTML` de HTML code verwerkt en toepast.
+
+<h3 id="change-me" className="inline-dynamic-example">
+  Ik ben de inhoud van een heading element, change me!
+</h3>
+
+#### Pas de inhoud van bovenstaand element aan
+
+```javascript
+// Haal het element op met de id 'change-me'
+const changeMe = document.getElementById("change-me");
+
+// Pas de textContent van het element aan
+changeMe.textContent =
+  'Dit is een <strong style="color:red">nieuwe</strong> tekst';
+
+// Pas de innerHTML van het element aan
+changeMe.innerHTML =
+  'Dit is een <strong style="color:red">nieuwe</strong> tekst';
+```
+
+<div hidden>
+  <div id="my-element">
+    Paragraaf met id <span>"my-element"</span>
+  </div>
+  <div id="txt-demo">
+    <a id="link" href="...">
+      Dit is een hyperlink waarop je kan klikken
+    </a>
+  </div>
+  <h1 className="my-class">Heading met de class "my-class"</h1>
+  <h1 className="my-class">Nog een heading met de class "my-class"</h1>
+  <ol>Ordered list met de tag "ol"</ol>
+</div>

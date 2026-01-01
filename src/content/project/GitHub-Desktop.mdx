@@ -1,0 +1,50 @@
+import GhDt1 from "/images/gh-dt-1.png";
+import GhDt2 from "/images/gh-dt-2.png";
+import GhDt3 from "/images/gh-dt-3.png";
+
+Je hebt nu je eigen lokale repository van het StudentenProject die verbonden is met je GitHub account, maar hoe moet je nu verder?
+
+### Git Commit
+
+Zorg ervoor dat je de juiste repository geselecteerd hebt links-bovenaan.
+
+<img src={GhDt1} />
+
+Wanneer je in Visual Studio Code een functioneel stukje code hebt afgewerkt, is het verstanding om deze
+veranderingen aan je project te _committen_ naar Git.
+Je slaat op die manier een nieuwe versie van je project op in je repository.
+
+In GitHub Desktop zie je een overzicht van al je gemaakte veranderingen/toevoegingen per file.
+Controleer altijd eerst of dit inderdaad is wat je wil als nieuwe versie.
+
+<img src={GhDt2} />
+
+Links onderaan zie je een prentje van je profielfoto van je GitHub account met daarnaast een tekstveld.
+Dit kleine tekstveldje moet je **atlijd** invullen met een korte, betekenisvolle boodschap want dit is de _message_ die wordt meegegeven aan je commit.
+
+Druk daarna op de knop 'Commit to main'.
+
+Je nieuwe versie is nu **lokaal** opgeslagen in je repository.
+Ze is dus nog niet zichtbaar wanneer je naar de repository gaat kijken via je GitHub account in de browser.
+
+## Git Push
+
+Om je versie ook in de _remote_ repository te krijgen, moet je nog een `push` uitvoeren.
+Eens je een lokale `commit` hebt uitgevoerd, zie je een scherm met een nieuwe optie: 'Push origin'.
+Klik op de knop.
+
+Je nieuwe versie staat nu ook veilig remote.
+
+<img src={GhDt3} />
+
+## Git Branches
+
+Een _branch_ is een soort zijspoor van je project, waarop je veilig nieuwe features of experimenten 
+kunt uitproberen zonder de hoofdversie (de _main branch_) te beïnvloeden. 
+In grotere projecten wordt hier veel gebruik van gemaakt om samen te werken en nieuwe dingen te testen.
+
+Omdat we in deze cursus nog maar net beginnen, laten we branches voorlopig achterwege. 
+**We doen al onze veranderingen en commits gewoon rechtstreeks op de main branch**. 
+Zo blijft het overzichtelijk en eenvoudig.
+
+In verdere cursussen leer je uitgebreider werken met Git, maar dit geeft je al een goeie basis.

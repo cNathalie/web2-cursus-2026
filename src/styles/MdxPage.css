@@ -1,7 +1,44 @@
-/* center all images */
 img {
   max-width: 70%;
   display: block;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 20px;
+}
+
+.copy-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 0.8rem;
+  line-height: 1;
+  border-radius: 6px;
+  border: 1px solid grey;
+  background: rgb(31, 30, 30);
+  color: black;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.copy-btn:hover {
+  background: color-mix(in oklab, Canvas 92%, CanvasText 8%);
+}
+
+.copy-btn.copied {
+  border-color: grey;
+  background: grey;
+  color: white;
+}
+
+.copy-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.inline-dynamic-example {
+  border: 1px solid rgb(53, 102, 53);
+  text-align: center;
+  padding: 5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }

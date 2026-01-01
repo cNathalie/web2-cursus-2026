@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Spinner from "react-bootstrap/Spinner";
 import ChapterHeader from "../components/ChapterHeader";
+import { observeCodeBlocks } from "../scripts/CopyCode";
 import "../styles/MdxPage.css";
 
 // This component dynamically imports an MDX page.
@@ -9,9 +10,11 @@ export default function MdxPage({ folder, course, symbol }) {
   const [loading, setLoading] = useState(true);
   const [err, setErr] = useState(null);
 
+  // container for MDX-rendered content
+  const contentRef = useRef(null);
+
   useEffect(() => {
     let cancelled = false;
-    let cleanup;
 
     setLoading(true);
     setErr(null);
@@ -36,17 +39,11 @@ export default function MdxPage({ folder, course, symbol }) {
     };
   }, [folder, course]);
 
-  // Custom event to signal that MDX content is ready for script
   useEffect(() => {
-    if (!Content) return;
-    const id = requestAnimationFrame(() => {
-      const evt = new CustomEvent("mdx:ready", {
-        detail: { folder, course },
-      });
-      window.dispatchEvent(evt);
-    });
-    return () => cancelAnimationFrame(id);
-  }, [Content, folder, course]);
+    if (!contentRef.current) return;
+    const disconnect = observeCodeBlocks(contentRef.current);
+    return () => disconnect();
+  }, [Content]); // re-attach observer when MDX module changes
 
   if (loading) {
     return (
@@ -69,7 +66,7 @@ export default function MdxPage({ folder, course, symbol }) {
   if (!Content) return null;
 
   return (
-    <div>
+    <div ref={contentRef}>
       <ChapterHeader title={course.replace("-", " ")} symbol={symbol} />
       <Content /> {/* render the MDX component */}
       <a

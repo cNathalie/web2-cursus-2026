@@ -15,6 +15,7 @@ import { navigation } from "./navigation.js";
 import Chapter from "./pages/Chapter.jsx";
 import { LinkContainer } from "react-router-bootstrap";
 import MdxPage from "./pages/MdxPage.jsx";
+import CoverImage from "./components/CoverImage.jsx";
 
 function App() {
   return (
@@ -99,7 +100,10 @@ function App() {
 
       <Routes>
         <Route path="/" element={<LandingPage />} />
-        <Route path="/about" element={<About />} />
+        <Route
+          path="/about"
+          element={<MdxPage folder="intro" course="Introductie" />}
+        />
         <Route path="/howtolearn" element={<HowToLearn />} />
         <Route
           path="/het-internet"
@@ -180,12 +184,41 @@ function App() {
         </Route>
 
         <Route
+          path="/dom-tree"
+          element={
+            <Chapter
+              chapter="Dom Tree"
+              links={navigation.domTreeLinks}
+              expand="lg"
+            />
+          }
+        >
+          <Route
+            index
+            element={<ChapterCover title="Document Object Model" />}
+          />
+
+          {navigation.domTreeLinks.map(({ to, label, symbol }) => (
+            <Route
+              path={to.replace("/dom-tree/", "")}
+              element={
+                <MdxPage
+                  folder="dom-tree"
+                  course={label.replace(" ", "-")}
+                  symbol={symbol}
+                />
+              }
+            />
+          ))}
+        </Route>
+
+        <Route
           path="/project"
           element={
             <Chapter
               chapter="Project"
               links={navigation.projectLinks}
-              expand="lg"
+              expand={false}
             />
           }
         >
@@ -196,11 +229,15 @@ function App() {
             }
           />
 
-          {navigation.projectLinks.map(({ to, label }) => (
+          {navigation.projectLinks.map(({ to, label, symbol }) => (
             <Route
               path={to.replace("/project/", "")}
               element={
-                <MdxPage folder="project" course={label.replace(" ", "-")} />
+                <MdxPage
+                  folder="project"
+                  course={label.replace(" ", "-")}
+                  {...(symbol ? { symbol } : {})}
+                />
               }
             />
           ))}

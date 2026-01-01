@@ -1,0 +1,71 @@
+Met JavaScript kan je formulieren manipuleren. Je kan formulieren opvragen, aanpassen en controleren. In de volgende voorbeelden gaan we de inhoud van formulieren opvragen en aanpassen.
+
+---
+
+## Het `<input>` veld
+
+Het `<input>` element is een van de meest gebruikte elementen in een formulier. Het element kan verschillende types hebben zoals `text`, `password`, `email`, `number`, `checkbox`, `radio`, `submit`, `reset`, `button`, etc.
+
+Om de waarde van een `<input>` element op te vragen, kan je de ``value`` property gebruiken.
+
+**De waarde is altijd van het type ``string``**. Als je een nummer verwacht, moet je de waarde nog omzetten naar een nummer!
+
+Je kan de waarde ook aanpassen door de ``value`` property te wijzigen met de assignment operator =.
+
+#### Voorbeeld
+
+In dit voorbeeld gaan we de waarde van een `<input>` element opvragen en aanpassen.
+
+<div className="inline-dynamic-example">
+  <label htmlFor="input-field">Text input:</label> <br />
+  <input
+    type="text"
+    id="input-field"
+    defaultValue=""
+    placeholder="Vul hier iets in"
+  />
+</div>
+
+En in JavaScript:
+
+```js
+// Haal het input element op uit de DOM-tree
+const inputField = document.getElementById("input-field");
+
+// Log de value in de console
+console.log(inputField.value);
+
+// Verander de waarde van het input veld
+inputField.value = "Hello World";
+
+// Log de nieuwe waarde in de console
+console.log(inputField.value);
+```
+
+## Opgelet
+
+Gebruik nooit `textContent` of `innerHTML` bij &lt;input>, tenzij je bv. de tekst in een button wil veranderen of opvragen.
+Denk aan altijd na over volgende zaken:
+
+- **Veiligheid**
+
+`innerHTML` kan kwetsbaar zijn voor cross-site scripting (XSS) aanvallen, omdat het HTML-code als tekst invoegt. Dit kan leiden tot beveiligingsproblemen als de invoer niet goed wordt gevalideerd.
+
+- **Compatibiliteit**
+
+`textContent` en `innerHTML` werken niet consistent met &lt;input>-elementen in alle browsers. De value-eigenschap is daarentegen specifiek ontworpen voor &lt;input>-elementen en werkt betrouwbaar.
+
+- **Functionaliteit**
+
+De value-eigenschap is bedoeld om de waarde van een invoerveld te lezen of te wijzigen. Het gebruik van `textContent` of `innerHTML` kan leiden tot onverwacht gedrag, omdat deze methoden niet zijn ontworpen voor invoervelden.
+Als je bijvoorbeeld de tekst in een knop wilt veranderen, kun je `textContent` gebruiken omdat knoppen geen invoervelden zijn:
+
+<div className="inline-dynamic-example">
+  <button id="button">Ik ben een knop</button>
+</div>
+
+```js
+// Verander de tekst in de knop
+document.getElementById("button").textContent =
+  "Ik ben een knop met een nieuwe tekst";
+```

@@ -1,5 +1,6 @@
 import NiceToKnowSymbol from "./components/NiceToKnowSymbol.jsx";
 import NeedToKnowSymbol from "./components/NeedToKnowSymbol.jsx";
+import WipSymbol from "./components/WipSymbol.jsx";
 
 export const navigation = {
   httpsLinks: [
@@ -62,10 +63,37 @@ export const navigation = {
     { to: "/javascript/arrays", label: "Arrays", symbol: NeedToKnowSymbol },
   ],
 
+  domTreeLinks: [
+    {
+      to: "/dom-tree/intro",
+      label: "Dom Tree",
+      symbol: NeedToKnowSymbol,
+    },
+    {
+      to: "/dom-tree/family-tree",
+      label: "Family Tree",
+      symbol: NeedToKnowSymbol,
+    },
+    {
+      to: "/dom-tree/elementen-opvragen",
+      label: "Elementen Opvragen",
+      symbol: NeedToKnowSymbol,
+    },
+    {
+      to: "/dom-tree/forms",
+      label: "Forms",
+      symbol: NeedToKnowSymbol,
+    },
+  ],
+
   projectLinks: [
     { to: "/project/intro", label: "Introductie" },
     { to: "/project/onderwerp", label: "Onderwerp" },
     { to: "/project/github-classroom", label: "GitHub Classroom" },
+    { to: "/project/github-desktop", label: "GitHub Desktop" },
     { to: "/project/startpunt", label: "Startpunt" },
+    { to: "/project/practicum-I", label: "Practicum I", symbol: WipSymbol },
+    { to: "/project/practicum-II", label: "Practicum II", symbol: WipSymbol },
+    { to: "/project/practicum-III", label: "Practicum III", symbol: WipSymbol },
   ],
 };

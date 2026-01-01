@@ -4,6 +4,7 @@ import mdx from "@mdx-js/rollup";
 import remarkGfm from "remark-gfm";
 import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import rehypeHighlight from "rehype-highlight";
 
 // https://vite.dev/config/
 
@@ -20,6 +21,7 @@ export default defineConfig({
       rehypePlugins: [
         rehypeSlug,
         [rehypeAutolinkHeadings, { behavior: "append" }],
+        [rehypeHighlight, { ignoreMissing: true }],
       ],
     }),
   ],

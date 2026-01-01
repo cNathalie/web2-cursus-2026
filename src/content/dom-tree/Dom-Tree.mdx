@@ -1,0 +1,44 @@
+import DomImage from "/images/dom.png";
+
+De DOM (Document Object Model) is een object georiënteerde representatie van je HTML document. Het is een boomstructuur van nodes die elk een deel van je HTML document voorstellen. De DOM maakt het mogelijk om de structuur, stijl en inhoud van je HTML document te manipuleren.
+
+Met JavaScript kan je de DOM manipuleren. Je kan elementen toevoegen, verwijderen of aanpassen.
+
+---
+
+## Waaruit bestaat de DOM-Tree
+
+De DOM-Tree bestaat uit verschillende nodes. Elke node stelt een deel van je HTML document voor. De nodes zijn van boven naar onder als volgt georganiseerd:
+
+- Document Node
+- Element Node
+- Attribute Node
+- Text Node
+
+
+  <img src={DomImage} alt="DOM Tree" />
+
+
+---
+
+## Document Node
+
+De document node is de root node van de DOM-Tree. Het is het bovenste element van de boomstructuur en stelt het volledige HTML document voor.
+
+---
+
+## Element Node
+
+Element nodes stellen de HTML elementen voor. Elk HTML element zoals een div, p, h1, ... is een element node.
+
+---
+
+## Attribute Node
+
+Attribute nodes stellen de attributen van een HTML element voor. Elk attribuut zoals class, id, src, ... is een attribute node.
+
+---
+
+## Text Node
+
+Text nodes stellen de tekst van een HTML element voor. Elke tekst die in een HTML element staat is een text node. Bijvoorbeeld de tekst in deze paragraaf is een text node, ookal zie je in de html-structuur van deze pagina geen aparte node voor deze tekst.
