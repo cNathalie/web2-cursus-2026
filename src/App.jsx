@@ -20,7 +20,18 @@ import CoverImage from "./components/CoverImage.jsx";
 function App() {
   return (
     <BrowserRouter basename="/web2-cursus-2026">
-      <Navbar bg="dark" data-bs-theme="dark" fixed="top">
+      <Navbar
+        bg="dark"
+        data-bs-theme="dark"
+        fixed="top"
+        style={{ display: "flex", flexDirection: "column" }}
+      >
+        <span style={{ color: "grey", fontStyle: "italic", marginLeft: "1rem" , fontSize: "0.8rem", marginBottom: "1rem"}}>
+          © Nathalie Courteaux {new Date().getFullYear()}. Deze cursus mag niet
+          worden vermenigvuldigd, verspreid of gebruikt voor commerciële of
+          winstgevende doeleinden.
+        </span>
+
         <Container>
           <LinkContainer to="/">
             <Navbar.Brand>Web 2</Navbar.Brand>
@@ -267,9 +278,7 @@ function App() {
           <Route
             index
             element={
-              <ChapterCover
-                title="JavaScript events:  where chaos meets opportunity, and every click is a chance for greatness (or a bug)."
-              />
+              <ChapterCover title="JavaScript events:  where chaos meets opportunity, and every click is a chance for greatness (or a bug)." />
             }
           />
 

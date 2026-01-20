@@ -1,0 +1,152 @@
+Het event object is een object dat wordt doorgegeven aan de event handler
+wanneer een event plaatsvindt. Dit object bevat informatie over het event,
+zoals de locatie van de cursor, welke toetsen zijn ingedrukt, enzovoort.
+
+Het event object wordt standaard meegegeven aan de event handler,
+maar als je het wilt gebruiken, moet je het expliciet doorgeven als parameter aan de event handler. Je geeft het dan ook best een duidelijke naam, zoals "event".
+
+<div id="code1" className="inline-dynamic-example">
+  Probeer de code uit op deze `div`.
+</div>
+
+```js
+// Haal het element op
+const element = document.getElementById("code1");
+
+// Definieer het event object als parameter
+element.addEventListener("click", (event) => {
+  console.log(event.type);
+});
+
+element.addEventListener("mouseover", (event) => {
+  console.log(event.type);
+});
+```
+
+Als je in je functie gebruik wil maken van nog andere parameters,
+wees er dan zeker van dat je het event object als eerste parameter definieert.
+Duidelijke en correcte naamgeving van
+variabelen en parameters is altijd belangrijk, maar zeker in dit geval.
+
+<div id="code2" className="inline-dynamic-example">
+  Probeer de code uit op deze `div`.
+</div>
+
+```js
+// Haal het element op
+const element2 = document.getElementById("code2");
+
+// Definieer het event object als eerste parameter
+element2.addEventListener("click", (konijntje, event) => {
+  console.log(konijntje.type);
+  console.log(event.type); // Undefined error
+});
+```
+
+### Properties van het event object
+
+Het event object bevat verschillende properties die je kan gebruiken om informatie over het event op te vragen. Enkele van de meest gebruikte properties zijn:
+
+- `type`: het type event dat plaatsvindt (bijv. `click`, `mouseover`, `keydown`)
+- `target`: het element waarop het event plaatsvindt
+- `currentTarget`: het element waarop de event listener is geplaatst
+
+## `event.target`
+
+De `event.target` property geeft het element terug waarop het event plaatsvindt.
+Dit kan handig zijn als je wil weten welk element de actie heeft getriggerd.
+
+<div id="targetDiv" className="inline-dynamic-example">
+  Probeer de code uit op deze `div`.
+</div>
+
+```js
+// Haal het element op
+const element = document.getElementById("targetDiv");
+
+// Registreer de event listener
+element.addEventListener("click", (event) => {
+  console.log(event.target); // Het element waarop geklikt werd
+});
+```
+
+## `event.currentTarget`
+
+Het` event.currentTarget` property geeft het element terug waarop de event listener is geplaatst.
+Dit kan handig zijn als je wil weten op welk element de event listener is toegevoegd.
+
+<div id="currentTargetDiv" className="inline-dynamic-example">
+  Probeer de code uit op deze `div`.
+</div>
+
+```js
+// Haal het element op
+const element = document.getElementById("currentTargetDiv");
+
+// Registreer de event listener
+element.addEventListener("click", (event) => {
+  console.log(event.currentTarget); // Het element waarop de event listener is geplaatst
+});
+```
+
+## Practisch voorbeeld
+
+Het verschil tussen en de kracht van
+`.target` en `.currentTarget` wordt duidelijker in het volgende voorbeeld.
+
+Je hebt een lijst van producten en je wil wanneer er op een product geklikt wordt,
+een actie ondernemen. Dan kan je een event listener toevoegen aan elk product in
+de lijst of je kan een event listener toevoegen aan de lijst zelf.
+Wanneer je op een product klikt, zal de event listener op de lijst geactiveerd worden en zal je met .target het exacte product kunnen identificeren.
+
+Voer eerst de code uit in de console en klik dan op een product in de lijst.
+Bekijk de console om te zien welk product je hebt aangeklikt.
+
+<div className="inline-dynamic-example text-start">
+  <h4>Boodschappenlijst</h4>
+  <ul id="productList">
+    <li id="apples" className="pointer">Appels</li>
+    <li id="bread" className="pointer">Brood</li>
+    <li id="milk" className="pointer">Melk</li>
+  </ul>
+</div>
+
+Zo ziet de html van bovenstaand voorbeeld eruit:
+
+```html
+<div>
+  <h4>Boodschappenlijst</h4>
+  <ul id="productList">
+    <li id="apples">Appels</li>
+    <li id="bread">Brood</li>
+    <li id="milk">Melk</li>
+  </ul>
+</div>
+```
+
+Pas hierop nu deze JavaScript code toe:
+
+```js
+// Haal de lijst op
+const productList = document.getElementById("productList");
+
+// Registreer de event listener
+productList.addEventListener("click", (event) => {
+
+  // Het element waarop geklikt werd
+  console.log(event.target);
+
+  // De id van het product
+  console.log(`target: ${event.target.id}`);
+
+  // De id van de lijst
+  console.log(
+    `currentTarget: ${event.currentTarget.id} is het element waar de event listener aanhangt`
+  );
+});
+```
+
+Op deze manier kan je met één event listener meerdere elementen in de gaten houden en acties
+ondernemen wanneer er op een element geklikt wordt. Je kan nadien de properties van het target
+doorgeven aan een andere functie om verdere acties te ondernemen.
+Zoals bijvoorbeeld het toevoegen van een product aan een winkelmandje.

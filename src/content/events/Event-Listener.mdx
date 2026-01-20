@@ -1,0 +1,90 @@
+import ExclamationMark from "/images/exclamation-mark.png";
+import LoadEvent from "/images/load-event.png";
+
+Event listeners zijn functies die worden uitgevoerd wanneer een bepaald event plaatsvindt. Ze worden gebruikt om te reageren op acties van de gebruiker, zoals het klikken op een knop of het hoveren over een element.
+
+---
+
+## Het window load event
+
+<img src={ExclamationMark} />
+
+Het `load` event wordt geactiveerd wanneer een webpagina volledig is geladen. Dit event kan worden gebruikt om bepaalde acties uit te voeren nadat de pagina volledig is geladen, zoals het initialiseren van variabelen of het toevoegen van event listeners.
+
+Wanneer je een JavaScript bestand hebt dat je wil laten uitvoeren nadat de html pagina volledig is geladen, kan je dit doen door een event listener toe te voegen aan het window object.
+
+Om een event listener toe te voegen aan het `load` event van het window object, gebruik je de `addEventListener()` methode op het `window` object.
+
+Vanaf nu zal dus elke JavaScript file die je aanmaakt er om te beginnen zo uitzien:
+
+<img src={LoadEvent} />
+
+Het `window` object is een globaal object dat standaard beschikbaar is in JavaScript. Het bevat eigenschappen en methoden die betrekking hebben op het browservenster. Je bevestigt aan het `window` object een event listener die luistert naar het `load` event. Wanneer dit event plaatsvindt, wordt de functie die je meegeeft aan de `addEventListener()` methode uitgevoerd.
+
+Deze functie wordt doorgaans 'setup' genoemd, omdat het de initialisatie van je JavaScript code bevat, maar je kan het ook een andere naam geven. In deze functie komt alle code die je wil uitvoeren te staan.
+
+Je vindt deze template ook terug in dit project onder scripts > base > template.js
+
+**Opgelet:** Het is belangrijk dat je de event listener toevoegt aan het window object voordat je andere JavaScript code schrijft. Anders kan het zijn dat de code wordt uitgevoerd voordat de pagina volledig is geladen. Dit omdat code die de DOM-tree uitleest of aanpast, pas mag uitgevoerd worden wanneer de DOM-tree volledig is opgebouwd door de browser.
+
+**Dubbel opgelet:** Wie voor oefeningen of examenprojecten geen window load event en 'setup' functie gebruikt, zal <span className="important">punten verliezen</span>.
+
+---
+
+## Event listeners toevoegen
+
+Om een event listener toe te voegen aan een element, gebruik je de `addEventListener()` methode. Deze methode neemt twee argumenten: het type event dat je wil luisteren en de functie die moet worden uitgevoerd wanneer het event plaatsvindt.
+
+Hier is een voorbeeld van hoe je een event listener toevoegt aan een knopelement:
+
+<div className="inline-dynamic-example">
+  <button id="btn">Hier klikken</button>
+</div>
+
+```js
+// Haal het element op waar je een event listener aan wil koppelen
+const button = document.getElementById("btn");
+
+// Registreer de event listener
+button.addEventListener("click", () => {
+  alert("Er werd op de knop geklikt!!");
+});
+```
+
+In dit voorbeeld wordt een event listener toegevoegd aan een knop. Wanneer de gebruiker op de knop klikt,
+wordt de functie die de alert 'Er werd op de knop geklikt!!' uitvoert, geactiveerd.
+
+De methode die moet uitgevoerd worden kan meegegeven worden als een anonieme functie,
+zoals in het voorbeeld hierboven, of als een aparte functie die elders in je code gedefinieerd is.
+
+```js
+// Haal het element op waar je een event listener aan wil koppelen
+const button = document.getElementById("btn");
+
+// Definieer een functie
+function handleClick() {
+  alert("Er werd op de knop geklikt!!");
+}
+
+// Registreer de event listener
+button.addEventListener("click", handleClick);
+```
+
+### `onClick` vs `addEventListener`
+
+In HTML kan je ook events toevoegen aan elementen door gebruik te maken van het `onClick`
+attribuut. Dit attribuut bevat de code die moet worden uitgevoerd wanneer het event plaatsvindt.
+
+Hoewel het gebruik van `onClick` in sommige gevallen handig kan zijn,
+is het gebruik van `addEventListener` over het algemeen de betere keuze.
+Hier zijn enkele redenen waarom:
+
+- **Scheiding van HTML en JavaScript**:
+  Door JavaScript code in een apart bestand te schrijven en event listeners toe te voegen met `addEventListener`, houd je je HTML en JavaScript code gescheiden. Dit maakt je code overzichtelijker en gemakkelijker te onderhouden.
+
+- **Meerdere event listeners**:
+  Met `addEventListener` kan je meerdere event listeners toevoegen aan hetzelfde element. Dit is handig als je meerdere acties wil uitvoeren wanneer een event plaatsvindt.
+
+- **Flexibiliteit**:
+  Met `addEventListener` kan je events toevoegen en verwijderen zonder de bestaande HTML code te wijzigen. Dit maakt je code flexibeler en gemakkelijker aan te passen.
+  We spreken dus af om nooit meer `onClick` attributen te gebruiken in onze HTML code!

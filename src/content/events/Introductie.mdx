@@ -1,0 +1,102 @@
+Events zijn acties die de gebruiker uitvoert op een webpagina. Denk hierbij aan het klikken op een knop, het scrollen van de pagina, het hoveren over een element, etc.
+
+---
+
+## Event-based programming
+
+JavaScript is een event-based programmeertaal. Dit betekent dat de code reageert op events die plaatsvinden op de webpagina.
+
+Enkele voorbeelden van events zijn:
+
+- `click`
+- `mouseover`
+- `keydown`
+- `scroll`
+
+Je kan events toevoegen aan een element door een event listener toe te voegen. Dit is een functie die uitgevoerd wordt wanneer het event plaatsvindt.
+
+De syntax hiervoor is:
+
+```js
+// Een Event Listener aanmaken
+element.addEventListener("event", functie);
+```
+
+Waarbij '`element`' het HTML element is waarop het event moet plaatsvinden,
+'event' het type event is, en '`functie`' de functie is die uitgevoerd zal worden wanneer het event plaatsvindt.
+
+```js
+// Een Event Listener aanmaken
+element.addEventListener("event", functie);
+```
+
+Probeer het uit:
+
+<div id="div" className="inline-dynamic-example">
+  Probeer de code uit op deze `div`.
+</div>
+
+```js
+// Haal de div op
+const d = document.getElementById("div");
+
+// Bepaal de functie die moet uitgevoerd worden
+const toggleBgColor = () => {
+  d.classList.toggle("background-red");
+};
+
+// Voeg een event listener toe
+d.addEventListener("mouseover", toggleBgColor);
+```
+
+## Alle mogelijke events
+
+Hieronder vind je een lijst van veelgebruikte events die je kunt gebruiken met `addEventListener`:
+
+### Muis-events
+- `click`
+- `dblclick`
+- `mousedown`
+- `mouseup`
+- `mousemove`
+- `mouseenter`
+- `mouseleave`
+- `mouseover`
+- `mouseout`
+- `contextmenu`
+
+### Toetsenbord-events
+- `keydown`
+- `keyup`
+- `keypress`
+
+### Formulier-events
+- `submit`
+- `change`
+- `input`
+- `focus`
+- `blur`
+- `reset`
+
+### Venster-events
+- `load`
+- `resize`
+- `scroll`
+- `unload`
+- `beforeunload`
+
+### Clipboard-events
+- `copy`
+- `cut`
+- `paste`
+
+### Overige events
+- `touchstart`
+- `touchend`
+- `touchmove`
+- `drag`
+- `dragstart`
+- `dragend`
+- `drop`
+
+Dit is slechts een selectie van de meest gebruikte events. Voor een volledige lijst kun je de [MDN Event reference](https://developer.mozilla.org/en-US/docs/Web/Events) raadplegen.

@@ -47,10 +47,18 @@ img.btwn-text {
   margin-bottom: 10px;
 }
 
+.text-start {
+  text-align: start;
+}
+
 .background-red {
   background-color: red;
 }
 
 .underline {
   text-decoration: underline;
+}
+
+.pointer {
+  cursor: pointer;
 }

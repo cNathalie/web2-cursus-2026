@@ -11,6 +11,7 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  margin-top: 50px;
 }
 
 a {
@@ -71,3 +72,7 @@ button:focus-visible {
   margin-top: 50px;
   text-align: center;
 }
+/* 
+:not(pre) > code {
+  color: #0366d6;
+} */
