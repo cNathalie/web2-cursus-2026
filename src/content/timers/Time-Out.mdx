@@ -1,0 +1,107 @@
+De eerste timer functie is de `setTimeout`.
+
+---
+
+## `.setTimeout()`
+
+Met de `setTimeout` functie kunnen we een bepaald stukje code uitvoeren na een bepaalde tijd.  
+De functie accepteert twee argumenten: een functie die uitgevoerd moet worden en een getal dat aangeeft hoe lang we moeten wachten voordat de functie wordt uitgevoerd. Dit getal wordt uitgedrukt in milliseconden.
+
+In het onderstaande voorbeeld wordt de functie `openGoogle` pas uitgevoerd 5 seconden nadat er op de knop is geklikt.
+
+<div className="inline-dynamic-example">
+  <button id="google">Open Google</button>
+</div>
+
+```js
+// Declareer de functie die Google zal openen
+const openGoogle = () => {
+  window.open("https://www.google.com", "_blank");
+};
+
+// Declareer de TimeOut functie
+const timeOutFn = () => {
+  setTimeout(openGoogle, 5000);
+};
+
+// Haal de knop op
+const button = document.getElementById("google");
+
+// Voeg een event listener toe aan de knop
+button.addEventListener("click", timeOutFn);
+
+// Klik op de knop en tel tot 5...
+```
+
+Het kan zijn dat je browser pop-ups blokkeert. Als dit het geval is, zal de functie niet werken.
+Je kunt dit oplossen door de pop-up blokkering uit te schakelen.
+
+---
+
+## Praktische toepassingen van setTimeout
+
+Hieronder vind je enkele realistische voorbeelden van hoe `setTimeout` in echte projecten wordt gebruikt:
+
+_Deze code voorbeelden werken niet dynamisch in de console en zijn louter ter info._
+
+**1. Feedback tonen en daarna automatisch verbergen**
+
+```js
+// Toon een melding en verberg deze na 3 seconden
+const message = document.getElementById("feedback");
+message.textContent = "Je gegevens zijn opgeslagen!";
+message.style.display = "block";
+setTimeout(() => {
+  message.style.display = "none";
+}, 3000);
+```
+
+**2. Automatisch doorverwijzen na een actie**
+
+```js
+// Na succesvol inloggen, na 2 seconden doorsturen naar dashboard
+setTimeout(() => {
+  window.location.href = "/dashboard";
+}, 2000);
+```
+
+**3. Animatie starten na een korte vertraging**
+
+```js
+// Start een animatie 1 seconde na het laden van de pagina
+window.addEventListener("load", () => {
+  setTimeout(() => {
+    document.body.classList.add("start-animatie");
+  }, 1000);
+});
+```
+
+**4. Herhaaldelijk een actie uitvoeren met setTimeout (recursief)**
+
+```js
+// Een klok die elke seconde de tijd bijwerkt (alternatief voor setInterval)
+function updateClock() {
+  const clock = document.getElementById("clock");
+  clock.textContent = new Date().toLocaleTimeString();
+  setTimeout(updateClock, 1000);
+}
+updateClock();
+```
+
+**5. Gebruiker waarschuwen voor inactiviteit**
+
+```js
+// Na 5 minuten inactiviteit een waarschuwing tonen
+let timeoutId;
+function resetTimeout() {
+  clearTimeout(timeoutId);
+  timeoutId = setTimeout(() => {
+    alert("Je bent al 5 minuten inactief. Log opnieuw in.");
+  }, 5 * 60 * 1000);
+}
+document.addEventListener("mousemove", resetTimeout);
+document.addEventListener("keydown", resetTimeout);
+resetTimeout();
+```
+
+Deze voorbeelden laten zien hoe `setTimeout` handig is voor feedback, animaties, beveiliging en gebruikerservaring in echte webapplicaties.

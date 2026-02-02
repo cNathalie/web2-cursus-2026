@@ -1,0 +1,76 @@
+## Types
+
+Je kan het type van een node opvragen via de `nodeType` property. Deze property geeft een nummer terug dat het type van de node aangeeft. Voorbeeld:
+
+```js
+// We halen deze div op
+const node = document.querySelector("#my-div");
+
+// We loggen het type van de node
+console.log(node.nodeType);
+```
+
+Dit zal 1 loggen naar de console, wat het type is van een element node.
+
+Hier zijn de codes van nodes die wij leerden kennen:
+
+- Element node: 1
+- Attribute node: 2
+- Text node: 3
+- Document node: 9
+
+---
+
+## Praktische toepassingen van nodeType
+
+Hieronder vind je enkele realistische voorbeelden waar `nodeType` handig is in de praktijk:
+
+**1. Alleen tekst nodes selecteren uit een element**
+
+```js
+const parent = document.getElementById("my-div");
+const textNodes = [];
+parent.childNodes.forEach((node) => {
+  if (node.nodeType === 3) {
+    // 3 = Text node
+    textNodes.push(node);
+  }
+});
+console.log(textNodes);
+```
+
+**2. Ongewenste whitespace nodes verwijderen**
+
+```js
+const parent = document.getElementById("my-div");
+parent.childNodes.forEach((node) => {
+  if (node.nodeType === 3 && !node.textContent.trim()) {
+    parent.removeChild(node);
+  }
+});
+```
+
+**3. Controleren of een node een element is voordat je ermee werkt**
+
+```js
+function highlightIfElement(node) {
+  if (node.nodeType === 1) {
+    // 1 = Element node
+    node.style.background = "yellow";
+  }
+}
+```
+
+**4. Dynamisch door een DOM-boom lopen en alleen bepaalde types verwerken**
+
+```js
+function printElementNodes(node) {
+  if (node.nodeType === 1) {
+    console.log("Element:", node.tagName);
+  }
+  node.childNodes.forEach(printElementNodes);
+}
+printElementNodes(document.body);
+```
+
+Met deze voorbeelden zie je hoe `nodeType` je helpt om onderscheid te maken tussen verschillende soorten nodes in de DOM, bijvoorbeeld bij het filteren van tekst, het opschonen van whitespace, of het veilig manipuleren van elementen.

@@ -396,6 +396,68 @@ function App() {
             />
           ))}
         </Route>
+
+         <Route
+          path="/timers"
+          element={
+            <Chapter
+              chapter="Timers"
+              links={navigation.timersLinks}
+              expand={"lg"}
+            />
+          }
+        >
+          <Route
+            index
+            element={
+              <ChapterCover title="JavaScript timers: because sometimes your code just needs a moment to think." />
+            }
+          />
+
+          {navigation.timersLinks.map(({ to, label, symbol }) => (
+            <Route
+              path={to.replace("/timers/", "")}
+              element={
+                <MdxPage
+                  folder="timers"
+                  course={label.replaceAll(" ", "-")}
+                  {...(symbol ? { symbol } : {})}
+                />
+              }
+            />
+          ))}
+        </Route>
+
+        <Route
+          path="/advanced-dom"
+          element={
+            <Chapter
+              chapter="Advanced DOM"
+              links={navigation.advDomLinks}
+              expand={false}
+            />
+          }
+        >
+          <Route
+            index
+            element={
+              <ChapterCover title="Advanced DOM manipulation: basically LEGO, but the bricks complain if you forget a closing tag." />
+            }
+          />
+
+          {navigation.advDomLinks.map(({ to, label, symbol }) => (
+            <Route
+              path={to.replace("/advanced-dom/", "")}
+              element={
+                <MdxPage
+                  folder="advanced-dom"
+                  course={label.replaceAll(" ", "-")}
+                  {...(symbol ? { symbol } : {})}
+                />
+              }
+            />
+          ))}
+        </Route>
       </Routes>
     </BrowserRouter>
   );

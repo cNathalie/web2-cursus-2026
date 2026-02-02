@@ -76,3 +76,7 @@ button:focus-visible {
 :not(pre) > code {
   color: #0366d6;
 } */
+
+.hidden {
+  display: none;
+}

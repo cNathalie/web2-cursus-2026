@@ -1,0 +1,105 @@
+Je kan de aangemaakte timers ook clearen.
+
+---
+
+## Timer-id
+
+Wanneer we een interval aanmaken met `setInterval`, krijgen we een unieke id terug. Hetzelfde geldt voor `setTimeout`.  
+Deze id kunnen we gebruiken om het interval of de timeout te stoppen.
+
+Je kan uiteraard een timeout enkel stoppen met `clearTimeout` wanneer de timeout nog niet van start is gegaan. Wanneer de timeout al is gestart, zal deze sowieso uitgevoerd worden.
+
+Zo vangen we het id van een timer op:
+
+```js
+// Bij setTimeout
+const timeoutId = setTimeout(() => {
+  console.log('Hello, world!');
+}, 1000);
+
+console.log(timeoutId);
+
+// Bij setInterval
+const intervalId = setInterval(() => {
+  console.log('Hello, world!');
+}, 1000);
+
+console.log(intervalId);
+```
+
+### ``clearTimeout``
+Wanneer we een timeout hebben aangemaakt met setTimeout, kunnen we deze stoppen met de clearTimeout functie.
+Deze functie accepteert één argument: de timeout die we willen stoppen.
+
+### ``clearInterval``
+Wanneer we een interval hebben aangemaakt met setInterval, kunnen we deze stoppen met de clearInterval functie.
+Deze functie accepteert één argument: het interval dat we willen stoppen.
+
+##### Voorbeeld vorige pagina
+De kans is groot dat je sinds het verlaten van de 'Interval' pagina, meerdere errors in je Console hebt gekregen.
+Dit komt omdat de interval die we daar aangemaakt hebben, nog steeds actief is.
+Je kan deze stoppen door de volgende code in de Console uit te voeren:
+```js
+clearInterval(intervalId);
+```
+---
+
+### Een voorbeeld dat beide timers combineert
+Voer de code in de Console en bekijk het resultaat.
+```js	
+// Declareer de variabelen waar je de ID zal in bijhouden
+let intervalId;
+let timeoutId;
+
+// Declareer de functie die Google zal openen
+const openGoogle = () => {
+  window.open("https://www.google.com", "_blank");
+};
+
+// Declareer de TimeOut functie
+const timeOutFn = () => {
+  timeoutId = setTimeout(openGoogle, 10000)
+};
+
+// Haal de countdown op
+const countdown = document.getElementById("countdown");
+
+// Declareer de variabele die de tijd bijhoudt
+let time = 10;
+
+// Declareer de functie die de countdown uitvoert
+const countdownFn = () => {
+  // Clear de countdown wanneer die op nul staat
+  if (time === 0) {
+    clearInterval(intervalId);
+    countdown.innerText = "Countdown stopped";
+    return;
+  }
+  // Verlaag de waarde van time met 1
+  time--;
+  // Update de tekst van het element met id "countdown"
+  countdown.innerText = time;
+};
+
+// Haal de knop op
+const button = document.getElementById("google");
+
+// Voeg een event listener toe aan de Google-knop
+button.addEventListener("click", () => {
+  // Start de timeout
+  timeOutFn();
+  // Start ook de visuele countdown
+  intervalId = setInterval(countdownFn, 1000);
+});
+
+// Haal de stop knop op
+const stopButton = document.getElementById("stop");
+
+// Voeg een event listener toe aan de stop knop
+stopButton.addEventListener("click", () => {
+  // Stop de timeout die Google zal openen
+  clearTimeout(timeoutId);
+  // Stop de interval van de countdown
+  clearInterval(intervalId);
+});
+```

@@ -1,0 +1,117 @@
+De tweede timer functie is `setInterval`.
+
+---
+
+## `.setInterval()`
+
+Met de `setInterval` functie kunnen we een bepaald stukje code herhaaldelijk uitvoeren met een bepaalde interval.  
+De functie accepteert twee argumenten: een functie die uitgevoerd moet worden en een getal dat aangeeft hoe lang we moeten wachten voordat de functie wordt uitgevoerd. Dit getal wordt uitgedrukt in milliseconden.
+
+In het onderstaande voorbeeld wordt de functie `countdown` elke seconde uitgevoerd. De functie verlaagt de waarde van de variabele `time` met 1.
+
+<div className="inline-dynamic-example">
+  <button id="start">Start countdown</button>
+  <p id="time">10</p>
+</div>
+
+```html
+<button id="start">Start countdown</button>
+<p id="time">10</p>
+```
+
+```js
+// Declareer de variabele die de tijd bijhoudt
+let time = 10;
+
+// Declareer de functie die de countdown uitvoert
+const countdown = () => {
+  // Verlaag de waarde van time met 1
+  time--;
+  // Update de tekst van het element met id "time"
+  document.getElementById("time").innerText = time;
+};
+
+// Declareer de Interval functie
+const intervalFn = () => {
+  setInterval(countdown, 1000);
+};
+
+// Haal de knop op
+const button = document.getElementById("start");
+
+// Voeg een event listener toe aan de knop
+button.addEventListener("click", () => {
+  // Start de countdown
+  intervalId = setInterval(countdown, 1000);
+});
+```
+
+**Merk op dat** de timer niet stopt bij nul.
+Dit komt natuurlijk omdat je daar geen enkele instructie voor hebt meegegeven.
+Je kan beide soorten timers de instructie geven om te stoppen met de methode
+`clearInterval()`. We bekijken in het volgende deel hoe.
+
+---
+
+## Praktische toepassingen van setInterval
+
+Hieronder vind je enkele realistische voorbeelden van hoe `setInterval` in echte projecten wordt gebruikt:
+
+_Deze code voorbeelden werken niet dynamisch in de console en zijn louter ter info._
+
+**1. Klok of timer weergeven**
+
+```js
+// Toon de huidige tijd elke seconde
+setInterval(() => {
+  document.getElementById("clock").textContent =
+    new Date().toLocaleTimeString();
+}, 1000);
+```
+
+**2. Automatisch afbeeldingen laten wisselen (slideshow)**
+
+```js
+const images = ["img1.jpg", "img2.jpg", "img3.jpg"];
+let index = 0;
+setInterval(() => {
+  document.getElementById("slideshow").src = images[index];
+  index = (index + 1) % images.length;
+}, 3000);
+```
+
+**3. Periodiek data ophalen (polling)**
+
+```js
+// Elke 10 seconden nieuwe data ophalen
+setInterval(() => {
+  fetch("/api/nieuws")
+    .then((res) => res.json())
+    .then((data) => {
+      // Update de pagina met nieuwe data
+      console.log(data);
+    });
+}, 10000);
+```
+
+**4. Animatie laten lopen**
+
+```js
+// Laat een blokje bewegen
+let pos = 0;
+setInterval(() => {
+  pos += 5;
+  document.getElementById("block").style.left = pos + "px";
+}, 50);
+```
+
+**5. Gebruiker periodiek herinneren aan een actie**
+
+```js
+// Elke minuut een herinnering tonen
+setInterval(() => {
+  alert("Vergeet niet je werk op te slaan!");
+}, 60000);
+```
+
+Deze voorbeelden laten zien hoe `setInterval` handig is voor klokken, slideshows, periodiek data ophalen, animaties en reminders in echte webapplicaties.

@@ -1,0 +1,98 @@
+en Node heeft veel properties. Je kan deze bekijken via de Developer Tools in je browser,
+in het tabblad "Elements" en subtabblad "Properties". We bespreken de meest gebruikte:
+
+---
+
+<div className="inline-dynamic-example">
+  <div id="my-div">Hello, world!</div>
+</div>
+
+```html
+<div id="my-div">Hello, world!</div>
+```
+
+## `nodeName`
+
+De naam van de node, altijd in hoofdletters.
+
+```js
+// We halen deze div op
+const node = document.querySelector("#my-div");
+console.log(node.nodeName);
+```
+
+## `nodeValue`
+
+De waarde van de node.
+
+- Element nodes: null
+- Attribute nodes: de waarde van de attribute
+- Text nodes: de tekst van de node
+
+<div className="inline-dynamic-example">
+  <div id="my-div">Hello, world!</div>
+</div>
+```js // We halen deze div op const node = document.querySelector('#my-div'); console.log(node.nodeValue);
+``` ## `parentNode` De ouder node van deze node.
+
+```js
+// We halen deze div op
+const node = document.querySelector("#my-div");
+console.log(node.parentNode);
+```
+
+---
+
+## Praktische voorbeelden van node properties
+
+_Deze code voorbeelden werken niet dynamisch in de console en zijn louter ter info._
+
+
+**1. Alleen tekst nodes ophalen en aanpassen**
+
+```js
+const parent = document.getElementById("my-div");
+parent.childNodes.forEach((node) => {
+  if (node.nodeType === 3) {
+    node.nodeValue = node.nodeValue.toUpperCase();
+  }
+});
+```
+
+**2. De parent van een element stylen**
+
+```js
+const node = document.getElementById("my-div");
+node.parentNode.style.background = "#ffe4b5";
+```
+
+**3. De naam en waarde van een attribuut node loggen**
+
+```js
+const el = document.getElementById("my-div");
+const attr = el.attributes[0];
+console.log(attr.nodeName, attr.nodeValue);
+```
+
+---
+
+## Volledige lijst van veelgebruikte node properties
+
+- `nodeType` — Het type van de node (1 = element, 3 = tekst, ...)
+- `nodeName` — De naam van de node (bv. 'DIV', '#text')
+- `nodeValue` — De waarde van de node (meestal alleen voor text/attribute nodes)
+- `parentNode` — De ouder node
+- `childNodes` — Een NodeList van alle child nodes
+- `firstChild` — De eerste child node
+- `lastChild` — De laatste child node
+- `nextSibling` — De volgende node op hetzelfde niveau
+- `previousSibling` — De vorige node op hetzelfde niveau
+- `ownerDocument` — Het document waartoe de node behoort
+- `attributes` — Een NamedNodeMap van alle attributen (alleen voor element nodes)
+- `textContent` — De tekstinhoud van de node en zijn kinderen
+- `innerHTML` — De HTML-inhoud van de node (alleen voor element nodes)
+- `outerHTML` — De HTML van de node zelf inclusief zijn inhoud
+- `baseURI` — De absolute URI van de node
+- `isConnected` — Of de node verbonden is met het document
+
+Voor een volledig overzicht zie de [MDN Node documentatie](https://developer.mozilla.org/en-US/docs/Web/API/Node).

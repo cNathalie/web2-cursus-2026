@@ -203,6 +203,67 @@ export const navigation = {
     },
   ],
 
+      timersLinks: [
+    {
+      to: "/timers/intro",
+      label: "Introductie",
+      symbol: NiceToKnowSymbol,
+    },
+    {
+      to: "/timers/timeout",
+      label: "Time Out",
+      symbol: NeedToKnowSymbol,
+    },
+    {
+      to: "/timers/interval",
+      label: "Interval",
+      symbol: NeedToKnowSymbol,
+    },
+    {
+      to: "/timers/clear-timer",
+      label: "Clear Timer",
+      symbol: NeedToKnowSymbol,
+    },
+  ],
+
+  advDomLinks: [
+    {
+      to: "/advanced-dom/intro",
+      label: "Introductie",
+      symbol: NiceToKnowSymbol,
+    },
+    {
+      to: "/advanced-dom/node-types",
+      label: "Node Types",
+      symbol: NeedToKnowSymbol,
+    },
+    {
+      to: "/advanced-dom/nodes-ophalen",
+      label: "Nodes Ophalen",
+      symbol: NeedToKnowSymbol,
+    },
+    {
+      to: "/advanced-dom/node-properties",
+      label: "Node Properties",
+      symbol: NeedToKnowSymbol,
+    },
+    {
+      to: "/advanced-dom/node-navigatie",
+      label: "Node Navigatie",
+      symbol: NeedToKnowSymbol,
+    },
+    {
+      to: "/advanced-dom/node-aanmaken",
+      label: "Node Aanmaken",
+      symbol: NeedToKnowSymbol,
+    },
+    {
+      to: "/advanced-dom/node-toevoegen",
+      label: "Node Toevoegen",
+      symbol: NeedToKnowSymbol,
+    },
+  ],
+
   projectLinks: [
     { to: "/project/intro", label: "Introductie" },
     { to: "/project/onderwerp", label: "Onderwerp" },

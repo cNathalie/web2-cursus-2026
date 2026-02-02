@@ -1,0 +1,135 @@
+We zagen al verschillende methodes om elementen op te halen. Maar we hadden het nog niet uitgebreid over welk type deze methodes teruggeven.
+
+---
+
+## HTML-collection
+
+De methode `getElementsByClassName()` geeft een HTML-collection terug.
+
+Een HTML-collection is een array-like object dat alle elementen bevat die voldoen aan de query. Het is belangrijk om te weten dat een HTML-collection geen array is, maar een object. Dit betekent dat je niet zomaar array-methodes kan gebruiken op een HTML-collection. Je kan wel een HTML-collection omzetten naar een array met de `Array.from()` methode.
+
+Voorbeeld:
+
+```js
+// We halen alle ondertitels van deze pagina op
+const elements = document.getElementsByClassName("subtitle");
+
+// Log de opgehaalde HTML-collection
+console.log(elements);
+
+// We zetten de HTML-collection om naar een array
+const elementsArray = Array.from(elements);
+
+// Log de array
+console.log(elementsArray);
+```
+
+### NodeList
+
+De methode querySelectorAll() geeft een NodeList terug.
+
+Een NodeList is een array-like object dat alle elementen bevat die voldoen aan de query. Net zoals een HTML-collection is een NodeList geen array, maar een object. Dit betekent dat je niet zomaar array-methodes kan gebruiken op een NodeList. Je kan wel een NodeList omzetten naar een array met de Array.from() methode.
+
+Voorbeeld:
+
+```js
+// We halen alle paragrafen van deze pagina op
+const elements = document.querySelectorAll("p");
+
+// Log de opgehaalde NodeList
+console.log(elements);
+
+// We zetten de NodeList om naar een array
+const elementsArray = Array.from(elements);
+
+// Log de array
+console.log(elementsArray);
+```
+
+Een NodeList kan je wel gebruiken in een `forEach`. Dit is een handige manier om over alle elementen in de NodeList te itereren.
+
+Voorbeeld:
+
+```js
+// We halen alle paragrafen van deze pagina op
+const elements = document.querySelectorAll("p");
+
+// We loggen de tekst van elke paragraaf
+elements.forEach((element) => {
+  console.log(element.textContent);
+});
+```
+
+Wanneer je voor meerdere elementen in de DOM een bepaalde actie wil uitvoeren,
+is het dus handig om een NodeList te gebruiken. Je kan dan over alle elementen in de NodeList itereren en de actie uitvoeren,
+zonder eerst een omzetting naar een array te moeten doen.
+
+---
+
+## Praktische toepassingen van nodes ophalen
+
+Hieronder vind je enkele realistische voorbeelden waar het ophalen van nodes in de praktijk wordt gebruikt:
+
+_Deze code voorbeelden werken niet dynamisch in de console en zijn louter ter info._
+
+**1. Dynamisch een lijst opbouwen**
+Bijvoorbeeld: je haalt alle `<li>`-elementen op om ze te sorteren, te filteren of dynamisch te stylen.
+
+```js
+const items = document.querySelectorAll("ul#todo-list li");
+items.forEach((item) => {
+  if (item.textContent.includes("belangrijk")) {
+    item.style.fontWeight = "bold";
+  }
+});
+```
+
+**2. Formulierwaarden verzamelen**
+Alle inputvelden van een formulier ophalen om de waarden te valideren of te versturen.
+
+```js
+const inputs = document.querySelectorAll("form input");
+inputs.forEach((input) => {
+  console.log(input.name, input.value);
+});
+```
+
+**3. Interactieve tabbladen of menu's bouwen**
+Alle tab-knoppen ophalen en er event listeners aan koppelen.
+
+```js
+const tabs = document.querySelectorAll(".tab-button");
+tabs.forEach((tab) => {
+  tab.addEventListener("click", () => {
+    // Toon de juiste content
+  });
+});
+```
+
+**4. Content dynamisch aanpassen op basis van data**
+Bijvoorbeeld: alle elementen met een bepaalde class ophalen en hun inhoud aanpassen na een API-call.
+
+```js
+fetch("/api/nieuws")
+  .then((res) => res.json())
+  .then((data) => {
+    const nieuwsItems = document.querySelectorAll(".nieuws-item");
+    nieuwsItems.forEach((item, i) => {
+      item.textContent = data[i]?.titel || "";
+    });
+  });
+```
+
+**5. Toegankelijkheid verbeteren**
+Alle `<label>`-elementen ophalen en controleren of ze gekoppeld zijn aan een input.
+
+```js
+const labels = document.querySelectorAll("label");
+labels.forEach((label) => {
+  if (!label.htmlFor) {
+    label.style.border = "2px solid red";
+  }
+});
+```
+
+Deze use cases laten zien dat nodes ophalen essentieel is voor dynamische, interactieve en toegankelijke webapplicaties.

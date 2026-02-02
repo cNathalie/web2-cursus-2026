@@ -1,0 +1,23 @@
+import Fireworks from "/images/fireworks.gif";
+import { script } from "../../scripts/Fireworks.js";
+import { useEffect } from "react";
+
+{
+(() => {
+useEffect(() => {
+const dispose = script();
+return () => dispose?.();
+}, []);
+return null;
+})()
+}
+Timers zijn een belangrijk onderdeel van JavaScript. Ze stellen ons in
+staat om code uit te voeren op een later tijdstip. Dit kan handig zijn
+wanneer we bijvoorbeeld een animatie willen starten na een bepaalde
+tijd, of wanneer we een bepaalde actie pas willen uitvoeren na een
+gebruikersinteractie.
+
+<div className="inline-dynamic-example">
+  <h1 id="timer">25</h1>
+  <img id="fireworks" className="hidden" src={Fireworks} alt="Fireworks" />
+</div>
