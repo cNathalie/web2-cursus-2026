@@ -67,8 +67,8 @@ export default function MdxPage({ folder, course, symbol }) {
 
   return (
     <div ref={contentRef}>
-      <ChapterHeader title={course.replace("-", " ")} symbol={symbol} />
-      <Content /> {/* render the MDX component */}
+      <ChapterHeader title={course.replaceAll("-", " ")} symbol={symbol} />
+      <Content /> 
       <a
         href="#"
         style={{

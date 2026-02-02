@@ -1,0 +1,157 @@
+Er zijn verschillende input varianten die je kan gebruiken in een invulformulier.
+
+## Text Input
+
+Een tekstveld is een van de meest voorkomende input types. Hier kan de gebruiker tekst invoeren. We halen de waarde van een tekstveld op met de `.value` property.
+
+<div className="inline-dynamic-example">
+  <input id="text-input" type="text" placeholder="Voer hier tekst in" />
+</div>
+```html
+<input id="text-input" type="text" placeholder="Voer hier tekst in" />
+```
+
+```js
+const input = document.querySelector("#text-input");
+const inputValue = input.value;
+console.log(inputValue);
+```
+
+## Password Input
+
+Een wachtwoordveld is een tekstveld waarvan de ingevoerde tekst verborgen wordt.
+We halen de waarde van een wachtwoordveld op met de .value property.
+
+<div className="inline-dynamic-example">
+  <input
+    id="password-input"
+    type="password"
+    placeholder="Voer hier je wachtwoord in"
+  />
+</div>
+```html
+<input
+  id="password-input"
+  type="password"
+  placeholder="Voer hier je wachtwoord in"
+/>
+```
+
+```js
+const passwordInput = document.querySelector("#password-input");
+const passwordValue = passwordInput.value;
+console.log(passwordValue);
+```
+
+## Checkbox
+
+Een checkbox is een vakje waar de gebruiker een vinkje in kan zetten.
+We halen de waarde van een checkbox op met de .checked property.
+
+<div className="inline-dynamic-example">
+  <input id="checkbox-input" type="checkbox" /> Ik ga akkoord met de voorwaarden
+</div>
+```html
+<input id="checkbox-input" type="checkbox" /> Ik ga akkoord met de voorwaarden ```
+
+```js
+const checkbox = document.querySelector("#checkbox-input");
+const isChecked = checkbox.checked;
+console.log(isChecked);
+```
+
+## Radio Buttons
+
+Radio buttons zijn cirkeltjes waar de gebruiker er maar één van kan selecteren binnen een groep.
+We halen de waarde van een radio button op met de .checked property.
+
+<div className="inline-dynamic-example">
+  <input id="radio-input-1" type="radio" name="radio-group" /> Optie 1
+  <input id="radio-input-2" type="radio" name="radio-group" /> Optie 2
+</div>
+
+```html
+<input id="radio-input-1" type="radio" name="radio-group" /> Optie 1
+<input id="radio-input-2" type="radio" name="radio-group" /> Optie 2
+```
+
+```js
+const radioButtons = document.querySelectorAll('input[name="radio-group"]');
+radioButtons.forEach((radio) => {
+  radio.addEventListener("change", () => {
+    const selectedValue = radio.value;
+    console.log(selectedValue);
+  });
+});
+```
+
+## Select Dropdown
+
+Een select dropdown is een keuzelijst waar de gebruiker één optie uit kan kiezen.
+We halen de waarde van een select dropdown op met de .value property.
+
+<div className="inline-dynamic-example">
+  <select id="select-input">
+    <option value="optie1">Optie 1</option>
+    <option value="optie2">Optie 2</option>
+    <option value="optie3">Optie 3</option>
+  </select>
+</div>
+```html
+<select id="select-input">
+  <option value="optie1">Optie 1</option>
+  <option value="optie2">Optie 2</option>
+  <option value="optie3">Optie 3</option>
+</select>
+```
+
+```js
+const select = document.querySelector("#select-input");
+const selectedValue = select.value;
+console.log(selectedValue);
+```
+
+## Textarea
+
+Een textarea is een groter tekstveld waar de gebruiker meerdere regels tekst kan invoeren.
+We halen de waarde van een textarea op met de .value property.
+
+<div className="inline-dynamic-example">
+  <textarea
+    id="textarea-input"
+    rows="4"
+    cols="50"
+    placeholder="Voer hier je bericht in"
+  ></textarea>
+</div>
+```html
+<textarea
+  id="textarea-input"
+  rows="4"
+  cols="50"
+  placeholder="Voer hier je bericht in"
+></textarea>
+```
+
+```js
+const textarea = document.querySelector("#textarea-input");
+const textareaValue = textarea.value;
+console.log(textareaValue);
+```
+
+---
+
+## Overige veelgebruikte formulierelementen
+
+Hieronder vind je een beknopte lijst van andere elementen die vaak voorkomen in formulieren:
+
+- `<label>` — label voor een inputveld, verbetert toegankelijkheid
+- `<button>` — knop om te verzenden of acties uit te voeren
+- `<fieldset>` — groepeert gerelateerde velden binnen een formulier
+- `<legend>` — titel/omschrijving voor een fieldset
+- `<datalist>` — biedt suggesties bij het invullen van een inputveld
+- `<output>` — toont het resultaat van een berekening of actie
+- `<file input type="file">` — laat de gebruiker bestanden uploaden
+- `<input type="date">`, `<input type="time">`, `<input type="color">`, `<input type="range">`, `<input type="email">`, `<input type="number">`, ... — gespecialiseerde invoervelden voor specifieke soorten data
+
+Deze elementen maken je formulieren gebruiksvriendelijker, toegankelijker en veelzijdiger!

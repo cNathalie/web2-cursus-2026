@@ -1,0 +1,119 @@
+import WorthyImg from "/images/worthy.png";
+import NeedAnswersImg from "/images/need-answers.png";
+import { script } from "../../scripts/Margaret.js";
+import { useEffect } from "react";
+
+{
+(() => {
+useEffect(() => {
+const img = document.getElementById("changing-img");
+if (!img) return;
+// Observe attribute changes on the image
+const observer = new MutationObserver(() => {
+const dispose = script();
+return () => dispose?.();
+});
+observer.observe(img, { attributes: true });
+// Initial run
+const dispose = script();
+return () => {
+dispose?.();
+observer.disconnect();
+};
+}, []);
+return null;
+})()
+}
+
+Attributen zijn stukjes data die we kunnen toevoegen aan HTML elementen. Deze data kunnen we dan gebruiken om elementen te stylen of om ze te manipuleren met JavaScript.
+
+---
+
+## Gekende attributen
+
+Er zijn een aantal attributen die we al kennen, zoals de 'id' en 'class' attributen. Deze attributen kunnen we gebruiken om elementen te identificeren of om ze te stylen met CSS.
+
+---
+
+## Attributen opvragen
+
+We kunnen de attributen van een element opvragen met de `getAttribute()` methode. Deze methode neemt de naam van het attribuut als argument en geeft de waarde van het attribuut terug.
+
+Hier is een voorbeeld van hoe we de `getAttribute()` methode kunnen gebruiken om de waarde van een attribuut op te vragen:
+
+```js
+// Haal de titel van deze div op
+const element = document.querySelector("#sub");
+
+// Haal de waarde van het 'class' attribuut op
+const value = element.getAttribute("class");
+console.log(value);
+```
+
+Attributen wijzigen
+We kunnen de waarde van een attribuut wijzigen met de setAttribute() methode. Deze methode neemt de naam van het attribuut en de nieuwe waarde van het attribuut als argumenten.
+
+Hier is een voorbeeld van hoe we de setAttribute() methode kunnen gebruiken om de waarde van een attribuut te wijzigen:
+
+```js
+// Haal de titel van deze div op
+const element = document.querySelector("#sub2");
+
+// Wijzig de waarde van het id attribuut
+element.setAttribute("id", "new-id");
+
+// Haal de nieuwe waarde van het id attribuut op
+const newId = element.getAttribute("id");
+console.log(newId);
+```
+
+Je kan hier visuele effecten mee maken, zoals een afbeelding die verandert wanneer je erover hovert. Hieronder hebben we een afbeelding staan. Voorlopig is ze gewoon statisch. Voer nu onderstaande code uit in de console van je browser. Hover over de afbeelding en kijk wat er gebeurt.
+
+<img
+  src={WorthyImg}
+  alt="Worthy"
+  id="changing-img"
+  style={{
+    maxWidth: "500px",
+    display: "block",
+    margin: "20px auto",
+    padding: "5px",
+    border: "2px solid black",
+  }}
+/>
+
+```js
+// Haal het img element op
+const img = document.querySelector("#changing-img");
+
+// Voeg een event listener toe die de afbeelding verandert wanneer je erover hovert
+img.addEventListener("mouseover", () => {
+  img.setAttribute(
+    "src",
+    "https://upload.wikimedia.org/wikipedia/commons/d/db/Margaret_Hamilton_-_restoration.jpg"
+  );
+});
+```
+
+Indien de link in het code voorbeeld niet (meer) werkt, kan je hem vervangen met een link naar een afbeelding die zelf kiest.
+
+## Aanwezigheid van een attribuut controleren
+
+We kunnen controleren of een element een bepaald attribuut heeft met de hasAttribute() methode. Deze methode neemt de naam van het attribuut als argument en geeft true terug als het attribuut aanwezig is, en false als het attribuut niet aanwezig is.
+
+Hier is een voorbeeld van hoe we de hasAttribute() methode kunnen gebruiken om te controleren of een element een bepaald attribuut heeft:
+
+```js
+// Haal de titel van deze div op
+const element = document.querySelector("#sub3");
+
+// Controleer of het class attribuut aanwezig is
+const hasClass = element.hasAttribute("class");
+console.log(hasClass);
+
+// Controleer of het type attribuut aanwezig is
+const hasType = element.hasAttribute("type");
+console.log(hasType);
+```
+
+

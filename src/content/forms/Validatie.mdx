@@ -1,0 +1,346 @@
+import FlexColumn from "../../components/FlexColumn.jsx";
+
+[Strings valideren](#strings-valideren) - [Objecten vergelijken](#objecten-vergelijken)
+
+Gebruikersinput moet **altijd** gevalideerd worden om ervoor te zorgen dat de gegevens correct,
+compleet en veilig zijn voordat ze verwerkt of opgeslagen worden.
+Validatie helpt om fouten te voorkomen, de integriteit van de gegevens te waarborgen en
+beveiligingsrisico's te verminderen.
+
+## Types validatie
+
+- Client-side validatie: Dit gebeurt in de browser van de gebruiker voordat het formulier wordt verzonden.
+  Het biedt directe feedback aan de gebruiker en kan helpen om eenvoudige fouten te voorkomen, zoals
+  ontbrekende verplichte velden of onjuiste formaten (bijv. een ongeldig e-mailadres).
+- Server-side validatie: Dit gebeurt op de server nadat het formulier is verzonden.
+  Het is essentieel voor beveiliging, omdat client-side validatie kan worden omzeild.
+
+Hier zijn enkele veelvoorkomende methoden voor formuliervalidatie:
+
+1. **HTML5 ingebouwde validatie**: Gebruik van HTML5-attributen.
+2. **JavaScript validatie\***: Schrijven van aangepaste JavaScript-functies om de invoer te controleren voordat het formulier wordt verzonden.
+3. **Reguliere expressies**: Gebruik van regex om complexe patronen te valideren, zoals wachtwoorden of telefoonnummers.
+4. **Validatiebibliotheken**: Gebruik van bestaande bibliotheken zoals Joi, Yup of Validator.js voor uitgebreide validatie.
+5. **Server-side validatie**: Implementeren van validatieregels op de server met behulp van backend-talen zoals Node.js, Python, PHP, etc.
+
+Het is belangrijk om zowel client-side als server-side validatie te implementeren voor een robuuste en veilige gebruikerservaring.
+
+Wij focussen op client-side validatie.
+
+## HTML5 ingebouwde validatie
+
+HTML5 biedt verschillende ingebouwde attributen die je kunt gebruiken om formuliervelden te valideren zonder extra JavaScript-code te schrijven.
+Hier zijn enkele veelgebruikte HTML5-validatieattributen:
+
+- `required`: Zorgt ervoor dat een veld niet leeg mag zijn.
+- `type`: Specificeert het type invoer, zoals `email`, `url`, `number`, etc., wat automatisch de juiste validatie toepast.
+- `min` en `max`: Definieert de minimale en maximale waarden voor numerieke invoer.
+- `minlength` en `maxlength`: Bepaalt de minimale en maximale lengte van tekstinvoer.
+- `pattern`: Hiermee kun je een reguliere expressie opgeven om de invoer te valideren.
+  Hier is een voorbeeld van een formulier met HTML5-validatieattributen:
+
+```html
+<form>
+  <label for="email">E-mail:</label>
+  <input type="email" id="email" name="email" required />
+
+  <label for="age">Leeftijd:</label>
+  <input type="number" id="age" name="age" min="18" max="99" required />
+
+  <label for="username">Gebruikersnaam:</label>
+  <input
+    type="text"
+    id="username"
+    name="username"
+    minlength="4"
+    maxlength="12"
+    required
+  />
+
+  <button type="submit">Verzenden</button>
+</form>
+```
+
+In dit voorbeeld moeten gebruikers een geldig e-mailadres invoeren, een leeftijd tussen 18 en 99, en een gebruikersnaam van 4 tot 12 tekens lang zijn voordat ze het formulier kunnen verzenden.
+
+## JavaScript validatie
+
+Hoewel HTML5-validatie handig is, biedt het niet altijd voldoende controle over de validatieprocessen. Met JavaScript kun je aangepaste validatieregels implementeren en gebruikersfeedback geven.
+Hier is een voorbeeld van hoe je JavaScript kunt gebruiken om een formulier te valideren:
+
+<div className="inline-dynamic-example">
+<form id="myForm">
+<input type="email" id="email" name="email" placeholder="Voer je e-mail in" required />
+<br/>
+<input type="number" id="age" name="age" placeholder="Voer je leeftijd in" required />
+<br/>
+<button type="submit">Verzenden</button>
+</form>
+</div>
+
+```html
+<form id="myForm">
+  <input
+    type="email"
+    id="email"
+    name="email"
+    placeholder="Voer je e-mail in"
+    required
+  />
+
+  <input
+    type="number"
+    id="age"
+    name="age"
+    placeholder="Voer je leeftijd in"
+    required
+  />
+
+  <button type="submit">Verzenden</button>
+</form>
+```
+
+Voer de JS code uit via de console van je browser en test het gedrag van het bovenstaande formulier.
+
+```js
+const form = document.getElementById("myForm");
+form.addEventListener("submit", (event) => {
+  event.preventDefault(); // Voorkom standaard formulierverzending
+
+  // Haal waarden op
+  const email = document.getElementById("email").value;
+  const age = document.getElementById("age").value;
+
+  // Eenvoudige validatie
+  if (!email || !age) {
+    alert("Vul alstublieft alle velden in.");
+    return;
+  }
+
+  if (age < 18 || age > 99) {
+    alert("Leeftijd moet tussen 18 en 99 liggen.");
+    return;
+  }
+
+  // Als alles geldig is, kun je het formulier verzenden
+  form.submit();
+  alert("Formulier succesvol verzonden!");
+});
+```
+
+---
+
+## Strings valideren
+
+Bij het verwerken van gebruikersinput is het belangrijk om te controleren of een string geldig is. Hieronder vind je uitleg en voorbeelden van veelvoorkomende stringvalidaties:
+
+### 1. Lengte controleren
+
+Je wilt vaak dat een string een minimale of maximale lengte heeft, bijvoorbeeld voor een gebruikersnaam of wachtwoord.
+
+```js
+const username = document.getElementById("username").value;
+if (username.length < 4) {
+  alert("Gebruikersnaam moet minstens 4 tekens lang zijn.");
+}
+if (username.length > 12) {
+  alert("Gebruikersnaam mag maximaal 12 tekens zijn.");
+}
+```
+
+### 2. Null of lege string controleren
+
+Controleer of een veld niet leeg is:
+
+```js
+const input = document.getElementById("input").value;
+if (!input) {
+  alert("Vul dit veld in.");
+}
+```
+
+### 3. Strings vergelijken
+
+Je kan strings vergelijken met `===` of `.toLowerCase()` voor hoofdletterongevoelige vergelijking:
+
+```js
+const password = document.getElementById("password").value;
+const confirm = document.getElementById("confirm").value;
+if (password !== confirm) {
+  alert("Wachtwoorden komen niet overeen.");
+}
+
+// Hoofdletterongevoelig vergelijken
+const email = document.getElementById("email").value;
+if (email.toLowerCase() === "test@example.com") {
+  alert("Dit e-mailadres is niet toegestaan.");
+}
+```
+
+Hieronder zie je een voorbeeld van hoe je strings kan vergelijken met de .localeCompare() methode:
+
+```js
+const string1 = "apple";
+const string2 = "banana";
+
+const result = string1.localeCompare(string2);
+if (result < 0) {
+  console.log("string1 komt voor string2");
+} else if (result > 0) {
+  console.log("string1 komt na string2");
+} else {
+  console.log("string1 is gelijk aan string2");
+}
+```
+
+De methode geeft een getal terug dat aangeeft welke tekst lexicografisch eerst komt:
+
+Het resultaat is negatief indien string 1 voor string 2 komt.
+Het resultaat is positief indien string 1 na string 2 komt.
+Het resultaat is 0 indien de strings gelijk zijn.
+
+### 4. String omzetten naar een getal
+
+Soms moet je controleren of een string een geldig getal is, bijvoorbeeld bij een leeftijdsveld:
+
+```js
+const ageStr = document.getElementById("age").value;
+const age = Number(ageStr);
+if (Number.isNaN(age)) {
+  alert("Voer een geldige leeftijd in.");
+} else if (age < 18 || age > 99) {
+  alert("Leeftijd moet tussen 18 en 99 liggen.");
+}
+```
+
+### 5. Extra: Reguliere expressies voor patronen
+
+_Nice To Know - geen examenleerstof_
+
+Voor complexere validatie kun je een regex gebruiken, bijvoorbeeld voor e-mail:
+
+```js
+const email = document.getElementById("email").value;
+const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+if (!emailPattern.test(email)) {
+  alert("Voer een geldig e-mailadres in.");
+}
+```
+Meer over reguliere expressies kan je [hier](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_expressions) vinden.
+
+Door strings goed te valideren voorkom je fouten en zorg je voor betrouwbare en veilige input in je formulieren.
+
+## Gelijkheid van twee waardes bepalen
+
+Soms wil je controleren of twee waardes gelijk zijn aan elkaar.
+Dit kan je doen met de === operator. Deze operator controleert of de waardes gelijk zijn en
+of ze van hetzelfde type zijn. Als je enkel wil controleren of de waardes gelijk zijn,
+dan kan je de == operator gebruiken.
+
+Hieronder staan twee inputvelden, het eerste is van het type text en het tweede is van het type number.
+Vul zowel in de de tekst-input als in de number-input dezelfde waarde in. Voer daarna de JavaScript-code uit in de Console-tab van de Developer Tools om te zien of de waardes gelijk zijn.
+
+<div className="inline-dynamic-example">
+  <input type="text" id="input1" /> ?= <input type="number" id="input2" />
+</div>
+
+```js
+const input1 = document.querySelector("#input1");
+const input2 = document.querySelector("#input2");
+
+if (input1.value === input2.value) {
+  console.log("De waardes zijn gelijk");
+} else {
+  console.log("De waardes zijn niet gelijk");
+}
+```
+
+De waardes zijn gelijk als ze van hetzelfde type zijn en dezelfde waarde hebben.
+
+<div style={{ border: "solid 2px gold", textAlign: "center" }}>
+  Inputvelden geven ALTIJD strings terug, ook wanneer het type number is!
+</div>
+Als we onze number-input waarde echt als een getal willen behandelen,
+moeten we het dus eerst omzetten naar een Number:
+
+```js
+const input1 = document.querySelector("#input1");
+const input2 = document.querySelector("#input2");
+
+// Zet de string om naar een Number
+const numberValue = Number(input2.value);
+
+if (input1.value === numberValue) {
+  console.log("De waardes zijn gelijk");
+} else {
+  console.log("De waardes zijn niet gelijk");
+}
+```
+
+We vergelijken nu dit gedrag, met dat van de == operator:
+
+```js
+const input1 = document.querySelector("#input1");
+const input2 = document.querySelector("#input2");
+
+if (input1.value == input2.value) {
+  console.log("De waardes zijn gelijk");
+} else {
+  console.log("De waardes zijn niet gelijk");
+}
+
+// Zet de string om naar een Number
+const numberValue = Number(input2.value);
+
+if (input1.value == numberValue) {
+  console.log("De waardes zijn gelijk");
+} else {
+  console.log("De waardes zijn niet gelijk");
+}
+```
+
+We merken op dat de == operator de waardes als gelijk beschouwt, zelfs als ze van verschillende types zijn. Dit is niet altijd wenselijk,
+dus gebruik de === operator wanneer je zeker wil zijn dat twee waardes écht hetzelfde zijn.
+
+---
+
+## Objecten vergelijken
+
+Het vergelijken van objecten in JavaScript werkt anders dan bij primitieve types zoals strings of getallen. Twee objecten zijn alleen gelijk (`===` of `==`) als ze exact hetzelfde referentie-adres in het geheugen delen.
+
+```js
+const obj1 = { naam: "Jan" };
+const obj2 = { naam: "Jan" };
+const obj3 = obj1;
+
+console.log(obj1 === obj2); // false
+console.log(obj1 === obj3); // true
+```
+
+> Ook al hebben `obj1` en `obj2` exact dezelfde inhoud, ze zijn niet gelijk omdat het verschillende objecten zijn in het geheugen. Alleen als je een object direct toewijst (`obj3 = obj1`), zijn ze gelijk.
+
+Wil je de inhoud van objecten vergelijken, dan moet je dit zelf doen. Bijvoorbeeld met `JSON.stringify()` voor eenvoudige gevallen:
+
+```js
+const obj1 = { naam: "Jan" };
+const obj2 = { naam: "Jan" };
+
+console.log(JSON.stringify(obj1) === JSON.stringify(obj2)); // true
+```
+
+Let op: deze methode werkt alleen als de volgorde van de properties gelijk is en er geen functies of complexe types in het object zitten.
+
+Of je kan alle properties handmatig gaan vergelijken:
+
+```js
+const obj1 = { naam: "Jan", leeftijd: 30 };
+const obj2 = { naam: "Jan", leeftijd: 30 };
+
+if (obj1.naam === obj2.naam && obj1.leeftijd === obj2.leeftijd) {
+  console.log("De objecten zijn gelijk");
+} else {
+  console.log("De objecten zijn niet gelijk");
+}
+```
+
+Voor diepere of complexere vergelijkingen kun je een utility library gebruiken.

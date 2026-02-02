@@ -1,0 +1,185 @@
+Het type `String` in JavaScript wordt gebruikt om tekst te representeren. Een string is een reeks van karakters, zoals letters, cijfers, spaties, leestekens, enzovoort.
+
+---
+
+## String declareren
+
+Er zijn drie manieren om een String aan te maken:
+
+- Met enkele quotes: `'Hello, world!'`
+- Met dubbele quotes: `"Hello, world!"`
+- Met backticks: `` `Hello, world!` ``
+
+Je kan een String ook declareren met de `String` constructor:
+
+```js
+// Met het new keyword
+const str = new String("Hello, world!");
+console.log(str);
+
+// Zonder het new keyword
+const str2 = String("Hello, world!");
+console.log(str2);
+```
+
+De simpelste, en aanbevolen manier is het aanmaken van een string literal.
+
+```js
+// String literal
+const str3 = "Hello, world!";
+console.log(str3);
+```
+
+## Concateneren
+
+Soms is het nodig om dynamisch strings op te bouwen. Dit kan je doen door de + operator te gebruiken.
+
+```js
+// Concateneren met de + operator
+const firstName = "John";
+const lastName = "Doe";
+const fullName = firstName + " " + lastName;
+console.log(fullName);
+```
+
+Je kan ook concateneren met de methode concat():
+
+```js
+// Concateneren met de concat() methode
+const firstName = "John";
+const lastName = "Doe";
+const fullName = firstName.concat(" ", lastName);
+console.log(fullName);
+```
+
+Het is gemakkelijker en aanbevolen om een template literal aan te maken met backticks ( \` ... \` ) en variabelen in te voegen met `${myVar}`.
+
+```js
+// Concateneren met template literals
+const firstName = "John";
+const lastName = "Doe";
+const fullName = `${firstName} ${lastName}`;
+console.log(fullName);
+```
+
+String methodes
+Strings hebben verschillende methodes die je kan gebruiken om manipulaties uit te voeren. Hier zijn enkele voorbeelden:
+
+- `length`: geeft de lengte van de string terug
+- `toUpperCase()`: zet de string om naar hoofdletters
+- `toLowerCase()`: zet de string om naar kleine letters
+- `trim()`: verwijdert spaties aan het begin en einde van de string
+- `split()`: splitst de string op in een array van substrings, je geeft mee op welk karakter de splitsing moet gebeuren.
+- `replace()`: vervangt een deel van de string door een andere string
+- `charAt()`: geeft het karakter op een bepaalde index terug
+- `indexOf()`: geeft de index van een bepaalde substring
+- `lastIndexOf()`: geeft de laatste index van een bepaalde substring
+- `substring()`: geeft een deel van de string terug, je geeft de start en eind index mee
+- `slice()`: geeft een deel van de string terug, je geeft de start en eind index mee
+Probeer enkele van deze methodes uit:
+
+```js
+// Een string met veel 'trailing spaces'
+const str = "Hello, world!     ";
+
+// De lengte = het aantal karakters
+console.log(str.length);
+
+// Omzetten naar hoofdletters
+console.log(str.toUpperCase());
+
+// Omzetten naar kleine letters
+console.log(str.toLowerCase());
+
+// Spaties verwijderen
+console.log(str.trim());
+
+// Opsplitsen in een array
+console.log(str.split(","));
+
+// Vervangen van een deel van de string
+console.log(str.replace("world", "John"));
+
+// Karakter op een bepaalde index
+console.log(str.charAt(0));
+
+// Index van een bepaalde substring
+console.log(str.indexOf("world"));
+
+// Laatste index van een bepaalde substring
+console.log(str.lastIndexOf("world"));
+
+// Deel van de string
+console.log(str.substring(0, 5));
+
+// Deel van de string
+console.log(str.slice(0, 5));
+```
+
+## Speciale karakters
+Strings kunnen speciale karakters bevatten die je niet zomaar kan typen. Om deze karakters te gebruiken, moet je een escape karakter gebruiken: de backslash (\).
+
+Sommige karakters maken deel uit van de programmeertaal en worden dus niet standaard letterlijk weergegeven in strings. Als je ze dus echt wil zien, moet je ze escapen.
+
+Hier zijn enkele voorbeelden van speciale karakters:
+
+- \n : nieuwe lijn
+- \t : tab
+- \' : enkele quote
+- \" : dubbele quote
+- \\ : backslash
+Probeer enkele van deze karakters uit:
+
+```js
+// Nieuwe lijn
+console.log("Hello\nworld!");
+
+// Tab
+console.log("Hello\tworld!");
+
+// Enkele quote
+console.log("Hello'world!");
+
+// Dubbele quote
+console.log('Hello"world!');
+
+// Backslash
+console.log("Hello\\world!");
+```
+
+## Overzicht van alle String functies
+
+Hieronder vind je een overzicht van de belangrijkste en meest gebruikte functies en eigenschappen van het String object in JavaScript:
+
+### String methodes
+
+- `String.prototype.length` — Geeft de lengte van de string
+- `String.prototype.charAt(index)` — Geeft het karakter op een bepaalde positie
+- `String.prototype.charCodeAt(index)` — Geeft de Unicode van het karakter op een bepaalde positie
+- `String.prototype.concat(str)` — Voegt één of meerdere strings samen
+- `String.prototype.includes(search, [start])` — Controleert of de string een bepaalde substring bevat
+- `String.prototype.endsWith(search, [length])` — Controleert of de string eindigt op een bepaalde substring
+- `String.prototype.startsWith(search, [start])` — Controleert of de string begint met een bepaalde substring
+- `String.prototype.indexOf(search, [start])` — Geeft de index van de eerste vondst van een substring
+- `String.prototype.lastIndexOf(search, [start])` — Geeft de index van de laatste vondst van een substring
+- `String.prototype.localeCompare(compareString)` — Vergelijkt twee strings op basis van de locale
+- `String.prototype.match(regexp)` — Zoekt naar overeenkomsten met een reguliere expressie
+- `String.prototype.matchAll(regexp)` — Geeft alle overeenkomsten met een reguliere expressie
+- `String.prototype.normalize([form])` — Normaliseert Unicode-strings
+- `String.prototype.padEnd(targetLength, padString)` — Vult de string aan het einde op tot een bepaalde lengte
+- `String.prototype.padStart(targetLength, padString)` — Vult de string aan het begin op tot een bepaalde lengte
+- `String.prototype.repeat(count)` — Herhaalt de string een aantal keer
+- `String.prototype.replace(search, replacement)` — Vervangt een substring door een andere waarde
+- `String.prototype.replaceAll(search, replacement)` — Vervangt alle voorkomens van een substring
+- `String.prototype.search(regexp)` — Zoekt naar een match met een reguliere expressie
+- `String.prototype.slice(begin, [end])` — Geeft een deel van de string terug
+- `String.prototype.split(separator, [limit])` — Splitst de string op in een array
+- `String.prototype.substring(start, [end])` — Geeft een deel van de string terug
+- `String.prototype.toLowerCase()` — Zet de string om naar kleine letters
+- `String.prototype.toUpperCase()` — Zet de string om naar hoofdletters
+- `String.prototype.trim()` — Verwijdert spaties aan het begin en einde
+- `String.prototype.trimStart()` / `trimLeft()` — Verwijdert spaties aan het begin
+- `String.prototype.trimEnd()` / `trimRight()` — Verwijdert spaties aan het einde
+- `String.prototype.valueOf()` — Geeft de primitieve waarde van een String object
+
+Voor een volledig overzicht zie de [MDN String documentatie](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String).

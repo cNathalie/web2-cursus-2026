@@ -1,0 +1,161 @@
+Het Math object is een ingebouwd object in JavaScript dat je toelaat om wiskundige operaties
+uit te voeren. Het object bevat verschillende methodes en eigenschappen die je kan gebruiken
+om berekeningen uit te voeren. We zetten er enkele in de kijker:
+
+---
+
+## Random getallen
+
+Met het Math object kan je random getallen genereren. Dit kan je doen met de `Math.random()` methode. Deze methode geeft een willekeurig getal tussen 0 en 1 terug.
+
+Door het resultaat van `Math.random()` verder te manipuleren, kan je random getallen genereren binnen een bepaald bereik.
+
+Probeer het uit:
+
+```js
+// Een random getal tussen 0 en 1
+const random1 = Math.random();
+console.log(random1);
+
+// Een random getal tussen 0 en 10
+const random2 = Math.random() * 10;
+console.log(random2);
+
+// Een random getal tussen 5 en 50
+const random3 = 5 + Math.random() * 50;
+console.log(random3);
+```
+
+## Afronden naar beneden
+
+Je kan getallen afronden naar beneden met de Math.floor() methode. Deze methode rondt een getal af naar het dichtsbijzijnde gehele getal dat kleiner is dan of gelijk is aan het gegeven getal.
+
+Probeer het uit:
+
+```js
+// Afronden naar beneden van een positief getal
+const number = 12.34;
+const rounded = Math.floor(number);
+console.log(rounded);
+
+// Afronden naar beneden van een negatief getal
+const negativeNumber = -12.34;
+const negativeRounded = Math.floor(negativeNumber);
+console.log(negativeRounded);
+```
+
+## Afronden naar boven
+
+Je kan getallen afronden naar boven met de Math.ceil() methode. Deze methode rondt een getal af naar het dichtsbijzijnde gehele getal dat groter is dan of gelijk is aan het gegeven getal.
+
+Probeer het uit:
+
+```js
+// Afronden naar boven van een positief getal
+const number = 12.34;
+const rounded = Math.ceil(number);
+console.log(rounded);
+
+// Afronden naar boven van een negatief getal
+const negativeNumber = -12.34;
+const negativeRounded = Math.ceil(negativeNumber);
+console.log(negativeRounded);
+```
+
+## Afronden naar het dichtstbijzijnde gehele getal
+
+Je kan getallen afronden naar het dichtstbijzijnde gehele getal met de Math.round() methode. Deze methode rondt een getal af naar het dichtstbijzijnde gehele getal.
+
+Probeer het uit:
+
+```js
+// Afronden naar het dichtstbijzijnde gehele getal van een positief getal
+const number = 12.34;
+const rounded = Math.round(number);
+console.log(rounded);
+
+const number2 = 12.7;
+const rounded2 = Math.round(number2);
+console.log(rounded2);
+
+// Afronden naar het dichtstbijzijnde gehele getal van een negatief getal
+const negativeNumber = -12.34;
+const negativeRounded = Math.round(negativeNumber);
+console.log(negativeRounded);
+
+const negativeNumber2 = -12.7;
+const negativeRounded2 = Math.round(negativeNumber2);
+console.log(negativeRounded2);
+```
+
+De Math.round() methode rondt af naar het dichtstbijzijnde gehele getal. Als het getal 0.5 of hoger is, wordt er naar boven afgerond.
+Als het getal lager is dan 0.5, wordt er naar beneden afgerond.
+
+## Maximum en minimum
+
+Je kan het maximum en minimum getal van een reeks getallen bepalen met de Math.max() en Math.min() methodes.
+
+Probeer het uit:
+
+```js
+// Maximum getal
+const max = Math.max(1, 2, 3, 4, 5);
+console.log(max);
+
+// Minimum getal
+const min = Math.min(1, 2, 3, 4, 5);
+console.log(min);
+```
+
+## Overzicht van alle Math functies
+
+Hieronder vind je een overzicht van de belangrijkste en meest gebruikte functies van het Math object in JavaScript:
+
+- `Math.abs(x)` — Absolute waarde
+- `Math.acos(x)` — Arc-cosinus
+- `Math.acosh(x)` — Inverse hyperbolische cosinus
+- `Math.asin(x)` — Arc-sinus
+- `Math.asinh(x)` — Inverse hyperbolische sinus
+- `Math.atan(x)` — Arc-tangens
+- `Math.atan2(y, x)` — Arc-tangens van de quotiënt van zijn argumenten
+- `Math.atanh(x)` — Inverse hyperbolische tangens
+- `Math.cbrt(x)` — Derde-machtswortel
+- `Math.ceil(x)` — Afronden naar boven
+- `Math.clz32(x)` — Aantal leidende nullen in 32-bits binaire representatie
+- `Math.cos(x)` — Cosinus
+- `Math.cosh(x)` — Hyperbolische cosinus
+- `Math.exp(x)` — Exponentiële functie (e^x)
+- `Math.expm1(x)` — e^x - 1
+- `Math.floor(x)` — Afronden naar beneden
+- `Math.fround(x)` — Rondt af naar 32-bits float
+- `Math.hypot(...args)` — Vierkantswortel van de som van kwadraten
+- `Math.imul(a, b)` — 32-bits gehele getallen vermenigvuldigen
+- `Math.log(x)` — Natuurlijke logaritme
+- `Math.log10(x)` — Logaritme basis 10
+- `Math.log1p(x)` — Natuurlijke logaritme van 1 + x
+- `Math.log2(x)` — Logaritme basis 2
+- `Math.max(...args)` — Grootste waarde
+- `Math.min(...args)` — Kleinste waarde
+- `Math.pow(x, y)` — Macht
+- `Math.random()` — Willekeurig getal tussen 0 en 1
+- `Math.round(x)` — Afronden naar dichtstbijzijnde geheel getal
+- `Math.sign(x)` — Voorteken van een getal
+- `Math.sin(x)` — Sinus
+- `Math.sinh(x)` — Hyperbolische sinus
+- `Math.sqrt(x)` — Vierkantswortel
+- `Math.tan(x)` — Tangens
+- `Math.tanh(x)` — Hyperbolische tangens
+- `Math.trunc(x)` — Verwijdert het decimale deel
+
+Daarnaast zijn er ook enkele handige constanten:
+
+- `Math.E` — Euler’s getal (≈2.718)
+- `Math.PI` — Pi (≈3.14159)
+- `Math.LN2` — Natuurlijke logaritme van 2
+- `Math.LN10` — Natuurlijke logaritme van 10
+- `Math.LOG2E` — Logaritme basis 2 van e
+- `Math.LOG10E` — Logaritme basis 10 van e
+- `Math.SQRT1_2` — Vierkantswortel van 1/2
+- `Math.SQRT2` — Vierkantswortel van 2
+
+Voor een volledig overzicht zie de [MDN Math documentatie](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math).

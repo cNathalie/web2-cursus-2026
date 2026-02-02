@@ -1,0 +1,111 @@
+De querySelector methodes zijn een krachtige manier om elementen te selecteren in de DOM.
+
+---
+
+## `document.querySelector()`
+
+De querySelector methode is een methode die we kunnen gebruiken om een element te selecteren op basis van een CSS selector. De methode geeft het **eerste element** terug dat overeenkomt met de gegeven selector. Als er geen elementen overeenkomen met de gegeven selector, zal de methode `null` teruggeven.
+
+De querySelector methode heeft de volgende syntax:
+
+```js
+document.querySelector("selector");
+```
+
+Hier is een voorbeeld van hoe we de querySelector methode kunnen gebruiken om een element te selecteren met een bepaalde id:
+
+```js
+const element = document.querySelector("#id");
+```
+
+Hier is een voorbeeld van hoe we de querySelector methode kunnen gebruiken om een element te selecteren met een bepaalde class:
+
+```js
+const element = document.querySelector(".class");
+```
+
+## `document.querySelectorAll()`
+
+De querySelectorAll methode is een methode die we kunnen gebruiken om alle elementen te selecteren die overeenkomen met een gegeven CSS selector. De methode geeft een NodeList terug met alle elementen die overeenkomen met de gegeven selector. Als er geen elementen overeenkomen met de gegeven selector, zal de methode een lege NodeList teruggeven.
+
+De querySelectorAll methode heeft de volgende syntax:
+
+Hier is een voorbeeld van hoe we de querySelectorAll methode kunnen gebruiken om alle elementen te selecteren met een bepaalde class:
+
+```js
+const elements = document.querySelectorAll(".class");
+```
+
+Deze geeft een NodeList terug met alle elementen die de class 'class' hebben.
+
+Probeer het uit op de volgende lijst:
+
+<div className="inline-dynamic-example text-start">
+  <ul>
+    <li className="selectorAll">Element 1</li>
+    <li className="selectorAll">Element 2</li>
+    <li className="selectorAll">Element 3</li>
+  </ul>
+</div>
+
+Deze ziet er zo uit in html:
+
+```html
+<div>
+  <ul>
+    <li className="selectorAll">Element 1</li>
+    <li className="selectorAll">Element 2</li>
+    <li className="selectorAll">Element 3</li>
+  </ul>
+</div>
+```
+
+```js
+// Haal alle elementen met de class 'selectorAll' op
+const elements = document.querySelectorAll(".selectorAll");
+console.log(elements);
+```
+
+**Handig**: Op een NodeList kan je de `forEach` methode gebruiken om over elk element in de NodeList te itereren.
+
+```js
+// Itereer over alle elementen en log hun textContent
+elements.forEach((element) => {
+  console.log(element.textContent);
+});
+```
+
+## Performantie
+
+De `querySelector` methodes zijn performanter dan de andere methodes om elementen te selecteren. Dit komt omdat de querySelector methodes gebruik maken van de browser's interne querySelector engine. Deze engine is geoptimaliseerd voor het selecteren van elementen in de DOM.
+
+Je kan het selecteren van elementen nog performanter maken door te zoeken naar kinderen van elementen die we reeds geselecteerd hebben.
+
+Je kan dus selecteren vanuit het document object, of vanuit een element zelf.
+
+Probeer het uit op onderstaande oefening:
+
+<div id="perf-div" className="inline-dynamic-example text-start">
+  <h4 id="perf-quote" style={{ textAlign: "center" }}>
+    Optimize later? Congrats, you’ve just scheduled future misery.
+  </h4>
+</div>
+
+De oefening ziet er in html zo uit:
+
+```html
+<div id="perf-div">
+  <h4 id="perf-quote">
+    Optimize later? Congrats, you’ve just scheduled future misery.
+  </h4>
+</div>
+```
+De heading is dus een element binnenin de div.
+```js
+// Haal deze div op
+const element = document.querySelector("#perf-div");
+
+// Haal het code block in de div op
+const childElement = element.querySelector("#perf-quote");
+console.log(childElement);
+```

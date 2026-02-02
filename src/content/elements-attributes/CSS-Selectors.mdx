@@ -1,0 +1,133 @@
+CSS Selectoren zijn een krachtige manier om elementen te selecteren in de DOM.
+
+---
+
+## De verschillende soorten
+
+Er zijn verschillende soorten CSS Selectoren:
+
+- **Element Selector**: `div`
+- **ID Selector**: `#header`
+- **Class Selector**: `.title`
+- **Attribute Selector**: `[type="text"]`
+- **Child Selector**: `ul > li`
+- **Descendant Selector**: `div p`
+- **Pseudo-class**: `a:visited`
+
+Bekijk voor een diepgaandere uitleg [deze pagina](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_selectors).
+
+---
+
+## Probeer het uit
+
+<div id="selector-examples" style={{ display: "none" }}>
+  <div id="header">Header</div>
+  <div class="title">Title 1</div>
+  <div class="title">Title 2</div>
+  <a href="#">Link 1</a>
+  <a href="#">Link 2</a>
+  <ul>
+    <li>Item 1</li>
+    <li>Item 2</li>
+    <li>Item 3</li>
+  </ul>
+  <div>
+    <p>Paragraph in div</p>
+  </div>
+  <div class="link-bar">
+    <a href="#">Bar Link 1</a>
+    <a href="#">Bar Link 2</a>
+    <a href="#">Bar Link 3</a>
+  </div>
+</div>
+
+Op deze pagina staat een verborgen div met verschillende elementen om de selectoren op uit te proberen.
+Deze ziet er in html zo uit:
+
+```html
+<div id="selector-examples" style="display: none;">
+  <div id="header">Header</div>
+  <div class="title">Title 1</div>
+  <div class="title">Title 2</div>
+  <a href="#">Link 1</a>
+  <a href="#">Link 2</a>
+  <ul>
+    <li>Item 1</li>
+    <li>Item 2</li>
+    <li>Item 3</li>
+  </ul>
+  <div>
+    <p>Paragraph in div</p>
+  </div>
+  <div class="link-bar">
+    <a href="#">Bar Link 1</a>
+    <a href="#">Bar Link 2</a>
+    <a href="#">Bar Link 3</a>
+  </div>
+</div>
+```
+
+Oefen met de volgende code in de console van je browser en zorg ervoor dat je ook effectief begrijpt
+welke selector wat doet:
+
+```js
+// Selecteer de div waarin alle oefen elementen zich bevinden
+const container = document.querySelector("#selector-examples");
+
+// Element Selector: alle divs op deze pagina
+const divs = container.querySelectorAll("div");
+console.log(divs);
+
+// ID Selector: het element met id 'header'
+const header = container.querySelector("#header");
+console.log(header);
+
+// Class Selector: alle elementen met class 'title'
+const titles = container.querySelectorAll(".title");
+console.log(titles);
+
+// Attribute Selector: alle elementen met het attribuut en waarde type="text"
+const attr = container.querySelector('[href="#"]');
+console.log(attr);
+
+// Child Selector: alle li elementen die het kind zijn van een ul element
+const lis = container.querySelectorAll("ul > li");
+console.log(lis);
+
+// Descendant Selector: het eerste p element dat zich onder de eerste div bevindt
+const p = container.querySelector("div p");
+console.log(p);
+
+// Pseudo-class: haal het derde a element op onder het eerste element dat de klasse 'link-bar' draagt
+const thirdLink = container.querySelector(".link-bar a:nth-child(3)");
+console.log(thirdLink);
+```
+
+## Selecteren met pseudo-klasses
+
+Zoals je ziet kunnen de selectoren van pseudo-klassen complexer zijn. Hierbij heb je enkele veel gebruikte voorbeelden:
+
+- **first-child**: selecteer het eerste kind van een element
+- **last-child**: selecteer het laatste kind van een element
+- **nth-child(n)**: selecteer het n-de kind van een element
+
+## Overzicht van alle mogelijke CSS-selectoren
+
+Hieronder vind je een overzicht van de meest gebruikte CSS-selectoren:
+
+- **Element Selector**: `div`, `p`, `ul`, ...
+- **ID Selector**: `#id`
+- **Class Selector**: `.class`
+- **Attribute Selector**: `[attribute]`, `[attribute="value"]`
+- **Universal Selector**: `*`
+- **Group Selector**: `div, p, .class`
+- **Descendant Selector**: `div p`
+- **Child Selector**: `ul > li`
+- **Adjacent Sibling Selector**: `h2 + p`
+- **General Sibling Selector**: `h2 ~ p`
+- **Pseudo-class Selector**:
+  - `:hover`, `:active`, `:focus`, `:visited`, `:checked`, `:disabled`, `:first-child`, `:last-child`, `:nth-child(n)`, `:nth-of-type(n)`, `:not(selector)`, ...
+- **Pseudo-element Selector**:
+  - `::before`, `::after`, `::first-line`, `::first-letter`, ...
+
+Voor een volledig overzicht en meer voorbeelden zie de [MDN CSS Selectors documentatie](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_selectors).

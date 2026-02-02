@@ -119,6 +119,90 @@ export const navigation = {
     },
   ],
 
+  typesLinks: [
+    {
+      to: "/types/intro",
+      label: "Introductie",
+      symbol: NeedToKnowSymbol,
+    },
+    {
+      to: "/types/math",
+      label: "Math",
+      symbol: NeedToKnowSymbol,
+    },
+    {
+      to: "/types/number",
+      label: "Number",
+      symbol: NeedToKnowSymbol,
+    },
+    {
+      to: "/types/string",
+      label: "String",
+      symbol: NeedToKnowSymbol,
+    },
+    {
+      to: "/types/oepsie",
+      label: "Oepsie",
+      symbol: NiceToKnowSymbol,
+    },
+  ],
+
+  elementsLinks: [
+    {
+      to: "/elementen-en-attributen/intro",
+      label: "Introductie",
+      symbol: NeedToKnowSymbol,
+    },
+    {
+      to: "/elementen-en-attributen/query-selector",
+      label: "Query Selector",
+      symbol: NeedToKnowSymbol,
+    },
+    {
+      to: "/elementen-en-attributen/css-selectors",
+      label: "CSS Selectors",
+      symbol: NeedToKnowSymbol,
+    },
+    {
+      to: "/elementen-en-attributen/inner-html",
+      label: "InnerHtml",
+      symbol: NeedToKnowSymbol,
+    },
+    {
+      to: "/elementen-en-attributen/attributen",
+      label: "Attributen",
+      symbol: NeedToKnowSymbol,
+    },
+    {
+      to: "/elementen-en-attributen/custom-data-attributen",
+      label: "Custom Data Attributen",
+      symbol: NeedToKnowSymbol,
+    },
+  ],
+
+    formsLinks: [
+    {
+      to: "/forms/intro",
+      label: "Introductie",
+      symbol: NiceToKnowSymbol,
+    },
+    {
+      to: "/forms/elementen",
+      label: "Elementen",
+      symbol: NeedToKnowSymbol,
+    },
+    {
+      to: "/forms/Validatie",
+      label: "Validatie",
+      symbol: NeedToKnowSymbol,
+    },
+    {
+      to: "/forms/data-manipulatie",
+      label: "Data Manipulatie",
+      symbol: NeedToKnowSymbol,
+    },
+  ],
+
   projectLinks: [
     { to: "/project/intro", label: "Introductie" },
     { to: "/project/onderwerp", label: "Onderwerp" },

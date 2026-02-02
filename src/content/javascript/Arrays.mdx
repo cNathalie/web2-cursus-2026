@@ -1,4 +1,4 @@
-import ZeroBasedFun from '/images/zero-based-fun.png';
+import ZeroBasedFun from "/images/zero-based-fun.png";
 
 Arrays zijn geordende veramelingen van elementen.
 
@@ -44,8 +44,6 @@ De index van een array begint ALTIJD bij 0. Dit betekent dat het eerste element 
 Index is niet hetzelfde als `length`!
 
 <img src={ZeroBasedFun} alt="Zero based fun" className="img-fluid my-3" />
-
-```javascript
 
 ---
 
@@ -162,3 +160,53 @@ console.log(multiArray[0][0]); // 1
 console.log(multiArray[1][2]); // 6
 console.log(multiArray[2][1]); // 8
 ```
+
+---
+
+## Overzicht van alle Array methodes en properties
+
+Hieronder vind je een overzicht van de belangrijkste en meest gebruikte methodes en properties van het Array object in JavaScript:
+
+### Properties
+
+- `length` — Geeft het aantal elementen in de array
+
+### Methodes
+
+- `push(element)` — Voegt een element toe aan het einde
+- `pop()` — Verwijdert en retourneert het laatste element
+- `shift()` — Verwijdert en retourneert het eerste element
+- `unshift(element)` — Voegt een element toe aan het begin
+- `concat(array)` — Voegt twee of meer arrays samen
+- `join(separator)` — Maakt een string van alle elementen
+- `slice(begin, end)` — Geeft een deel van de array terug
+- `splice(start, deleteCount, ...items)` — Voegt elementen toe/verwijdert elementen
+- `indexOf(element)` — Geeft de eerste index van een element
+- `lastIndexOf(element)` — Geeft de laatste index van een element
+- `includes(element)` — Controleert of een element voorkomt
+- `reverse()` — Draait de volgorde van de array om
+- `sort([compareFunction])` — Sorteert de array
+- `forEach(callback)` — Voert een functie uit voor elk element
+- `map(callback)` — Maakt een nieuwe array met het resultaat van de callback
+- `filter(callback)` — Maakt een nieuwe array met elementen die voldoen aan de callback
+- `reduce(callback, initialValue)` — Reduceert de array tot één waarde
+- `reduceRight(callback, initialValue)` — Reduceert van rechts naar links
+- `find(callback)` — Geeft het eerste element dat voldoet aan de callback
+- `findIndex(callback)` — Geeft de index van het eerste element dat voldoet aan de callback
+- `some(callback)` — Geeft true als minstens één element voldoet
+- `every(callback)` — Geeft true als alle elementen voldoen
+- `fill(value, start, end)` — Vult de array met een waarde
+- `copyWithin(target, start, end)` — Kopieert een deel van de array naar een andere locatie
+- `flat([depth])` — Maakt een geneste array platter
+- `flatMap(callback)` — Voert map uit en flat daarna
+- `at(index)` — Geeft het element op de opgegeven positie (ook negatieve index)
+- `toString()` — Zet de array om naar een string
+- `toLocaleString()` — Zet de array om naar een gelokaliseerde string
+- `entries()` — Geeft een iterator met [index, waarde] paren
+- `keys()` — Geeft een iterator met de indexen
+- `values()` — Geeft een iterator met de waarden
+- `from(arrayLike)` — Maakt een nieuwe array van een array-achtig object
+- `isArray(obj)` — Controleert of een object een array is
+- `of(...elements)` — Maakt een nieuwe array van de opgegeven elementen
+
+Voor een volledig overzicht zie de [MDN Array documentatie](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array).

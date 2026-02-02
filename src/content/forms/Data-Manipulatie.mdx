@@ -1,0 +1,144 @@
+Het kan ook zijn dat we behalve validatie, ook manipulatie willen uitvoeren op de formulier input van een gebruiker
+
+## Arrays sorteren
+
+Een van de meest voorkomende manieren om data te manipuleren is door arrays te sorteren. Dit kan je doen met de `.sort()` methode. Deze methode sorteert de elementen van een array in alfabetische volgorde.
+
+```js
+const animals = ["zebra", "aap", "giraf", "ezel"];
+animals.sort();
+
+console.log(animals);
+```
+
+Je kan ook een optionele parameter meegeven aan de .sort() methode.
+Deze parameter is een functie die twee argumenten krijgt.
+Deze argumenten zijn de twee elementen die met elkaar vergeleken worden.
+De functie zal een negatief getal teruggeven als het eerste element voor het
+tweede element moet komen, een positief getal als
+het tweede element voor het eerste element moet komen, en 0 als de elementen gelijk zijn.
+
+```js
+const numbers = [4, 2, 5, 1, 3];
+numbers.sort((a, b) => a - b);
+
+console.log(numbers);
+```
+
+### Wat gebeurt hier?
+
+**Array**: We hebben een array genaamd numbers met de waarden [4, 2, 5, 1, 3].
+Sorteren: We roepen de sort functie aan op deze array. De sort functie accepteert een optionele vergelijkingsfunctie als argument. In dit geval geven we een functie (a, b) => a - b door.
+Hoe werkt de vergelijkingsfunctie?
+De vergelijkingsfunctie bepaalt de volgorde van de elementen.
+Hier is hoe het werkt:
+
+**Vergelijking**: (a, b) => a - b
+- Als a - b een negatief getal is, wordt a vóór b geplaatst.
+- Als a - b nul is, blijven a en b in hun oorspronkelijke volgorde.
+- Als a - b een positief getal is, wordt a na b geplaatst.
+
+**Stap-voor-stap**
+
+- Vergelijk 4 en 2: 4 - 2 = 2 (positief), dus 2 komt vóór 4.
+- Vergelijk 2 en 5: 2 - 5 = -3 (negatief), dus 2 blijft vóór 5.
+- Vergelijk 5 en 1: 5 - 1 = 4 (positief), dus 1 komt vóór 5.
+- Vergelijk 1 en 3: 1 - 3 = -2 (negatief), dus 1 blijft vóór 3.
+- Vergelijk 3 en 4: 3 - 4 = -1 (negatief), dus 3 blijft vóór 4.
+
+Na het doorlopen van alle vergelijkingen, wordt de array gesorteerd als [1, 2, 3, 4, 5].
+
+**Opmerking:**
+
+De `.sort()` methode sorteert de array in-place, wat betekent dat de oorspronkelijke array wordt gewijzigd.
+
+**Opgelet !!**
+
+De `.sort()` methode zonder parameter geeft vaak nutteloze resultaten terug!
+
+Je zou in het voorbeeld hieronder misschien verwachten dat de array [24, 2, 5, 11, 302] gesorteerd wordt naar [2, 5, 11, 24, 302].
+Logisch, van klein naar groot.
+
+Gooi de code in de Console en bekijk wat er gebeurt.
+
+```js
+const numbers = [24, 2, 5, 11, 302];
+numbers.sort();
+console.log(numbers);
+```
+
+## Objecten sorteren
+
+Als je een array van objecten hebt, kan je deze sorteren op basis van een specifiek eigenschap van het object.
+Dit kan je doen door een vergelijkingsfunctie mee te geven aan de `.sort()` methode.
+
+```js
+const animals = [
+  { name: "zebra", legs: 4 },
+  { name: "aap", legs: 2 },
+  { name: "giraf", legs: 4 },
+  { name: "ezel", legs: 4 },
+  { name: "spin", legs: 8 },
+  { name: "sprookjesdier", legs: 3 },
+];
+
+animals.sort((a, b) => a.legs - b.legs);
+
+console.log(animals);
+```
+
+In dit voorbeeld sorteren we de array van objecten op basis van het aantal benen dat elk dier heeft.
+De vergelijkingsfunctie `(a, b) => a.legs - b.legs` vergelijkt de legs eigenschap van elk object.
+
+---
+
+## Praktijkvoorbeelden van data-manipulatie
+
+Hieronder vind je enkele realistische voorbeelden van hoe data-manipulatie met arrays en objecten in formulieren vaak voorkomt:
+(Herinner je de lijst van functies die je kan uitvoeren op Arrays - JavaScript Basis hoofdstuk.)
+
+**1. Gebruikers sorteren op naam (alfabetisch):**
+
+```js
+const users = [
+  { name: "Sofie", age: 22 },
+  { name: "Bram", age: 19 },
+  { name: "An", age: 25 },
+];
+users.sort((a, b) => a.name.localeCompare(b.name));
+console.log(users);
+```
+
+**2. Alleen actieve producten tonen:**
+
+```js
+const products = [
+  { name: "Laptop", active: true },
+  { name: "Muis", active: false },
+  { name: "Toetsenbord", active: true },
+];
+const activeProducts = products.filter((product) => product.active);
+console.log(activeProducts);
+```
+
+**3. Prijzen optellen (totalen berekenen):**
+
+```js
+const prijzen = [12.99, 5.5, 3.25];
+const totaal = prijzen.reduce((sum, prijs) => sum + prijs, 0);
+console.log(totaal); // 21.74
+```
+
+**4. E-mailadressen uit een lijst van gebruikers halen:**
+
+```js
+const users = [
+  { name: "Sofie", email: "sofie@mail.com" },
+  { name: "Bram", email: "bram@mail.com" },
+];
+const emails = users.map((user) => user.email);
+console.log(emails);
+```
+
+
+Deze technieken worden veel gebruikt om data uit formulieren te verwerken, te filteren, te sorteren of samen te vatten voordat je ze opslaat of verstuurt naar een server.

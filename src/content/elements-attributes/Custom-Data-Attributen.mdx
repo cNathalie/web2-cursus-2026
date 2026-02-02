@@ -1,0 +1,121 @@
+We kunnen ook zelf verzonnen attributen toevoegen aan een element door de attribuutnaam en de attribuutwaarde toe te voegen aan het HTML element. De attribuutnaam en de attribuutwaarde worden gescheiden door een '=' teken. De attribuutwaarde moet tussen enkele of dubbele aanhalingstekens staan. De attribuut naam moet altijd met 'data-' beginnen.
+
+Hier is een voorbeeld van hoe we een attribuut kunnen toevoegen aan een element:
+
+<div className="hidden" data-color="rgb(255,140,255)"></div>
+```html	
+<!-- Een custom data attribuut dat een rgb-string waarde heeft -->
+<div data-color="rgb(255,140,255)"></div>
+```
+
+Je kan deze custom data attributen ophalen en uitlezen zoals de andere:
+
+```js
+// Haal het div element op
+const element = document.querySelector("[data-color]");
+
+// Haal de waarde van het data-color attribuut op
+const color = element.getAttribute("data-color");
+console.log(color);
+```
+
+---
+
+## Practische voorbeelden
+
+Custom data-attributen (`data-*`) worden in de praktijk vaak gebruikt om extra informatie aan HTML-elementen toe te voegen zonder dat deze zichtbaar is voor de gebruiker. Hier zijn enkele real-world voorbeelden:
+
+**1. Tooltip tekst opslaan**
+
+```html
+<button data-tooltip="Klik om te verzenden">Verzend</button>
+```
+
+JavaScript kan het `data-tooltip` attribuut uitlezen om een tooltip te tonen wanneer je over de knop hovert.
+
+**2. Productinformatie in een webshop**
+
+```html
+<div class="product" data-product-id="123" data-price="19.99">Productnaam</div>
+```
+
+Hiermee kan JavaScript snel het product-id en de prijs ophalen bij het toevoegen aan een winkelmandje.
+
+**3. Animatievertragingen instellen**
+
+```html
+<div class="animatie" data-delay="200"></div>
+```
+
+Een animatiebibliotheek kan het `data-delay` attribuut gebruiken om de animatie met een bepaalde tijd te vertragen.
+
+**4. Toggle functionaliteit**
+
+```html
+<button data-toggle-target="#menu">Menu</button>
+<nav id="menu">...</nav>
+```
+
+Met JavaScript kun je het doel-element ophalen via het `data-toggle-target` attribuut en tonen/verbergen wanneer op de knop wordt geklikt.
+
+**5. Meertalige content**
+
+```html
+<span data-lang-nl="Hallo" data-lang-en="Hello">Hallo</span>
+```
+
+Een script kan de juiste taal tonen op basis van de voorkeur van de gebruiker.
+
+Custom data-attributen zijn dus erg handig om semantisch correcte, uitbreidbare en makkelijk te onderhouden HTML te schrijven!
+
+---
+
+## Compleet voorbeeld
+
+Hieronder zie je een knop en een blok.
+
+<div className="inline-dynamic-example">
+  <button id="color-btn" data-color="rgb(140, 182, 255)">
+    Verander kleur
+  </button>
+  <div
+    id="color-block"
+    style={{
+      width: "100px",
+      height: "100px",
+      background: "lightgray",
+      margin: "16px 0",
+      borderRadius: "8px",
+      justifySelf: "center",
+    }}
+  ></div>
+</div>
+
+De html van bovenstaande oefening ziet er zo uit:
+```html
+<div className="inline-dynamic-example">
+  <button id="color-btn" data-color="rgb(140, 182, 255)">
+    Verander kleur
+  </button>
+  <div
+    id="color-block"    
+  ></div>
+</div>
+```
+Voer onderstaande JS uit in de console van je browser en test daarna het gedrag.
+
+```js
+// Haal de knop en het blok op
+const btn = document.getElementById("color-btn");
+const block = document.getElementById("color-block");
+
+btn.addEventListener("click", () => {
+  // Haal de kleur op uit het data-color attribuut
+  const color = btn.getAttribute("data-color");
+  // Zet de achtergrondkleur van het blok
+  block.style.background = color;
+});
+```
+
+Je kan het data-color attribuut aanpassen naar elke geldige CSS kleur of rgb string en het werkt meteen!
+Deze kleur string kan bijvoorbeeld ook uit gebruikersinput komen, of uit een API response.

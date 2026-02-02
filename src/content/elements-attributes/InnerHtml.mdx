@@ -1,0 +1,80 @@
+import Positions from "/images/positions.png";
+
+We zagen eerder al dat we met de `innerHtml` property nieuwe HTML elementen kunnen toevoegen aan een bestaand element.
+
+---
+
+## Dure zaak
+
+Bij het opvragen van innerHtml van een element, moet de browser in de DOM-tree alle descendants van het element opvragen. Nadien moet van elke descendant een HTML-tekst voorstelling gemaakt worden. Dit kan een dure zaak zijn, zeker als het element veel descendants heeft.
+
+Bij het wijzigen van de waarde van innerHtml, moet de browser eerst alle kinderen weggooien en vervolgens de nieuwe HTML-tekst ontleden om de element en hun attributen te vinden. Daarna moet hij de nieuwe DOM-tree nodes maken én toevoegen als descendants. Tot slot moet de volledige pagina layout en styling volledig opnieuw berekend en hertekend worden.
+
+Het is dus af te raden om innerHtml te gebruiken als je veel elementen 'dynamisch' wil toevoegen aan een bestaand element, omdat dit de performantie van je website sterk negatief kan beïnvloeden.
+
+Er zijn hiervoor andere methodes die veel performanter zijn.
+
+---
+
+## `insertAdjacentHTML()`
+
+Alle DOM-tree elementen ondersteunen de `insertAdjacentHTML()` methode. Deze methode laat toe om HTML-tekst in te voegen op een specifieke plaats in de DOM-tree zonder alles opnieuw te moeten berekenen.
+
+De `insertAdjacentHTML()` methode heeft de volgende syntax:
+
+```js
+element.insertAdjacentHTML(position, text);
+```
+
+De position parameter is een string die aangeeft waar de HTML-tekst moet ingevoegd worden. De mogelijke waarden zijn:
+
+'beforebegin': voor het element zelf
+'afterbegin': binnen het element, voor de eerste child
+'beforeend': binnen het element, na de laatste child
+'afterend': na het element zelf
+
+Hier is een voorbeeld van hoe we de insertAdjacentHTML() methode kunnen gebruiken om een element toe te voegen aan een bestaand element:
+
+<div className="inline-dynamic-example text-start">
+  <ul id="drinks">
+    <li>Koffie</li>
+    <li>Thee</li>
+    <li>Water</li>
+  </ul>
+</div>{" "}
+
+Hier is de html van bovenstaande structuur:
+
+```html
+<div>
+  <ul id="drinks">
+    <li>Koffie</li>
+    <li>Thee</li>
+    <li>Water</li>
+  </ul>
+</div>
+```
+
+```js
+// We halen de lijst van drankjes op
+const drinks = document.querySelector("#drinks");
+
+// We voegen een nieuw drankje toe aan het einde van de lijst
+drinks.insertAdjacentHTML("beforeend", "<li>Limonade</li>");
+
+// We voegen een nieuw drankje toe aan het begin van de lijst
+drinks.insertAdjacentHTML("afterbegin", "<li>Cola</li>");
+
+// We voegen een title toe voor de lijst
+drinks.insertAdjacentHTML("beforebegin", "<h2>Drankjes</h2>");
+
+// We voegen een footer toe na de lijst
+drinks.insertAdjacentHTML(
+  "afterend",
+  "<footer>Dit waren alle drankjes</footer>"
+);
+```
+
+## Een handig overzicht van de verschillende posities
+
+<img src={Positions} alt="Insert positions" />

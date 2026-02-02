@@ -26,7 +26,15 @@ function App() {
         fixed="top"
         style={{ display: "flex", flexDirection: "column" }}
       >
-        <span style={{ color: "grey", fontStyle: "italic", marginLeft: "1rem" , fontSize: "0.8rem", marginBottom: "1rem"}}>
+        <span
+          style={{
+            color: "grey",
+            fontStyle: "italic",
+            marginLeft: "1rem",
+            fontSize: "0.8rem",
+            marginBottom: "1rem",
+          }}
+        >
           © Nathalie Courteaux {new Date().getFullYear()}. Deze cursus mag niet
           worden vermenigvuldigd, verspreid of gebruikt voor commerciële of
           winstgevende doeleinden.
@@ -289,6 +297,99 @@ function App() {
                 <MdxPage
                   folder="events"
                   course={label.replace(" ", "-")}
+                  {...(symbol ? { symbol } : {})}
+                />
+              }
+            />
+          ))}
+        </Route>
+
+        <Route
+          path="/types"
+          element={
+            <Chapter
+              chapter="Types"
+              links={navigation.typesLinks}
+              expand={"lg"}
+            />
+          }
+        >
+          <Route
+            index
+            element={
+              <ChapterCover title="JavaScript types are like cats: they do what they want, not what you expect." />
+            }
+          />
+
+          {navigation.typesLinks.map(({ to, label, symbol }) => (
+            <Route
+              path={to.replace("/types/", "")}
+              element={
+                <MdxPage
+                  folder="types"
+                  course={label.replace(" ", "-")}
+                  {...(symbol ? { symbol } : {})}
+                />
+              }
+            />
+          ))}
+        </Route>
+
+        <Route
+          path="/elementen-en-attributen"
+          element={
+            <Chapter
+              chapter="Elementen en Attributen"
+              links={navigation.elementsLinks}
+              expand={"lg"}
+            />
+          }
+        >
+          <Route
+            index
+            element={
+              <ChapterCover title="Finding elements with JavaScript is basically digital hide‑and‑seek... except the elements never move, and somehow they’re still hard to find." />
+            }
+          />
+
+          {navigation.elementsLinks.map(({ to, label, symbol }) => (
+            <Route
+              path={to.replace("/elementen-en-attributen/", "")}
+              element={
+                <MdxPage
+                  folder="elements-attributes"
+                  course={label.replaceAll(" ", "-")}
+                  {...(symbol ? { symbol } : {})}
+                />
+              }
+            />
+          ))}
+        </Route>
+
+        <Route
+          path="/forms"
+          element={
+            <Chapter
+              chapter="Formulieren"
+              links={navigation.formsLinks}
+              expand={"lg"}
+            />
+          }
+        >
+          <Route
+            index
+            element={
+              <ChapterCover title="JavaScript forms: because trusting users to type things correctly is a dangerous fantasy." />
+            }
+          />
+
+          {navigation.formsLinks.map(({ to, label, symbol }) => (
+            <Route
+              path={to.replace("/forms/", "")}
+              element={
+                <MdxPage
+                  folder="forms"
+                  course={label.replaceAll(" ", "-")}
                   {...(symbol ? { symbol } : {})}
                 />
               }

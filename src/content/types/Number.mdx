@@ -1,0 +1,326 @@
+Alle getallen in JavaScript zijn van het type `Number`.  
+
+
+Alle getallen zijn altijd kommagetallen met dubbele precisie. Dit betekent dat JavaScript geen apart type heeft voor gehele getallen.
+
+Gehele getallen worden dus ook opgeslagen als kommagetallen. Bijvoorbeeld het gehele getal 42 zal intern opgeslagen worden als 42.00 in het `Number` type, omdat JavaScript gebruikmaakt van het IEEE 754-standaard voor dubbele precisie floating-point getallen. Dit betekent dat 42 en 42.00 dezelfde waarde vertegenwoordigen en op dezelfde manier worden behandeld.
+
+---
+
+## Een voor allen
+
+Gehele getallen worden dus ook opgeslagen als kommagetallen. Bijvoorbeeld het gehele getal 42 zal intern opgeslagen worden als 42.00 in het `Number` type, omdat JavaScript gebruikmaakt van het IEEE 754-standaard voor dubbele precisie floating-point getallen. Dit betekent dat 42 en 42.00 dezelfde waarde vertegenwoordigen en op dezelfde manier worden behandeld.
+
+De voorstelling van kommagetallen kan verschillen door de regio/taal instellingen van de browser. Soms wordt er een komma gebruikt in plaats van een punt om het decimaal getal te scheiden.
+
+---
+
+## Van String naar Number
+
+Soms wil je een getal dat in een string staat omzetten naar een `Number`. Dit kan je doen met de functie `parseInt()` of `parseFloat()`.
+
+- `parseInt()` zal een string omzetten naar een geheel getal
+- `parseFloat()` zal een string omzetten naar een kommagetal
+
+Als de string niet omgezet kan worden naar een getal, zal de functie `NaN` (= Not a Number) teruggeven.
+
+Probeer het uit:
+
+```js
+// Declareer een string
+const stringNumber = "42";
+console.log(typeof stringNumber);
+
+// Gebruik parseInt om de string om te zetten naar een Number
+const number = parseInt(stringNumber);
+console.log(typeof number);
+
+// parseInt met een kommagetal
+const float = "4.2";
+const floatNumber = parseInt(float);
+console.log(floatNumber);
+console.log(typeof floatNumber);
+
+// parseInt met een string die geen getal is
+const notANumber = "Hello";
+const nan = parseInt(notANumber);
+console.log(nan);
+console.log(typeof nan);
+
+// parseFloat met een geheel getal
+const int = "42";
+const intNumber = parseFloat(int);
+console.log(intNumber);
+console.log(typeof intNumber);
+
+// parseFloat met een kommagetal
+const float2 = "4.2";
+const floatNumber2 = parseFloat(float2);
+console.log(floatNumber2);
+console.log(typeof floatNumber2);
+```
+
+## Grondtal
+
+JavaScript ondersteunt getallen in verschillende grondtallen. Zo kan je getallen schrijven in decimaal, binair, octaal en hexadecimaal.
+
+Het grondtal van decimale getallen is 10. Dit betekent dat je getallen kan schrijven van 0 tot 9. Het grondtal van hexadecimaal is 16. Dit betekent dat je getallen kan schrijven van 0 tot 9 en van A tot F.
+
+Het is best practice om aan de functies parseInt() en parseFloat() het grondtal als tweede argument mee te geven.
+
+Doorgaans zal je dus voornamelijk het grondtal 10 meegeven, maar het is handig om te weten dat je ook andere grondtallen kan gebruiken. Zo kan je bijvoorbeeld een hexadecimaal getal omzetten naar een decimaal getal door het grondtal 16 mee te geven aan de functie parseInt().
+
+Probeer het uit:
+
+```js
+// Declareer een hexadecimale string
+const hex = "0x1A";
+console.log(parseInt(hex, 16));
+
+// Declareer een octale string
+const oct = "0o10";
+console.log(parseInt(oct, 8));
+
+// Declareer een binaire string
+const bin = "0b1010";
+console.log(parseInt(bin, 2));
+
+// Declareer een decimale string
+const dec = "10";
+console.log(parseInt(dec, 10));
+```
+
+Vanaf nu geven we dus ook altijd een grondtal mee aan de functies parseInt() en parseFloat().
+
+## Komma vs punt
+
+Hoe we kommagetallen schrijven kan verschillen door de regio/taal. In sommige landen wordt een punt gebruikt in plaats van een komma om het decimaal getal te scheiden. Dit kan problemen veroorzaken bij het verwerken van gebruikers-input met JavaScript.
+
+JavaScript zal een punt gebruiken om het decimaal getal te scheiden. Als je een komma gebruikt, zal JavaScript dit interpreteren als een string karakter.
+
+Bekijk volgende code:
+
+```js
+// Declareer een string met een komma
+const comma = "4,2";
+console.log(parseFloat(comma, 10));
+
+// Declareer een string met een punt
+const point = "4.2";
+console.log(parseFloat(point, 10));
+```
+
+In onze JavaScript code zullen dus altijd punten gebruiken om kommagetallen te scheiden.
+
+Reminder: De waarde die uit een inputveld komt zal altijd een string zijn. Gebruik dus de functies parseInt() of parseFloat() om deze om te zetten naar een getal alvorens je deze verder verwerkt.
+
+Tip: Je kan het type van een input instellen op "number" om enkel getallen toe te laten. Dit zal echter niet verhinderen dat een gebruiker een komma gebruikt in plaats van een punt. Maar de string die je binnen krijgt zal al van de dot-notatie gebruik maken.
+
+Vul in onderstaand input veld een kommagetal in gebruik makend van een komma. Voer nadien de code uit en bekijk het resultaat.
+
+<div className="inline-dynamic-example">
+  <input type="number" id="number-input" placeholder="Vul een kommagetal in" />
+</div>
+
+```js
+// Haal de waarde van het inputveld op
+const inputField = document.getElementById("number-input");
+const inputValue = inputField.value;
+
+//Bekijk de string waarde
+console.log(inputValue);
+console.log(typeof inputValue);
+
+// We kunnen de input meteen omzetten naar een Number
+const float = parseFloat(inputValue, 10);
+console.log(float);
+console.log(typeof float);
+```
+
+## NaN
+
+Als een berekening niet kan uitgevoerd worden, zal JavaScript de waarde NaN teruggeven. Dit staat voor "Not a Number".
+
+Dit kan gebeuren als je een string die geen getal is probeert om te zetten naar een getal.
+
+Met de functie ``Number.isNaN()`` kan je controleren of een waarde NaN is.
+
+Probeer het uit:
+
+```js
+// Declareer een string die geen getal is
+const notANumber = "Hello";
+
+// Parse de string naar een Number
+const nan = parseInt(notANumber, 10);
+
+// Controleer of de waarde NaN is
+const isNan = Number.isNaN(nan);
+console.log(isNan);
+
+// Declareer een string die wel een geldig getal is
+const aNumber = "42";
+
+// Parse de string naar een Number
+const number = parseInt(aNumber, 10);
+
+// Controleer of de waarde NaN is
+const isNumber = Number.isNaN(number);
+console.log(isNumber);
+```
+
+De functie Number.isNaN() geeft dus een boolean waarde terug;
+true als de waarde NaN is en false als de waarde een getal is.
+
+## Number constructor
+
+We kunnen ook gebruik maken van de Number constructor om in
+één stap een string om te zetten naar een Number:
+
+```js
+// Declareer een string
+const stringNumber = "42";
+
+// Gebruik de Number constructor om de string om te zetten naar een Number
+const number = Number(stringNumber);
+console.log(number);
+console.log(typeof number);
+
+// Declareer een string die geen getal is
+const notANumber = "Hello";
+
+// Gebruik de Number constructor om de string om te zetten naar een Number
+const nan = Number(notANumber);
+console.log(nan);
+console.log(typeof nan);
+
+// Declareer een string die een kommagetal is
+const float = "4.2";
+
+// Gebruik de Number constructor om de string om te zetten naar een Number
+const floatNumber = Number(float);
+console.log(floatNumber);
+console.log(typeof floatNumber);
+
+// Declareer een string die een kommagetal is met een komma
+const comma = "4,2";
+
+// Gebruik de Number constructor om de string om te zetten naar een Number
+const commaNumber = Number(comma);
+console.log(commaNumber);
+console.log(typeof commaNumber);
+```
+
+Als de string niet omgezet kan worden naar een getal, zal de functie NaN (= Not a Number) teruggeven.
+
+## Unary plus operator
+Een andere manier om een string om te zetten naar een getal is door gebruik te maken van de unary plus operator +.
+
+De unary plus operator zal de string omzetten naar een getal. Als de string geen getal is, zal de operator NaN teruggeven.
+
+Dit werkt zowel voor gehele getallen als kommagetallen.
+
+Probeer het uit:
+
+```js
+// Declareer een string
+const stringNumber = "42";
+
+// Gebruik de unary plus operator om de string om te zetten naar een Number
+const number = +stringNumber;
+console.log(number);
+console.log(typeof number);
+
+// Declareer een string die geen getal is
+const notANumber = "Hello";
+
+// Gebruik de unary plus operator om de string om te zetten naar een Number
+const nan = +notANumber;
+console.log(nan);
+console.log(typeof nan);
+
+// Declareer een string die een kommagetal is
+const float = "4.2";
+
+// Gebruik de unary plus operator om de string om te zetten naar een Number
+const floatNumber = +float;
+console.log(floatNumber);
+console.log(typeof floatNumber);
+
+// Declareer een string die een kommagetal is met een komma
+const comma = "4,2";
+
+// Gebruik de unary plus operator om de string om te zetten naar een Number
+const commaNumber = +comma;
+console.log(commaNumber);
+console.log(typeof commaNumber);
+```
+
+## Snel afronden
+Je kan ook het aantal cijfers na de komma beperken door gebruik te maken van de .toFixed(n) methode.
+
+Probeer het uit:
+
+```js
+// Declareer een kommagetal
+const float = 123.456789;
+
+// Gebruik de toFixed() methode om het aantal cijfers na de komma te beperken
+const roundedFloat = float.toFixed(2);
+console.log(roundedFloat);
+console.log(typeof roundedFloat);
+```
+
+## Van Number naar String
+Soms wil je een getal omzetten naar een string. Dit kan je doen met de functie toString().
+
+Probeer het uit:
+
+```js
+// Declareer een getal
+const number = 42;
+
+// Gebruik de toString() functie om het getal om te zetten naar een string
+const stringNumber = number.toString();
+console.log(stringNumber);
+console.log(typeof stringNumber);
+
+// Declareer een kommagetal
+const float = 4.2;
+
+// Gebruik de toString() functie om het kommagetal om te zetten naar een string
+const stringFloat = float.toString();
+console.log(stringFloat);
+console.log(typeof stringFloat);
+```
+---
+
+## Overzicht van alle Number functies
+
+Hieronder vind je een overzicht van de belangrijkste en meest gebruikte functies en eigenschappen van het Number object in JavaScript:
+
+### Number methodes
+
+- `Number.isNaN(value)` — Controleert of de waarde NaN is
+- `Number.isFinite(value)` — Controleert of de waarde een eindig getal is
+- `Number.isInteger(value)` — Controleert of de waarde een geheel getal is
+- `Number.parseInt(string, [radix])` — Zet een string om naar een geheel getal
+- `Number.parseFloat(string)` — Zet een string om naar een kommagetal
+- `Number.prototype.toFixed(n)` — Geeft een string met n cijfers na de komma
+- `Number.prototype.toExponential(n)` — Geeft een string in exponentiële notatie
+- `Number.prototype.toPrecision(n)` — Geeft een string met n significante cijfers
+- `Number.prototype.toString([radix])` — Zet een getal om naar een string
+- `Number.prototype.valueOf()` — Geeft de primitieve waarde van een Number object
+
+### Number eigenschappen
+
+- `Number.EPSILON` — Kleinste verschil tussen twee representaties
+- `Number.MAX_SAFE_INTEGER` — Grootste veilige geheel getal
+- `Number.MIN_SAFE_INTEGER` — Kleinste veilige geheel getal
+- `Number.MAX_VALUE` — Grootste representatiebare getal
+- `Number.MIN_VALUE` — Kleinste positieve representatiebare getal
+- `Number.NaN` — Not a Number
+- `Number.POSITIVE_INFINITY` — Oneindig positief
+- `Number.NEGATIVE_INFINITY` — Oneindig negatief
+
+Voor een volledig overzicht zie de [MDN Number documentatie](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number).
