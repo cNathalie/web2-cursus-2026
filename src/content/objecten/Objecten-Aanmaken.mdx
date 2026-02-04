@@ -1,0 +1,73 @@
+JavaScript heeft een aantal standaard gedefinieerde objecten, zoals 
+ Date, Array, en Math. Je kunt ook je eigen objecten definiëren. In 
+ JavaScript kun je objecten op verschillende manieren maken.
+
+## Object initializer
+
+De eenvoudigste manier om een object te maken is met een object 
+ initializer. Een object initializer is een lijst met nul of meer paren 
+ van eigenschappen en waarden van een object, gescheiden door een 
+ dubbele punt en gescheiden door komma's.
+
+```js
+const objectName = { 
+ property1: value1, 
+ property2: value2, 
+ property3: value3 
+};
+```
+
+## Object constructor
+
+Een andere manier om een object te maken is met een constructor 
+ functie. Een constructor functie is een speciale functie die wordt 
+ gebruikt om een object te initialiseren. De constructor functie wordt 
+ aangeroepen met het new trefwoord.
+
+Je kan dit vergelijken met hoe je reeds objecten hebt leren aanmaken 
+ in C#:In C# maak je een klasse aan met properties en methodes. Vervolgens 
+ maak je een instantie van die klasse aan. In JavaScript maak je een 
+ constructor functie aan met properties en methodes. Vervolgens maak je 
+ een instantie van die constructor functie aan.
+
+``this.`` is een referentie naar het object dat 
+ wordt aangemaakt. Het is een manier om de eigenschappen van het object 
+ te definiëren. Je zegt dus letterlijk "dit object heeft deze waarde 
+ voor deze eigenschap".
+
+**Opgelet:** Het is een conventie in 
+ JavaScript om constructorfuncties met een hoofdletter te beginnen. Dit 
+ helpt om ze te onderscheiden van gewone functies en maakt het 
+ duidelijker dat ze bedoeld zijn om met het new keyword te worden 
+ aangeroepen.
+
+**Opgelet:** Een constructor functie 
+ kan je enkel aanmaken met het ``function`` keyword. Een 
+ anonieme constructor functie is niet mogelijk.
+
+```js
+function ObjectName(property1, property2, property3) { 
+ this.property1 = property1; 
+ this.property2 = property2; 
+ this.property3 = property3; 
+} 
+const objectName = new ObjectName(value1, value2, value3);
+```
+
+## Probeer het zelf:
+
+```js
+// Maak een constructor function aan voor het aanmaken van Student-objecten 
+function Student(name, age, grade) { 
+ this.name = name; 
+ this.age = age; 
+ this.grade = grade; 
+} 
+
+// Maak nu een Student-object aan met je eigen gegevens 
+const .... 
+
+// Log het Student-object in de console 
+console.log(...);
+```
+

@@ -89,7 +89,7 @@ function App() {
               <LinkContainer to="/advanced-dom">
                 <NavDropdown.Item>Advanced DOM</NavDropdown.Item>
               </LinkContainer>
-              <LinkContainer to="/types">
+              <LinkContainer to="/objecten">
                 <NavDropdown.Item>Objecten</NavDropdown.Item>
               </LinkContainer>
               <NavDropdown.Divider />
@@ -397,7 +397,7 @@ function App() {
           ))}
         </Route>
 
-         <Route
+        <Route
           path="/timers"
           element={
             <Chapter
@@ -458,6 +458,38 @@ function App() {
             />
           ))}
         </Route>
+
+          <Route
+          path="/objecten"
+          element={
+            <Chapter
+              chapter="Objecten"
+              links={navigation.objectsLinks}
+              expand={"lg"}
+            />
+          }
+        >
+          <Route
+            index
+            element={
+              <ChapterCover title="JavaScript objects have keys to everything… except your bugs." />
+            }
+          />
+
+          {navigation.objectsLinks.map(({ to, label, symbol }) => (
+            <Route
+              path={to.replace("/objecten/", "")}
+              element={
+                <MdxPage
+                  folder="objecten"
+                  course={label.replaceAll(" ", "-")}
+                  {...(symbol ? { symbol } : {})}
+                />
+              }
+            />
+          ))}
+        </Route>
+
       </Routes>
     </BrowserRouter>
   );

@@ -1,0 +1,168 @@
+
+Object properties definiëren de eigenschappen van een object.
+
+## Properties ophalen
+
+Object properties kunnen worden gedefinieerd als een key-value pair. De key (sleutel) is een string die de naam van de eigenschap aangeeft en de waarde kan elk gegevenstype zijn. De eigenschappen van een object kunnen worden gedefinieerd met een puntnotatie of met behulp van vierkante haaknotatie.
+
+Je ziet dat beide manieren hetzelfde resultaat opleveren.
+
+In welke situatie zou het gebruik van de bracket-notatie handiger zijn?
+
+```js
+//Initialiseer een object 
+const movie = { 
+ title : "The Dark Knight", 
+ director : "Christopher Nolan", 
+ year : 2008 
+}; 
+
+// Properties ophalen met puntnotatie 
+console.log(movie.title); 
+
+// Properties ophalen met vierkante haaknotatie 
+console.log(movie["title"]);
+```
+
+## Properties toevoegen
+
+Je kunt eigenschappen toevoegen aan een object door simpelweg een nieuwe key-value pair toe te voegen.
+
+```js
+//Initialiseer een object
+ 
+const movie = { 
+ title : "The Dark Knight", 
+ director : "Christopher Nolan", 
+ year : 2008 
+}; 
+
+// Voeg een nieuwe eigenschap toe
+ 
+movie.genre = "Action"; 
+console.log(movie);
+```
+
+## Properties verwijderen
+
+Je kunt eigenschappen verwijderen uit een object met hetdeletekeyword.
+
+```js
+//Initialiseer een object 
+const movie = { 
+ title : "The Dark Knight", 
+ director : "Christopher Nolan", 
+ year : 2008 
+}; 
+
+// Verwijder een eigenschap 
+delete movie.year; 
+console.log(movie);
+```
+
+## Dynamisch omgaan met properties:
+
+Het kan zijn dat je niet op voorhand weet van welke eigenschap je de waarde wilt ophalen. Dan moet je gebruik maken van een variabele om de eigenschap te definiëren.
+
+We schrijven een klein programmaatje dat de gebruiker laat kiezen welke eigenschap van een object hij wilt zien:
+
+Voer eerst het object in de Console in, druk dan op Enter en voer vervolgens de prompt code in. Vul de prompt in met een van de eigenschappen en voer dan de laatste lijn code uit.
+
+**Opgelet:** Als je een eigenschap probeert op te halen die niet bestaat, zal JavaScript ``undefined`` teruggeven.
+
+**Ter info:** Input van de gebruiker moet je altijd valideren en opschonen. Dit voorbeeld toont enkel aan hoe je dynamisch kan omgaan met properties.
+
+
+```js
+//Initialiseer een object 
+const movie = { 
+ title : "Here", 
+ director : "Robert Zemeckis", 
+ year : 2024, 
+ genre : "Drama", 
+ cast : ["Tom Hanks", "Robin Wright", "Paul Bettany"], 
+ aiArtist : "Andries Courteaux" 
+}; 
+
+// Vraag de gebruiker welke eigenschap hij wilt zien 
+const property = prompt("Welke eigenschap wil je zien?"); 
+
+// Toon de waarde van de gekozen eigenschap 
+console.log(movie[property]);
+```
+---
+
+## In de praktijk: 
+
+### Automatisch genereren van een formulier
+In veel admin‑panelen wordt een formulier gegenereerd op basis van een object. Elke property komt overeen met een veld.
+
+<div id="product-form" className="inline-dynamic-example"> </div>
+
+```js
+const formContainer = document.querySelector("#product-form");
+
+const product = {
+  name: "Wireless Mouse",
+  price: 29.99,
+  stock: 120,
+  category: "Accessories"
+};
+
+for (const prop in product) {
+  const label = document.createElement("label");
+  label.textContent = prop;
+
+  const input = document.createElement("input");
+  input.value = product[prop];
+  input.disabled = true;
+
+  const br = document.createElement("br");   
+
+  formContainer.appendChild(label);
+  formContainer.appendChild(input);
+  formContainer.appendChild(br);
+}
+```
+**Waarom dynamisch?**
+
+- Het formulier past zich automatisch aan als het object verandert.
+- Geen duplicatie van code → super onderhoudsvriendelijk.
+
+### Dynamic data mapping
+Wanneer je data van een API moet mappen naar een UI‑structuur, en de keys variëren.
+
+```js
+const fieldMapping = {
+  username: "Gebruikersnaam",
+  email: "E-mailadres",
+  role: "Rol"
+};
+
+function renderData(object, mapping) {
+  for (const key in mapping) {
+    console.log(mapping[key] + ": " + object[key]);
+  }
+}
+
+const user = { username: "Nathalie", email: "test@mail.com", role: "Teacher" };
+renderData(user, fieldMapping);
+```
+**Waarom dynamisch?**
+
+- De UI‑labels kunnen verschillen per taal.
+- De backend keys hoeven niet overeen te komen met frontend labels.
+- Vaak gebruikt in internationalisatie, admin tools, data dashboards.
+
+## Conclusie
+Dynamisch properties gebruiken is niet zomaar een “leuke truc”. Het is essentieel voor:
+
+- flexibel gedrag
+- schaalbare apps
+- dynamische UI’s
+- API‑integraties
+- configuraties
+- gebruikersinput
+- tooling
+- dashboards
+- zoek- en filtermechanismen

@@ -1,0 +1,25 @@
+We kunnen dynamisch nodes aanmaken in de DOM.
+
+## createElement()
+
+Met de createElement() methode kunnen we een nieuwe node aanmaken. Dit is een methode die enkel beschikbaar is op het document object.
+
+De methode neemt één argument: de naam van het element dat je wil aanmaken. Dit is een string met de naam van het element, bv: 'img', 'div', 'p', 'h1', ...
+
+```js
+// We maken een nieuwe div aan
+const newDiv = document.createElement('div');
+console.log(newDiv);
+```
+
+## createTextNode()
+
+Met de createTextNode() methode kunnen we een nieuwe tekstnode aanmaken. Dit is een methode die enkel beschikbaar is op het document object.
+
+De methode neemt één argument: de tekst die je wil toevoegen aan de tekstnode. Dit is een string met de tekst die je wil toevoegen.
+
+```js
+// We maken een nieuwe tekstnode aan
+const newText = document.createTextNode('Dit is een nieuwe tekstnode');
+console.log(newText);
+```

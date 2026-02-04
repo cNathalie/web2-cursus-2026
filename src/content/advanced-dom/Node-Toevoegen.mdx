@@ -1,0 +1,148 @@
+Nieuwe nodes moeten toegevoegd worden aan de DOM om zichtbaar te worden.
+
+## appendChild()
+
+Met de appendChild() methode kunnen we een node toevoegen aan een andere node.
+
+De methode neemt één argument: de node die je wil toevoegen.
+
+De node die je wil toevoegen wordt als laatste kind toegevoegd aan de node waarop je de appendChild() methode uitvoert.
+
+Voorbeeld:
+
+We maken een nieuwe button aan en voegen die toe net onder deze zin.
+
+
+
+Je ziet (amper) een nieuwe knop verschijnen, maar hij heeft geen tekst in zich.
+
+We kunnen de tekst van de knop aanpassen door een tekstnode toe te voegen aan de knop.
+
+```js
+// We maken een nieuwe knop aan
+const newBtn = document.createElement('button');
+// We halen de lege paragraaf net boven dit blok op
+const emptyPara = document.querySelector('#para');
+// We voegen de knop toe aan de paragraaf
+emptyPara.appendChild(newBtn);
+```
+
+```js
+// We maken een nieuwe tekstnode aan
+const btnText = document.createTextNode('Klik hier');
+// We voegen de tekstnode toe aan de knop
+newBtn.appendChild(btnText);
+```
+
+## removeChild()
+
+Met de removeChild() methode kunnen we een node verwijderen uit de DOM.
+
+De methode neemt één argument: de node die je wil verwijderen.
+
+Voorbeeld:
+
+We verwijderen de knop die we net hebben toegevoegd.
+
+```js
+// We halen de knop op
+const btn = document.querySelector('button');
+// We halen de parent node van de knop op
+const parent = btn.parentNode;
+// We verwijderen de knop uit de parent node
+parent.removeChild(btn);
+```
+
+## Opgelet!
+
+De methodes zijn enkel beschikbaar op de parent node van de node die je wil toevoegen of verwijderen.
+
+``parent.METHODE(child)``
+
+Als je in een div een element wil toevoegen, moet je dus eerst de div ophalen, dan je element aanmaken en dan de appendChild() methode uitvoeren op de div.
+
+De methodes zijn enkel beschikbaar op de parent node van de node die je wil toevoegen of verwijderen. 
+``parent.METHODE(child)`` Als je in een div een element wil toevoegen, moet je dus eerst de div ophalen, 
+dan je element aanmaken en dan de ``appendChild()`` methode uitvoeren op de div.
+
+---
+
+## In de praktijk
+
+n moderne webapps worden nieuwe elementen heel vaak dynamisch aangemaakt—bij formulieren, chatberichten, productkaarten, notificaties, enz.
+Hier tonen we een praktische case:
+
+Een gebruiker vult een tekstveld in en er wordt automatisch een nieuw to‑do item aangemaakt en aan de lijst toegevoegd.
+
+Dit voorbeeld gebruikt enkel vanilla JavaScript en toont duidelijk hoe 
+createElement(), createTextNode() en appendChild() samen een real‑world component bouwen.
+
+
+<div className="todo-app inline-dynamic-example">
+  <h2>Mijn Takenlijst</h2>
+
+  <input id='todo-input' type="text" placeholder="Nieuwe taak..." />
+  <br />
+  <button id="add-btn">+ Toevoegen</button>
+
+  <ul id="todo-list"></ul>
+</div>
+
+```html
+<div className="todo-app inline-dynamic-example">
+  <h2>Mijn Takenlijst</h2>
+
+  <input id='todo-input' type="text" placeholder="Nieuwe taak..." />
+  <br />
+  <button id="add-btn">+ Toevoegen</button>
+
+  <ul id="todo-list"></ul>
+</div>
+```
+
+- Stap 1 — Gebruiker klikt op “Toevoegen”
+We lezen de waarde uit het inputveld.
+- Stap 2 — We maken dynamisch een nieuwe ``<li>`` node aan.
+Deze ``<li>`` bevat:
+    - een tekstnode (de taak)
+    - een verwijder‑knop
+
+- Stap 3 — We voegen het nieuwe item toe aan de ``<ul>``
+
+```js	
+const input = document.getElementById("todo-input");
+const addBtn = document.getElementById("add-btn");
+const list = document.getElementById("todo-list");
+
+addBtn.addEventListener("click", () => {
+  const text = input.value.trim();
+
+  if (text === "") return; // niks toevoegen als het leeg is
+
+  // 1. Maak een nieuwe <li>
+  const li = document.createElement("li");
+
+  // 2. Maak de tekstnode die in het <li> element komt
+  const taskText = document.createTextNode(text);
+
+  // 3. Maak een delete-knop
+  const deleteBtn = document.createElement("button");
+  deleteBtn.textContent = "(x)";
+  deleteBtn.classList.add("delete-btn");
+
+  // 4. Voeg tekst en knop toe aan de <li>
+  li.appendChild(taskText);
+  li.appendChild(deleteBtn);
+
+  // 5. Voeg het <li> toe aan de todolijst
+  list.appendChild(li);
+
+  // 6. Input leegmaken
+  input.value = "";
+
+  // 7. Delete functionaliteit
+  deleteBtn.addEventListener("click", () => {
+    list.removeChild(li);
+  });
+});
+```

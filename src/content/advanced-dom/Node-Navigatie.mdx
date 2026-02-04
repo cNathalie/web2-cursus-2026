@@ -1,0 +1,234 @@
+import NodeNavImg from "/images/node-nav.png";
+
+Je kan navigeren tussen nodes in de DOM. Dit kan je doen met de
+volgende properties:
+
+## parentNode
+
+De parent node van de huidige node.
+
+```js
+parentNode;
+```
+
+## childNodes
+
+De children nodes van de huidige node.
+
+```js
+childNodes;
+```
+
+## firstChild
+
+Het eerste child node van de huidige node.
+
+```js
+firstChild;
+```
+
+## lastChild
+
+Het laatste child node van de huidige node.
+
+```js
+lastChild;
+```
+
+## nextSibling
+
+Het volgende sibling node van de huidige node.
+
+```js
+nextSibling;
+```
+
+## previousSibling
+
+Het vorige sibling node van de huidige node.
+
+```js
+previousSibling;
+```
+
+## Opgelet
+
+Alle bovenstaande properties geven nodes van alle types terug. We zijn
+echter meestel enkel geinteresseerd in element nodes (HTML-Elementen).
+Daarvoor heb je onderstaande properties ter beschikking:
+
+## children
+
+De children element nodes van de huidige node.
+
+```js
+children;
+```
+
+## firstElementChild
+
+Het eerste child element node van de huidige node.
+
+```js
+firstElementChild;
+```
+
+## lastElementChild
+
+Het laatste child element node van de huidige node.
+
+```js
+lastElementChild;
+```
+
+## nextElementSibling
+
+Het volgende sibling element node van de huidige node.
+
+```js
+nextElementSibling;
+```
+
+## previousElementSibling
+
+Het vorige sibling element node van de huidige node.
+
+```js
+previousElementSibling;
+```
+
+**Opgelet**: Alle bovenstaande properties geven nodes van alle types terug. We zijn
+echter meestel enkel geinteresseerd in element nodes (HTML-Elementen).
+Daarvoor heb je onderstaande properties ter beschikking:
+
+<img
+  src={NodeNavImg}
+  alt="Overzicht van de verschillende node navigatie properties"
+/>
+
+---
+
+## In de praktijk
+
+Node navigatie gebruik je in echte projecten wanneer:
+
+- de DOM-structuur dynamisch of onvoorspelbaar is
+- elementen naast elkaar staan i.p.v. dat je vaste selectors hebt
+- child/parent relaties belangrijk zijn (accordion, tabs, editors…)
+- UI-componenten afhankelijk zijn van siblings (drag‑and‑drop, navigatie, dynamic forms)
+
+### Uitgewerkt voorbeeld: een eenvoudige accordion
+
+In een accordion moet een klik op de vraag het bijhorende antwoord openen.
+Vaak zit het antwoord als child in dezelfde card.
+
+In dit scenario gaan we er van uit dat de accordion dynamisch werd opgebouwd, bijvoorbeeld door data die uit een API komt.
+Hierdoor kan je niet werken met vaste selectors zoals bijvoorbeeld een `id="q1"` en `id="a1"`, maar moet je navigeren
+in de DOM om het bijhorende antwoord te vinden van het header element dat werd aangeklikt.
+
+Hieronder zie je een accordion staan waarbij de headers en content naast elkaar staan.
+Je kan dit niet oplossen met vaste selectors omdat de structuur dynamisch is, maar je kan wel de `nextElementSibling` property gebruiken om
+het bijhorende antwoord te openen.
+
+<div className="accordion inline-dynamic-example">
+  <div className="accordion-item">
+    <button className="accordion-header">
+      Wat is het verschil tussen let, const en var?
+    </button>
+    <div className="accordion-content">
+      <strong>var</strong> heeft function scope en kan geherdeclareerd worden.
+      <br />
+      <strong>let</strong> heeft block scope en kan worden aangepast, maar niet
+      herdeclareerd.
+      <br />
+      <strong>const</strong> heeft block scope en mag niet opnieuw worden
+      toegewezen.
+      <br />
+      In modern JavaScript gebruik je bijna altijd <strong>let</strong> en{" "}
+      <strong>const</strong>.
+    </div>
+  </div>
+  <div className="accordion-item">
+    <button className="accordion-header">
+      Waarom is DOM-manipulatie traag wanneer je veel elementen wijzigt?
+    </button>
+    <div className="accordion-content">
+      Elke wijziging in de DOM kan leiden tot een <em>reflow</em> of{" "}
+      <em>repaint</em>, waarbij de browser delen van de pagina opnieuw moet
+      berekenen en tekenen. Hoe meer individuele updates je doet, hoe trager het
+      wordt. Daarom werken frameworks (zoals React) met virtuele DOM’s of
+      batching.
+    </div>
+  </div>
+  <div className="accordion-item">
+    <button className="accordion-header">
+      Wat betekent ‘asynchroon’ in JavaScript?
+    </button>
+    <div className="accordion-content">
+      JavaScript voert code uit op één thread, maar gebruikt een event loop om
+      taken die langer duren (API‑calls, timers, I/O) asynchroon af te handelen.
+      Daardoor blokkeert je UI niet. Je gebruikt hiervoor meestal{" "}
+      <strong>promises</strong>, <strong>async/await</strong> of callbacks.
+    </div>
+  </div>
+</div>
+
+Dit is de `html` code die de accordion opbouwt. Uiteraard zijn de vraag en antwoorden vervangen om het hier overzichtelijk te houden.
+
+```html
+<div className="accordion">
+  <div className="accordion-item">
+    <button className="accordion-header">Question 1</button>
+    <div className="accordion-content">Answer 1</div>
+  </div>
+  <div className="accordion-item">
+    <button className="accordion-header">Question 2</button>
+    <div className="accordion-content">Answer 2</div>
+  </div>
+  <div className="accordion-item">
+    <button className="accordion-header">Question 3</button>
+    <div className="accordion-content">Answer 3</div>
+  </div>
+</div>
+```
+
+Dit is de bijhorende `CSS` styling:
+
+```css
+.accordion-content {
+  display: none;
+}
+
+.accordion-header {
+  background: none;
+  border: none;
+  padding: 1em;
+  cursor: pointer;
+  color: black;
+  width: 100%;
+}
+
+.accordion-header:hover {
+  background: grey;
+}
+
+.accordion-item {
+  border-bottom: 1px solid #eee;
+}
+```
+
+Met deze `JavaScript` code maak je de accordion functioneel, voer hem uit in de Console en krijg antwoord op deze belangrijke vragen...
+
+```js
+// Alle headers worden opgehaald
+const headers = document.querySelectorAll(".accordion-header");
+
+// Elke header krijgt een click event listener die het bijhorende antwoord opent of sluit
+headers.forEach((header) => {
+  header.addEventListener("click", () => {
+    const content = header.nextElementSibling;
+    content.style.display =
+      content.style.display === "block" ? "none" : "block";
+  });
+});
+```
