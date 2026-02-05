@@ -1,0 +1,86 @@
+
+Globals horen bij de context van het huidige HTML document. Als
+de browser naar een andere pagina navigeert of herlaadt, gaat deze
+variabele en zijn waarde verloren.
+
+## Wat zijn globale variabelen
+
+Globale variabelen zijn variabelen die buiten een functie worden
+gedeclareerd. Deze variabelen kunnen overal in de code worden
+gebruikt. Dit kan handig zijn als je bepaalde waarden wilt opslaan die
+je later in de code wilt gebruiken.
+
+Hieronder zie je een voorbeeld van een globale variabele. In dit
+voorbeeld wordt de variabele name gedeclareerd buiten de
+functie sayHello. Hierdoor kan de variabele
+name overal in de code worden gebruikt.
+
+```js
+var name = "John";
+
+function sayHello() {
+    console.log("Hello " + name);
+}
+
+sayHello();
+```
+
+In dit voorbeeld wordt de variabele name gedeclareerd
+buiten de functie sayHello. Hierdoor kan de variabele
+name overal in de code worden gebruikt. Als je de functie
+sayHello aanroept, wordt de tekst "Hello John" naar de
+console gelogd.
+
+Vele globale variabelen kunnen ervoor zorgen dat je code minder
+overzichtelijk wordt. Daarom is het belangrijk om zorgvuldig om te
+gaan met globale variabelen en ze alleen te gebruiken als dat echt
+nodig is.
+
+Bij JavaScript zijn globale variabelen properties van het globale
+object. In de browser is dit object window. Dit betekent
+dat je een globale variabele kunt benaderen door
+window.variabeleNaam te
+gebruiken.
+
+## Name clashes
+
+Als je een globale variabele declareert met dezelfde naam als een
+variabele die al bestaat binnen het window object,
+overschrijft de nieuwe variabele de oude variabele. Dit kan leiden tot
+onverwachte resultaten en bugs in je code.
+
+Het is moeilijk om ten allen tijde een overzicht te hebben van welk
+variabelen er al onder het window object leven. Daarom is
+het handig om al jouw eigen globale variabelen te verzamelen in één
+object.
+
+Hieronder zie je een voorbeeld van hoe je dit kan doen:
+
+```js
+let myGlobals = {
+    users : [
+        {name: "John", age: 30},
+        {name: "Jane", age: 25}
+    ],
+    settings : {
+        theme: "dark",
+        music: "on"
+    },
+    path : "/pages/lessons/javascript/storage/globals.html"
+};
+
+console.log(myGlobals);
+
+console.log(myGlobals.users);
+```
+In dit voorbeeld worden alle globale variabelen verzameld in het
+object ``myGlobals``. Dit maakt het gemakkelijker om te zien
+welke variabelen globaal zijn en voorkomt name clashes met andere
+variabelen die al bestaan in het ``window`` object.
+
+De globale variablen kunnen zo een **state** bijhouden voor jouw applicatie, die over de gehele applicatie te gebruiken is.
+Dit is handig voor instellingen, gebruikersdata, paden, etc... zo moet je bepaalde informatie niet steeds blijven doorgeven aan functies of objecten.
+
+In de volgende Web cursus zal zo een globale **state** een groter belang beginnen spelen.
+
+

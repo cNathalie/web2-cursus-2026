@@ -1,0 +1,200 @@
+Een methode is een property van een object dat als waarde een functie heeft.
+
+## Object-methodes aanmaken
+
+Een methode is een functie die is opgeslagen als een eigenschap van een object. Je kunt een methode aanmaken door een functie toe te wijzen aan een object property.
+
+```js
+// Maak een hondje aan die kan blaffen
+// Function keyword
+const dog = {
+  name: "Buddy",
+  breed: "Golden Retriever",
+  age: 5,
+  bark: function () {
+    console.log("Woof Woof!");
+  },
+};
+
+// Maak een katje aan dat kan meowen
+// Anonieme functie
+const cat = {
+  name: "Whiskers",
+  breed: "Siamese",
+  age: 3,
+  meow: () => {
+    console.log("Meow Meow!");
+  },
+};
+
+// Maak een papagaai aan die kan praten
+// Functie met parameter
+const parrot = {
+  name: "Polly",
+  breed: "African Grey",
+  age: 10,
+  talk: (phrase) => {
+    console.log(phrase);
+  },
+};
+```
+
+## Methodes oproepen
+
+Je kunt een methode oproepen door de naam van het object gevolgd door een punt en de naam van de methode te typen.
+
+Opgelet!Je kan een methode niet oproepen zonder de naam van het object ervoor te typen.
+
+Opgelet!Om de methode uit te voeren moet je de haakjes()na de naam van de methode typen, anders log je enkel de functie zelf.
+
+```js
+// Roep de methode bark aan van het dog object
+dog.bark();
+
+// Roep de methode meow aan van het cat object
+cat.meow();
+
+// Roep de methode talk aan van het parrot object
+parrot.talk("Polly wants a cracker!");
+```
+
+
+---
+
+## In de praktijk: Shoppingcart
+
+Stel je voor dat je een online winkel hebt en je wilt een shoppingcart object maken dat verschillende methodes heeft om items toe te voegen, te verwijderen en de totale prijs te berekenen.
+
+<div className="inline-dynamic-example">
+  <section  id="product-list">
+  <h1>Producten</h1>
+    <div class="product" data-name="T-shirt" data-price="19.99">
+      <h2>T-shirt</h2>
+      <p>Prijs: € 19,99</p>
+      <button>Toevoegen aan winkelmand</button>
+    </div>
+    <div class="product" data-name="Jeans" data-price="49.99">
+      <h2>Jeans</h2>
+      <p>Prijs: € 49,99</p>
+      <button>Toevoegen aan winkelmand</button>
+    </div>
+    <div class="product" data-name="Sneakers" data-price="89.99">
+      <h2>Sneakers</h2>
+      <p>Prijs: € 89,99</p>
+      <button >Toevoegen aan winkelmand</button>
+    </div>
+  </section>
+<section class="cart">
+  <h2>Winkelmand</h2>
+  <div id="cart-items"></div>
+  <div class="total">
+    <span>Totaal</span>
+    <span id="cart-total">€ 0,00</span>
+  </div>
+</section>
+</div>
+
+De `html` van bovenstaande "webshop" ziet er zo uit:
+
+```html
+<div>
+  <section id="product-list">
+  <h1>Producten</h1>
+    <div className="product" data-name="T-shirt" data-price="19.99">
+      <h2>T-shirt</h2>
+      <p>Prijs: € 19,99</p>
+      <button>Toevoegen aan winkelmand</button>
+    </div>
+    <div className="product" data-name="Jeans" data-price="49.99">
+      <h2>Jeans</h2>
+      <p>Prijs: € 49,99</p>
+      <button>Toevoegen aan winkelmand</button>
+    </div>
+    <div className="product" data-name="Sneakers" data-price="89.99">
+      <h2>Sneakers</h2>
+      <p>Prijs: € 89,99</p>
+      <button >Toevoegen aan winkelmand</button>
+    </div>
+  </section>
+<section>
+  <h2>Winkelmand</h2>
+  <div id="cart-items"></div>
+  <div>
+    <span>Totaal</span>
+    <span id="cart-total">€ 0,00</span>
+  </div>
+</section>
+</div>
+```
+
+Voer nu deze `JS` uit in de Console van je browser om de webshop tot leven te brengen.
+
+```js
+// Maak het shoppingcart object met methodes
+const shoppingCart = {
+  // De shoppingcart zal alle producten bijhouden in een array
+  items: [],
+  
+  // Deze methode voegt een product toe aan de array
+  addItem: function (item) {
+    this.items.push(item);
+  },
+
+  // Deze methode verwijdert een item uit de array
+  removeItem: function (item) {
+    const index = this.items.indexOf(item);
+    if (index > -1) {
+      this.items.splice(index, 1);
+    }
+  },
+
+  // Deze methode berekent de totale prijs van alle items in de array
+  getTotalPrice: function () {
+    return this.items.reduce((total, item) => total + item.price, 0);
+  },
+};
+
+// Geef alle producten een click eventlistener
+const products = document.querySelectorAll(".product");
+products.forEach((product) => {
+  product.addEventListener("click", () => {
+    const item = {
+      name: product.getAttribute("data-name"),
+      price: parseFloat(product.getAttribute("data-price")),
+    };
+    shoppingCart.addItem(item);
+    updateCartDisplay();
+  });
+});
+
+// Update de winkelmand weergave
+function updateCartDisplay() {
+  const cartItemsContainer = document.getElementById("cart-items");
+  const cartTotalElement = document.getElementById("cart-total");
+
+  // Maak de huidige weergave leeg
+  cartItemsContainer.innerHTML = "";
+
+  // Voeg elk item toe aan de weergave
+  shoppingCart.items.forEach((item) => {
+    const itemElement = document.createElement("div");
+    itemElement.textContent = `${item.name} - € ${item.price.toFixed(2)}`;
+
+    const deleteItemBtn = document.createElement("p");
+    deleteItemBtn.textContent = "x";
+    deleteItemBtn.classList.add("delete-btn");
+    deleteItemBtn.addEventListener("click", () => {
+      shoppingCart.removeItem(item);
+      updateCartDisplay();
+    });
+
+    itemElement.appendChild(deleteItemBtn);
+    cartItemsContainer.appendChild(itemElement);
+  });
+
+  // Update de totale prijs
+  const totalPrice = shoppingCart.getTotalPrice();
+  cartTotalElement.textContent = `€ ${totalPrice.toFixed(2)}`;
+}
+```
+In de realiteit zou de productenlijst uit een API response komen en met JavaScript dynamisch worden opgebouwd.

@@ -1,0 +1,121 @@
+
+
+JavaScript en TypeScript worden vaak samen genoemd, maar ze hebben duidelijk verschillende rollen in moderne webontwikkeling.
+
+---
+
+### **JavaScript**
+- Een **dynamische, losjes getypeerde** taal.
+- Wordt uitgevoerd in de **browser** en op **Node.js**.
+- Is de standaardtaal van het web.
+
+### **TypeScript**
+- Een **superset** van JavaScript.
+- Voegt **optionele statische types** toe.
+- Wordt **gecompileerd naar JavaScript**.
+- Verbeterd voor grote codebases en teamwork.
+
+**Kort:** *TypeScript = JavaScript + types + extra hulpmiddelen.*
+
+---
+
+## Type‑systeem: dynamisch vs. statisch
+
+### **JavaScript**
+- Types worden pas gecontroleerd **tijdens runtime**.
+- Variabelen kunnen van type veranderen.
+
+```js
+let x = 10;
+x = "nu een string"; // geldig in JavaScript
+```
+
+### **TypeScript**
+- Types worden gecontroleerd **tijdens compilatie**.
+- Je krijgt waarschuwingen voor foutief gebruik.
+
+```ts
+let x: number = 10;
+x = "tekst"; // TypeScript-error
+```
+
+**Conclusie:** TypeScript voorkomt veel fouten nog vóór je code wordt uitgevoerd.
+
+---
+
+## Tooling en ontwikkelervaring
+
+### JavaScript
+- Werkt overal.
+- IDEs bieden goede ondersteuning, maar beperkt door het ontbreken van types.
+
+### TypeScript
+- Veel **slimmere editor‑feedback** door types.
+- Beter voor autocompletion, refactoring en documentatie.
+
+Voorbeeld van krachtige hints in TypeScript:
+```ts
+function greet(name: string) {
+  return `Hallo ${name}`;
+}
+```
+
+---
+
+## OOP en moderne features
+
+### **JavaScript**
+- Ondersteunt klassen sinds ES2015.
+- Geen interfaces of echte type‑structuren.
+
+### **TypeScript**
+- Ondersteunt **interfaces**, **generics**, **type‑aliasen**, **enums**, …
+- Hierdoor voelt het meer aan als een klassieke, gestructureerde taal.
+
+```ts
+interface Student {
+  naam: string;
+  leeftijd: number;
+}
+
+const persoon: Student = { naam: "Tom", leeftijd: 21 };
+```
+
+---
+
+## Compile‑ en runtime
+
+### **JavaScript**
+- Wordt direct uitgevoerd door browsers.
+- Fouten verschijnen tijdens runtime.
+
+### **TypeScript**
+- Moet eerst worden **gecompileerd naar JavaScript**.
+- Types bestaan niet meer in de output.
+
+**Waarom dat geen nadeel is:** browsers hoeven niets extra's te ondersteunen.
+
+---
+
+## Wanneer gebruik je wat?
+
+### **Gebruik JavaScript als:**
+- Je een klein project hebt.
+- Je snel iets wil uitproberen.
+- Types geen meerwaarde bieden.
+
+### **Gebruik TypeScript als:**
+- Je aan een **groter project** werkt.
+- Je fouten vroeg wil opsporen.
+- Je in teamverband werkt.
+- Je betere editor‑ondersteuning wilt.
+
+---
+
+#
+
+## Conclusie
+
+TypeScript bouwt voort op JavaScript door een laag van type‑veiligheid en structuur toe te voegen. Als je JavaScript kent, is TypeScript een logische volgende stap die je helpt om betere, stabielere code te schrijven.
+
+

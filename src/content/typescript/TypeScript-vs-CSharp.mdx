@@ -1,0 +1,221 @@
+
+
+Hoewel **TypeScript** en **C#** op het eerste gezicht verschillend lijken, delen ze veel ontwerpideeën. Niet toevallig, 
+want beide komen uit de stal van Microsoft. Deze gids is gemaakt voor studenten die **JavaScript** kennen en willen begrijpen hoe TypeScript zich verhoudt tot een klassieke *statisch getypeerde* taal zoals C#.
+
+---
+
+## Type‑systeem: **gradual** vs. **statisch**
+
+**TypeScript**
+- *Gradually typed*: types zijn **aanbevolen**, niet verplicht.
+- Typecontrole gebeurt bij compilatie; de runtime blijft JavaScript.
+- Je kunt probleemloos zonder expliciete types starten en later verfijnen.
+
+```ts
+let leeftijd: number = 25;   // expliciet
+let naam = "Sofia";          // type afgeleid (string)
+let flexibel: any = 42;      // vermijd indien mogelijk
+```
+
+**C#**
+- Volledig statisch getypeerd: **elk** symbool heeft een type.
+- Sterke compile-time garanties; fouten worden vroeg gevangen.
+
+```csharp
+int leeftijd = 25;
+string naam = "Sofia";
+// var kan infereren, maar het is nog steeds statisch:
+var score = 99; // score is int
+```
+
+**Conclusie:** C# **dwingt** types af; TypeScript **stimuleert** types maar verplicht ze niet.
+
+---
+
+## Uitvoeringsplatform
+
+**TypeScript**
+- Compileert naar **JavaScript**.
+- Draait in de **browser** en op **Node.js**.
+- Voornamelijk voor **web/front-end**, maar ook backend met Node.
+
+**C#**
+- Draait op **.NET** (Core/5+).
+- Geschikt voor **backends** (ASP.NET), **desktop** (WPF/WinUI), **games** (Unity), **cloud**, **CLI-tools**.
+
+**Conclusie:** TypeScript richt zich op het JavaScript‑ecosysteem; C# bedient een breed spectrum van applicaties op .NET.
+
+---
+
+## Klassen, interfaces en OOP‑model
+
+Beide talen ondersteunen **classes**, **interfaces**, **inheritance** en **generics**, maar de diepgang verschilt.
+
+**TypeScript**
+- Gebaseerd op ECMAScript‑classes.
+- **Interfaces** bestaan alleen tijdens het *typen* (verdwijnen na compilatie).
+- OOP is minder strikt.
+
+```ts
+interface Student {
+  naam: string;
+  leeftijd: number;
+}
+
+class Persoon implements Student {
+  constructor(public naam: string, public leeftijd: number) {}
+}
+```
+
+**C#**
+- Volwaardig OOP‑model met toegangsniveaus, abstracte klassen, overloading, properties, events, enz.
+
+```csharp
+public interface IStudent {
+    string Naam { get; }
+    int Leeftijd { get; }
+}
+
+public class Persoon : IStudent {
+    public string Naam { get; }
+    public int Leeftijd { get; }
+
+    public Persoon(string naam, int leeftijd) {
+        Naam = naam;
+        Leeftijd = leeftijd;
+    }
+}
+```
+
+**Conclusie:** C# biedt een **volwassener en strenger** OOP‑model; TypeScript is **lichter** en JS‑vriendelijk.
+
+---
+
+## Compileertijd vs. runtime
+
+**TypeScript**
+- Types verdwijnen na compilatie; output is **zuiver JavaScript**.
+- Niet alle fouten zijn op compile‑time detecteerbaar (runtime blijft dynamisch).
+
+**C#**
+- Strikte compile‑time checks.
+- IL + JIT (of AOT) zorgen voor voorspelbare runtime‑gedragingen.
+
+**Conclusie:** C# geeft **sterkere garanties** bij compileren; TypeScript voegt **veiligheid** toe bovenop JS, maar is niet waterdicht.
+
+---
+
+## Generics
+
+**TypeScript**
+```ts
+function identiek<T>(waarde: T): T {
+  return waarde;
+}
+
+type Box<T> = { value: T };
+const b: Box<number> = { value: 3 };
+```
+
+**C#**
+```csharp
+public T Identiek<T>(T waarde) => waarde;
+
+public class Box<T> {
+    public T Value { get; set; }
+}
+var b = new Box<int> { Value = 3 };
+```
+
+**Conclusie:** De syntaxis is vergelijkbaar; **C#** heeft doorgaans **rijkere constraints** en tooling rondom generics.
+
+---
+
+## Asynchroon programmeren
+
+**TypeScript / JavaScript**
+- Gebaseerd op **Promises**; `async/await` is syntactische suiker.
+- Single‑threaded event loop; voor parallelle workloads gebruik je web workers/Node workers.
+
+```ts
+async function haalData() {
+  const res = await fetch("/api/data");
+  const json = await res.json();
+  return json;
+}
+```
+
+**C#**
+- `Task`/`ValueTask` ecosystem; `async/await` met threadpool‑integratie.
+- Rijke mogelijkheden voor parallellisme (`Parallel`, `TPL`, `IAsyncEnumerable`).
+
+```csharp
+public async Task<object> HaalDataAsync() {
+    var res = await httpClient.GetAsync("/api/data");
+    return await res.Content.ReadAsAsync<object>();
+}
+```
+
+**Conclusie:** Concepten lijken op elkaar, maar **C#** heeft **uitgebreidere** ondersteuning voor multithreading en parallelle patronen.
+
+---
+
+## Tooling en ecosysteem
+
+**TypeScript**
+- Uitstekende web‑tooling (VS Code), **npm**‑ecosysteem.
+- Sterk in front‑end (React, Vue, Angular) en Node.js backends.
+
+**C#**
+- Enterprise‑tooling (Visual Studio, Rider), **NuGet**‑ecosysteem.
+- Sterk in back‑end, cloud (Azure), desktop en games (Unity).
+
+**Conclusie:** TypeScript blinkt uit in **webproductiviteit**; C# is **breed inzetbaar** in professionele omgevingen.
+
+---
+
+## Mini‑cheatsheet
+
+### Type‑inferenz
+```ts
+// TypeScript
+const x = 42;   // number
+```
+
+```csharp
+// C#
+var x = 42;     // int (statisch afgeleid)
+```
+
+### Union / discriminated unions
+```ts
+// TypeScript: unions
+type Result = { ok: true; value: string } | { ok: false; error: string };
+```
+
+```csharp
+// C#: pattern matching met records/structs (geen native unions, wel alternatieven)
+public abstract record Result;
+public record Ok(string Value) : Result;
+public record Err(string Error) : Result;
+```
+
+### Null‑veiligheid
+```ts
+// TypeScript: strictNullChecks aanzetten
+let naam: string | null = null;
+```
+
+```csharp
+#nullable enable
+string? naam = null;
+```
+
+---
+
+## Wat betekent dit voor jou als student?
+
+- Kom je van **JavaScript**? Dan is **TypeScript** een **logische upgrade**: je behoudt de flexibiliteit, maar met extra veiligheid.
+- Wil je **klassieke OOP** en **sterke compile‑time garanties**? Dan leert **C#** je discipline en schaalbaarheid.
+- Concepten zoals **interfaces, generics, classes en async** vertalen vlot tussen beide talen: leren in de ene helpt je in de andere.

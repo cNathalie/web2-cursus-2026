@@ -1,15 +1,11 @@
 
-// public/sw.js
-
-// Use a base that works for dev and prod.
-// In dev (localhost), your path typically starts at "/".
 const DEFAULT_BASE = '/';
 const KNOWN_BASES = [
   '/web2-cursus-2026/',  // prod: GitHub Pages project path
   '/',                   // dev: localhost
 ];
 
-// Helper: pick the matching base for the current scope
+//pick the matching base for the current scope
 function resolveBase() {
   const scope = self.registration.scope; // absolute URL
   const pathname = new URL(scope).pathname;

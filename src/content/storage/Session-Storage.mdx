@@ -1,0 +1,42 @@
+Soms wil je data bijhouden gedurende de sessie van een gebruiker.
+
+## Wat is Session Storage
+
+Session Storage is een manier om gegevens
+in de browser op te slaan. De gegevens blijven
+bewaard zolang de sessie van de gebruiker actief is. Dit betekend dat
+als de gebruiker het tabblad herlaadt, de gegvens nog steeds
+beschikbaar zullen zijn. Maar als de browser of het tablad wordt gesloten,
+worden de gegevens verwijderd. Het biedt een eenvoudige API voor het
+opslaan en ophalen van gegevens. Session Storage is handig voor het
+opslaan van gegevens die niet nodig zijn na het sluiten van de
+browser.
+
+## Session Storage bekijken
+
+Je kan Session Storage opnieuw terugvinden in je Developer Tools onder
+het tabblad Application.
+
+## Session Storage gebruiken
+
+Session Storage is net als Local Storage een object dat je kan
+gebruiken om data op te slaan. Het verschil is dat de data in Session
+Storage enkel bewaard blijft zolang de sessie van de gebruiker actief
+is. Als de browser wordt gesloten, worden de gegevens verwijderd.
+
+Hieronder zie je een voorbeeld van hoe je Session Storage kan
+gebruiken. In dit voorbeeld wordt de waarde van de variabele
+name opgeslagen in Session Storage. Als de gebruiker de
+pagina herlaadt, zal de waarde van name nog steeds
+beschikbaar zijn.
+
+```javascript
+// Data opslaan in Session Storage
+sessionStorage.setItem("name", "John");
+
+// Data ophalen uit Session Storage
+var name = sessionStorage.getItem("name");
+
+// Date verwijderen uit Session Storage
+sessionStorage.removeItem("name");
+```

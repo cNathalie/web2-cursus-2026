@@ -1,0 +1,127 @@
+
+In TypeScript kun je types gebruiken om aan te geven welk soort waarde je verwacht. Dit maakt je code voorspelbaarder, overzichtelijker en helpt om fouten vroeger te vinden.
+Hieronder vind je de belangrijkste types die je als beginner moet kennen.
+
+## Primitive types
+Dit zijn de meest basale bouwstenen van TypeScript.
+### ``number``
+Voor alle numerieke waarden (zowel integers als kommagetallen).
+```ts
+let leeftijd: number = 20;
+```
+
+### ``string``
+Voor tekstwaarden.
+```ts
+let naam: string = "Nathalie";
+```
+### ``boolean``
+Voor true of false.
+```ts
+let isIngelogd: boolean = true;
+```
+### ``null`` & ``undefined``
+Meestal gebruikt als expliciete waardes om aan te geven dat iets leeg of afwezig is.
+```ts
+let niets: null = null;
+let onbekend: undefined = undefined;
+```
+
+## Arrays
+Je kunt aangeven wat voor soort elementen een array bevat.
+```ts
+let getallen: number[] = [1, 2, 3];
+let namen: string[] = ["Anna", "Tom"];
+```
+Alternatieve syntaxis:
+
+```ts
+let scores: Array<number> = [10, 20, 30];
+```
+
+## Tuples
+Een tuple is een array met een vaste lengte en vaste types per positie.
+```ts
+let persoon: [string, number] = ["Emma", 25];
+```
+Hier moet index 0 een string zijn en index 1 een number.
+
+## Objects
+Je kunt de structuur van een object vastleggen:
+```ts
+let student: { naam: string; leeftijd: number } = {  naam: "Lucas",  leeftijd: 22};
+```
+
+## any
+Dit type schakelt typechecking uit. Je kunt alles toewijzen.
+```ts
+let willekeurig: any = 10;
+willekeurig = "nu een string";
+```
+⚠️ Gebruik ``any`` zo weinig mogelijk. Het haalt de voordelen van TypeScript weg.
+
+## unknown
+Lijkt op any, maar veiliger: je moet eerst controleren wat het type is.
+```ts
+let input: unknown = "Hallo";
+if (typeof input === "string") {
+  console.log(input.toUpperCase());
+}
+```
+
+## void
+Geeft aan dat een functie niets teruggeeft.
+```ts
+function logBericht(): void {
+  console.log("Hallo!");
+}
+```
+
+## never
+Geeft aan dat een functie nooit iets teruggeeft (bijvoorbeeld bij een error of een oneindige loop).
+```ts
+function fout(): never {
+  throw new Error("Er ging iets mis");
+}
+```
+
+## Union types
+Met union types kan een variabele meerdere mogelijke types hebben.
+```ts
+let id: number | string;
+id = 100;
+id = "ABC123";
+```
+Heel handig wanneer een waarde flexibel mag zijn.
+
+## Literal types
+Je kunt aangeven dat een waarde precies één bepaalde waarde moet zijn.
+```ts
+let richting: "links" | "rechts";
+richting = "links"; // O
+richting = "beneden"; // Fout
+```
+
+## Type aliases
+Je kunt een type een naam geven, handig voor leesbaarheid:
+```ts
+type Student = { naam: string; leeftijd: number; };
+```
+```ts
+type Student = {  naam: string;  leeftijd: number;};
+let s1: Student = { naam: "Jens", leeftijd: 21 };
+```
+
+## Enums
+Enums laten je werken met benoemde waardes.
+```ts
+enum Rol {  Admin,  Student,  Gast}
+let rol: Rol = Rol.Student;
+```
+
+## Samenvatting
+TypeScript helpt je om:
+
+- duidelijkere structuur te geven aan je code,
+- fouten vroeg te detecteren,
+- complexere projecten beter beheersbaar te maken.

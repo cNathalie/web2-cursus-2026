@@ -1,0 +1,81 @@
+
+Het ``Date`` object is een ingebouwd object in JavaScript dat wordt 
+ gebruikt om datums en tijden te werken.
+
+## Date object aanmaken
+
+Om een Date object aan te maken, gebruik je de new Date() constructor. 
+ De Date object constructor accepteert verschillende parameters, zoals 
+ jaar, maand, dag, uur, minuut, seconde en milliseconde.
+
+Wanneer je geen parameters meegeeft, zal de Date constructor de 
+ huidige datum en tijd weergeven.
+
+Wanneer je het Date object logt, zal het de datum en tijd weergegeven 
+ worden in een standaard format. Om dit om te zetten naar een leesbaar 
+ format, kun je gebruik maken van de verschillende Date object 
+ methodes.
+
+```js
+// Maak een Date object aan 
+const date = new Date(); 
+console.log(date); 
+
+// Maak een Date object met parameters aan 
+const myDate = new Date(1992, 09, 17, 09, 0, 0, 0); 
+console.log(myDate);
+```
+
+## .toLocaleString()
+
+De ``.toLocaleString()`` methode wordt gebruikt om een 
+ datum/tijd te converteren naar een leesbaar format.
+
+Wanneer je de methode zonder parameters gebruikt, zal de datum en tijd 
+ weergegeven worden in de taal en tijdzone van de gebruiker.
+
+De ``.toLocaleString()`` methode accepteert ook parameters 
+ zoals locale en options.
+
+Met de locale parameter kies je in de code in welk format 
+ de datum moet worden weergegeven.
+
+Dit zijn een aantal locales:
+- nl-BE: Nederlands (België)
+- en-US: Engels (Verenigde Staten)
+- fr-FR: Frans (Frankrijk)
+- de-DE: Duits (Duitsland)
+
+Dit zijn de meest gebruikte options:
+- weekday: 'long', 'short', 'narrow'
+- year: 'numeric', '2-digit'
+- month: 'numeric', '2-digit', 'long', 'short', 'narrow'
+- day: 'numeric', '2-digit'
+- hour: 'numeric', '2-digit'
+- minute: 'numeric', '2-digit'
+- second: 'numeric', '2-digit'
+
+```js
+const date = new Date(); 
+console.log(date.toLocaleString());
+```
+
+```js
+const date = new Date(); 
+console.log(date.toLocaleString('nl-BE', { weekday: 'long' }));
+```
+
+Date objecten kunnen complex zijn, denk maar aan hoe je met tijdzones,
+zomertijd en verschillende kalenderformaten moet omgaan. Voor eenvoudige
+toepassingen is het echter meestal voldoende om de basisfunctionaliteit
+van het Date object te begrijpen en te gebruiken.
+
+_Niet voor deze cursus:_
+
+Wanneer je meer geavanceerde datum- en tijdmanipulaties nodig hebt,
+zoals het berekenen van datums, het werken met tijdzones of het
+formatteren van datums in verschillende stijlen, kun je overwegen om
+externe bibliotheken zoals [date-fns](https://date-fns.org/) of
+[moment.js](https://momentjs.com/) te gebruiken. Deze bibliotheken
+bieden uitgebreide functionaliteit en maken het werken met datums en
+tijden veel eenvoudiger.

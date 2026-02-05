@@ -9,7 +9,7 @@ function LandingPage() {
       <JSMascot />
       <Hero>
         <h2>Leer JavaScript stap voor stap</h2>
-        <p>Speels, praktisch en to the point — je ziet snel resultaat.</p>
+        <p>Speels, praktisch en to the point. Je ziet snel resultaat.</p>
         <p>
           Hier begint jouw reis in de wereld van webontwikkeling. Deze cursus
           leidt je door de fundamenten van het bouwen van moderne

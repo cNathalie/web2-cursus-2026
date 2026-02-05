@@ -1,0 +1,140 @@
+
+Deze pagina bespreekt de meest gebruikte JavaScript-functies en lusconstructies. 
+Ze vormen de basis van JavaScript. 
+Door ze goed te beheersen, kun je vlottere, duidelijkere en efficiëntere code schrijven.
+
+---
+
+## `for`-lus
+De klassieke lus waarmee je een stuk code een vast aantal keren uitvoert.
+
+```javascript
+for (let i = 0; i < 3; i++) {
+  console.log(i);
+}
+// Output: 0, 1, 2
+```
+
+---
+
+##  `while`-lus
+Voert code uit zolang de voorwaarde waar (true) is.
+
+```javascript
+let count = 0;
+while (count < 3) {
+  console.log(count);
+  count++;
+}
+```
+
+---
+
+## `do...while`-lus
+Voert eerst de code uit en controleert daarna pas de voorwaarde. De code wordt dus minstens één keer uitgevoerd.
+
+```javascript
+let number = 0;
+do {
+  console.log(number);
+  number++;
+} while (number < 3);
+```
+
+---
+
+## `forEach()`
+Een eenvoudige manier om door een array te lopen.
+
+```javascript
+const fruit = ["appel", "banaan", "sinaasappel"]; 
+fruit.forEach((item) => {
+  console.log(item);
+});
+```
+
+---
+
+## `map()`
+Maakt een nieuwe array door elke waarde te transformeren.
+
+```javascript
+const nummers = [1, 2, 3];
+const verdubbeld = nummers.map(n => n * 2);
+console.log(verdubbeld);
+// Output: [2, 4, 6]
+```
+
+---
+
+##  `filter()`
+Filtert alle elementen die voldoen aan een bepaalde voorwaarde.
+
+```javascript
+const leeftijden = [12, 18, 25, 8];
+const volwassenen = leeftijden.filter(l => l >= 18);
+console.log(volwassenen);
+// Output: [18, 25]
+```
+
+---
+
+## `reduce()`
+Reduceert een array tot één waarde, zoals een som.
+
+```javascript
+const waarden = [1, 2, 3, 4];
+const som = waarden.reduce((totaal, n) => totaal + n, 0);
+console.log(som);
+// Output: 10
+```
+
+---
+
+## `find()`
+Zoekt het eerste element dat aan een voorwaarde voldoet.
+
+```javascript
+const gebruikers = [{id: 1}, {id: 2}, {id: 3}];
+const gebruiker = gebruikers.find(u => u.id === 2);
+console.log(gebruiker);
+// Output: { id: 2 }
+```
+
+---
+
+##  `some()` en `every()`
+Controleert of *sommige* of *alle* elementen aan een voorwaarde voldoen.
+
+```javascript
+const scores = [10, 20, 30];
+console.log(scores.some(s => s > 25)); // true
+console.log(scores.every(s => s > 5)); // true
+```
+
+---
+
+## `for...of`
+Een nette manier om door lijsten en andere iterables te lopen.
+
+```javascript
+const kleuren = ["rood", "groen", "blauw"];
+for (const kleur of kleuren) {
+  console.log(kleur);
+}
+```
+
+---
+
+## `for...in`
+Wordt gebruikt om door de sleutel-waarde-paren van een object te lopen.
+
+```javascript
+const student = { naam: "Alex", leeftijd: 20 };
+for (const sleutel in student) {
+  console.log(sleutel, student[sleutel]);
+}
+```
+
+
+

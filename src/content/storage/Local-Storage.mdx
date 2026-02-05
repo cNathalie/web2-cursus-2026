@@ -1,0 +1,56 @@
+
+Data overheen verschillende HTML pagina's opslaan kan een uitdaging
+zijn.
+
+## Wat is Local Storage
+
+Local Storage is een manier om gegevens in de browser op te slaan. De
+gegevens blijven bewaard, zelfs als de browser wordt gesloten. Het
+biedt een eenvoudige API voor het opslaan en ophalen van gegevens. De
+opslagcapaciteit is groter dan die van cookies. Local Storage is
+handig voor het opslaan van gebruikersinstellingen en voorkeuren.
+
+## Local Storage bekijken
+
+Je kan de Local Storage van uw browser bekijken in de Developer Tools.
+Ga naar de Application tab en klik op Local Storage in het menu aan de
+linkerkant. Hier kan je de gegevens zien die in Local Storage zijn
+opgeslagen.
+
+## Local Storage gebruiken
+
+Om Local Storage te gebruiken, kunt u de
+localStorage object gebruiken. Dit object heeft
+verschillende methoden om gegevens op te slaan en op te halen.
+```js
+// Gegevens opslaan
+localStorage.setItem('key', 'value');
+
+// Gegevens ophalen
+let value = localStorage.getItem('key');
+
+// Gegevens verwijderen
+localStorage.removeItem('key');
+```
+
+We slaan bijvoorbeeld op of de gebruiker voor 'dark' of 'light' mode
+koos voor de weeergave van de website.
+
+```js
+// Gegevens opslaan
+localStorage.setItem('theme', 'dark');
+
+// Bekijk nu de waarde in de Application tab van je Developer Tools.
+
+// Gegevens ophalen
+let theme = localStorage.getItem('theme');
+
+// Gegevens verwijderen
+localStorage.removeItem('theme');
+```
+
+Wanneer je na het invoeren van de eerste lijn code, dit venster zou
+sluiten en naar een andere pagina op deze (lokale) website gaan, dan
+zal je zien dat ook daar dezelfde waarden in de Local Storage
+beschikbaar zijn. Zelfs na het volledig afsluiten van de browser.
+

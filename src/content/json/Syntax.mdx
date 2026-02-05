@@ -1,0 +1,65 @@
+
+
+De JSON-syntax lijkt sterk op die van JavaScript-objecten.
+
+## Key-Value pairs
+
+    JSON-gegevens zijn geschreven als key-value paren. Een key-value paar
+    is een set van twee strings, waarbij de key een string is en de value
+    een string, nummer, object, array, true, false of null. De key en
+    value worden gescheiden door een dubbele punt. De key-value paren
+    worden gescheiden door komma's.
+
+        Een simpel voorbeeld:
+```json
+{
+    "naam": "John",
+    "leeftijd": 30,
+    "gehuwd": false
+}
+```
+
+        Een voorbeeld waarbij de value een array is:
+```json
+{
+    "naam": "John",
+    "leeftijd": 30,
+    "gehuwd": false,
+    "kinderen": [
+        "Anna", 
+        "Tom", 
+        "Linda"
+    ]
+}
+```
+        Een voorbeeld waarbij de value een object is:
+
+```json
+{
+    "naam": "John",
+    "leeftijd": 30,
+    "gehuwd": false,
+    "adres": {
+        "straat": "Dorpstraat",
+        "huisnummer": 123,
+        "postcode": "1234AB",
+        "plaats": "Dorp"
+    }
+}
+```
+## JSON Syntax Regels
+
+- JSON-gegevens zijn gescheiden door komma's.
+- Curly braces `{ }` bevatten objecten.
+- Haakjes `[ ]` bevatten arrays.
+- JSON-gegevens zijn geschreven als key-value paren.
+
+- Keys moeten strings zijn, en de waarden moeten een geldig JSON-data
+type zijn (string, nummer, object, array, true, false of null).
+
+- Keys en waarden worden gescheiden door dubbele punten.
+- Keys moeten omgeven zijn door dubbele aanhalingstekens.
+- JSON-gegevens mogen geen functies of variabelen bevatten.
+- JSON-gegevens mogen geen commentaar bevatten.
+
+

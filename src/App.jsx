@@ -1,6 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
-import About from "./pages/About.jsx";
 import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
@@ -15,7 +14,6 @@ import { navigation } from "./navigation.js";
 import Chapter from "./pages/Chapter.jsx";
 import { LinkContainer } from "react-router-bootstrap";
 import MdxPage from "./pages/MdxPage.jsx";
-import CoverImage from "./components/CoverImage.jsx";
 
 function App() {
   return (
@@ -47,6 +45,9 @@ function App() {
           <Nav className="me-auto">
             <LinkContainer to="/">
               <Nav.Link>Home</Nav.Link>
+            </LinkContainer>
+            <LinkContainer to="/studiewijzer">
+              <Nav.Link>Studiewijzer</Nav.Link>
             </LinkContainer>
             <LinkContainer to="/about">
               <Nav.Link>Over de cursus</Nav.Link>
@@ -123,6 +124,10 @@ function App() {
           path="/about"
           element={<MdxPage folder="intro" course="Introductie" />}
         />
+        <Route
+          path="/studiewijzer"
+          element={<MdxPage folder="studiewijzer" course="Studiewijzer" />}
+        />
         <Route path="/howtolearn" element={<HowToLearn />} />
         <Route
           path="/het-internet"
@@ -183,7 +188,7 @@ function App() {
             element={
               <ChapterCover
                 mascot={JSMascot}
-                title="Welkom bij het JavaScript hoofdstuk."
+                title="In JavaScript, truth is subjective, types are negotiable, and sanity is optional."
               />
             }
           />
@@ -194,7 +199,7 @@ function App() {
               element={
                 <MdxPage
                   folder="javascript"
-                  course={label.replace(" ", "-")}
+                  course={label.replaceAll(" ", "-")}
                   symbol={symbol}
                 />
               }
@@ -459,7 +464,7 @@ function App() {
           ))}
         </Route>
 
-          <Route
+        <Route
           path="/objecten"
           element={
             <Chapter
@@ -490,6 +495,129 @@ function App() {
           ))}
         </Route>
 
+        <Route
+          path="/fetch-api"
+          element={
+            <Chapter
+              chapter="Fetch API"
+              links={navigation.fetchApiLinks}
+              expand={"lg"}
+            />
+          }
+        >
+          <Route
+            index
+            element={
+              <ChapterCover title="Fetch is JS’s way of saying: ‘I got this, brb with your data.’" />
+            }
+          />
+
+          {navigation.fetchApiLinks.map(({ to, label, symbol }) => (
+            <Route
+              path={to.replace("/fetch-api/", "")}
+              element={
+                <MdxPage
+                  folder="fetch-api"
+                  course={label.replaceAll(" ", "-")}
+                  {...(symbol ? { symbol } : {})}
+                />
+              }
+            />
+          ))}
+        </Route>
+
+        <Route
+          path="/json"
+          element={
+            <Chapter
+              chapter="JSON"
+              links={navigation.jsonLinks}
+              expand={"lg"}
+            />
+          }
+        >
+          <Route
+            index
+            element={
+              <ChapterCover title="In a world of countless frameworks, JSON stays the universal handshake between front and back." />
+            }
+          />
+
+          {navigation.jsonLinks.map(({ to, label, symbol }) => (
+            <Route
+              path={to.replace("/json/", "")}
+              element={
+                <MdxPage
+                  folder="json"
+                  course={label.replaceAll(" ", "-")}
+                  {...(symbol ? { symbol } : {})}
+                />
+              }
+            />
+          ))}
+        </Route>
+
+        <Route
+          path="/storage"
+          element={
+            <Chapter
+              chapter="Storage"
+              links={navigation.storageLinks}
+              expand={"lg"}
+            />
+          }
+        >
+          <Route
+            index
+            element={
+              <ChapterCover title="Front‑end storage: saving your state, one key‑value pair at a time." />
+            }
+          />
+
+          {navigation.storageLinks.map(({ to, label, symbol }) => (
+            <Route
+              path={to.replace("/storage/", "")}
+              element={
+                <MdxPage
+                  folder="storage"
+                  course={label.replaceAll(" ", "-")}
+                  {...(symbol ? { symbol } : {})}
+                />
+              }
+            />
+          ))}
+        </Route>
+
+        <Route
+          path="/typescript"
+          element={
+            <Chapter
+              chapter="TypeScript"
+              links={navigation.typeScriptLinks}
+              expand={"lg"}
+            />
+          }
+        >
+          <Route
+            index
+            element={
+              <ChapterCover title="TypeScript - The power of typed programming." />
+            }
+          />
+
+          {navigation.typeScriptLinks.map(({ to, label, symbol }) => (
+            <Route
+              path={to.replace("/typescript/", "")}
+              element={
+                <MdxPage
+                  folder="typescript"
+                  course={label.replaceAll(" ", "-")}
+                  {...(symbol ? { symbol } : {})}
+                />
+              }
+            />
+          ))}
+        </Route>
       </Routes>
     </BrowserRouter>
   );

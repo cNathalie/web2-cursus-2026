@@ -82,3 +82,11 @@
   cursor: pointer;
   max-width: 5px;
 }
+
+/* Objecten */
+.product {
+  border: 1px solid #ccc;
+  padding: 1em;
+  margin: 1em 0;
+  border-radius: 5px;
+}

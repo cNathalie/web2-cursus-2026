@@ -61,6 +61,7 @@ export const navigation = {
       symbol: NeedToKnowSymbol,
     },
     { to: "/javascript/arrays", label: "Arrays", symbol: NeedToKnowSymbol },
+    { to: "/javascript/fu", label: "Veelgebruikte Functies En Lussen", symbol: NeedToKnowSymbol },
   ],
 
   domTreeLinks: [
@@ -292,6 +293,95 @@ export const navigation = {
     },
   ],
 
+  fetchApiLinks: [
+    {
+      to: "/fetch-api/intro",
+      label: "Introductie",
+      symbol: NiceToKnowSymbol,
+    },
+    {
+      to: "/fetch-api/aanmaken",
+      label: "GET",
+      symbol: NeedToKnowSymbol,
+    },
+  ],
+
+    jsonLinks: [
+    {
+      to: "/json/intro",
+      label: "Introductie",
+      symbol: NiceToKnowSymbol,
+    },
+    {
+      to: "/json/syntax",
+      label: "Syntax",
+      symbol: NeedToKnowSymbol,
+    },{
+      to: "/json/parse",
+      label: "Parse",
+      symbol: NeedToKnowSymbol,
+    },{
+      to: "/json/stringify",
+      label: "Stringify",
+      symbol: NeedToKnowSymbol,
+    },
+  ],
+
+      storageLinks: [
+    {
+      to: "/storage/intro",
+      label: "Introductie",
+      symbol: NiceToKnowSymbol,
+    },
+    {
+      to: "/storage/globals",
+      label: "Globals",
+      symbol: NeedToKnowSymbol,
+    },
+    {
+      to: "/storage/local-storage",
+      label: "Local Storage",
+      symbol: NeedToKnowSymbol,
+    },
+    {
+      to: "/storage/session-storage",
+      label: "Session Storage",
+      symbol: NeedToKnowSymbol,
+    },
+    {
+      to: "/storage/cookies",
+      label: "Cookies",
+      symbol: NeedToKnowSymbol,
+    },
+    {
+      to: "/storage/indexed-db",
+      label: "Indexed DB",
+      symbol: NiceToKnowSymbol,
+    },
+  ],
+
+    typeScriptLinks: [
+    {
+      to: "/typescript/intro",
+      label: "Introductie",
+      symbol: NiceToKnowSymbol,
+    },
+    {
+      to: "/typescript/types",
+      label: "Types",
+      symbol: NiceToKnowSymbol,
+    },
+    {
+      to: "/typescript/js-vs-ts",
+      label: "JavaScript vs TypeScript",
+      symbol: NiceToKnowSymbol,
+    }, {
+      to: "/typescript/ts-vs-csharp",
+      label: "TypeScript vs CSharp",
+      symbol: NiceToKnowSymbol,
+    },
+  ],
+
 
   projectLinks: [
     { to: "/project/intro", label: "Introductie" },
@@ -302,5 +392,6 @@ export const navigation = {
     { to: "/project/practicum-I", label: "Practicum I", symbol: WipSymbol },
     { to: "/project/practicum-II", label: "Practicum II", symbol: WipSymbol },
     { to: "/project/practicum-III", label: "Practicum III", symbol: WipSymbol },
+    { to: "/project/hoe-slagen", label: "Hoe Slagen"},
   ],
 };
