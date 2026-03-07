@@ -1,1 +1,511 @@
-Coming soon… probably after coffee.
+## Doelstelling
+
+Dit is het laatste practicum voordat je eindproject wordt geëvalueerd. Je gaat je website aanvullen met **geavanceerde JavaScript functies** zodat alle 15 vereisten uit "Hoe Slagen" worden bereikt.
+
+Na dit practicum moet je project **volledig functioneel** zijn met alle kernfeatures die op je onderwerp toepasbaar zijn.
+
+---
+
+## Kernpunten voor dit practicum
+
+Dit practicum geeft richtlijnen hoe je de resterende JavaScript functies kan implementeren. Wat je precies toevoegt hangt af van je onderwerp, maar hier zijn de technieken:
+
+✓ Dynamische DOM-manipulatie (createElement, appendChild, removeChild)  
+✓ Arrays gebruiken voor data opslag  
+✓ localStorage voor persistent data  
+✓ Fetch API om externe data te laden  
+✓ Cookies instellen met levensduur  
+✓ Custom data-attributen (`data-*`)  
+✓ String methodes voor tekstmanipulatie  
+✓ Node navigatie (parentNode, childNodes, siblings)  
+✓ Conditionele logica  
+
+---
+
+## Overzicht: De 15 vereiste JavaScript functies
+
+Controleer met "Hoe Slagen" welke functies je nog mist. Kies welke het best aansluit op je project:
+
+1. **Event listeners** ✓ (waarschijnlijk al gedaan in Practicum II)
+2. **Knoppen met acties** ✓ (waarschijnlijk al gedaan in Practicum II)
+3. **Formulier validatie** - Voeg een formulier met checks toe
+4. **Dynamische elementen** - Voeg elementen toe/verwijder ze
+5. **Arrays** - Sla data op in een array
+6. **localStorage** - Sla gebruikersdata persistent op
+7. **Custom data-attributen** - Voeg extra info aan HTML toe
+8. **String methodes** - Manipuleer tekst in JavaScript
+9. **Timer functie** - Bijv. setTimeout of setInterval
+10. **Node navigatie** - Navigeer door DOM-tree
+11. **Conditionele logica** - if/else statements
+12. **Functies** ✓ (waarschijnlijk al gedaan)
+13. **CSS-selectoren** ✓ (waarschijnlijk al gedaan)
+14. **Cookies** - Stel cookies in met levensduur
+15. **Fetch API** - Laad externe data in
+
+---
+
+## Stap 1: Identificeer mogelijkheden in je project
+
+Voor elk van de doelen hieronder, bedenk HOE je dit in je project kan toepassen:
+
+### **Formulier validatie** (als je nog geen formulier hebt)
+
+Voeg formulier validatie toe aan een formulier op een van je pagina's:
+
+```javascript
+form.addEventListener("submit", function(event) {
+    event.preventDefault();
+    
+    // Haal waarden op
+    const inputValue = document.getElementById("input").value.trim();
+    
+    // Valideer
+    if (inputValue === "" || inputValue.length < 3) {
+        console.log("Input ongeldig");
+        return;
+    }
+    
+    // Verwerk data
+    console.log("Formulier ingevuld:", inputValue);
+});
+```
+
+**Tips:**
+- Zorg voor duidelijke foutmeldingen bij ongeldige input
+- Gebruik `.trim()` om spaties aan begin/einde te verwijderen
+- Te kort? Gebruik `.length` om aantal karakters te checken
+
+---
+
+### **Dynamische elementen (createElement, appendChild)**
+
+Voeg de mogelijkheid toe iets aan je pagina toe te voegen/verwijderen. Dit kan alles zijn passend bij je onderwerp:
+
+```javascript
+const createButton = document.getElementById("create");
+const container = document.getElementById("container");
+
+createButton.addEventListener("click", function() {
+    // Maak nieuw element
+    const newElement = document.createElement("div");
+    newElement.textContent = "Ik ben net gemaakt!";
+    newElement.className = "new-item";
+    
+    // Voeg toe aan pagina
+    container.appendChild(newElement);
+});
+```
+
+**Voorbeelden per onderwerp:**
+- **E-shop:** Voeg product naar winkelwagen toe
+- **Blog:** Voeg commentaar toe aan bericht
+- **Quiz:** Voeg vraag toe wanneer antwoord goed is
+- **Portfolio:** Voeg project toe aan galerij
+- **Forum:** Voeg post/reply toe
+
+---
+
+### **Arrays voor data**
+
+Sla data op in een array en manipuleer deze:
+
+```javascript
+// Data opslaan in array
+let items = [];
+
+function addItem(itemText) {
+    items.push(itemText); // Voeg toe
+}
+
+function removeItem(index) {
+    items.splice(index, 1); // Verwijder 1 element
+}
+
+function getAllItems() {
+    return items; // Haal alles op
+}
+
+// Array methodes
+items.filter(item => item.includes("belangrijk")); // Filter
+items.sort(); // Sorteer
+items.length; // Lengte
+```
+
+**Voorbeelden:**
+- Array van producten, gebruikers, berichten, likes, etc.
+- Sorteer array (A-Z, nieuwste eerst, prijzen oplopend, etc.)
+- Filter array (alleen actieve items, alleen goedkoop, etc.)
+
+---
+
+### **localStorage - Persistent data**
+
+Sla gebruikersdata op zodat het blijft na page refresh:
+
+```javascript
+// Sla data op
+function saveData(key, value) {
+    localStorage.setItem(key, value);
+}
+
+// Haal data op
+function getData(key) {
+    return localStorage.getItem(key);
+}
+
+// Voorbeelden
+saveData("userName", "Jan");
+saveData("theme", "dark");
+
+const name = getData("userName"); // "Jan"
+```
+
+**Voor complexe data, gebruik JSON:**
+
+```javascript
+// Object opslaan als JSON
+const user = { name: "Jan", email: "jan@example.com" };
+localStorage.setItem("user", JSON.stringify(user));
+
+// JSON teruglezen
+const savedUser = JSON.parse(localStorage.getItem("user"));
+```
+
+**Mogelijkheden:**
+- Gebruikersnaam onthouden
+- Instellingen (theme, taal, etc.)
+- Favorieten opslaan
+- Progress tracking
+- Winkelwagen opslaan
+- Boodschappenlijstje
+
+---
+
+### **Custom data-attributen**
+
+Voeg extra informatie aan HTML elementen toe:
+
+```html
+<!-- HTML -->
+<div class="product" data-id="123" data-price="29.99">
+    Mijn product
+</div>
+```
+
+```javascript
+// JavaScript - data ophalen
+const product = document.querySelector(".product");
+const id = product.getAttribute("data-id");      // "123"
+const price = product.dataset.price;              // "29.99"
+
+// Data gebruiken
+if (id === "123") {
+    console.log("Dit is het juiste product!");
+}
+```
+
+**Gebruikerscases:**
+- Product-IDs, gebruikers-IDs opslaan
+- Prices, categories opslaan
+- Statuses, states tracken
+- Metadata aan elementen toevoegen
+
+---
+
+### **String methodes**
+
+Manipuleer tekst in JavaScript:
+
+```javascript
+const text = "  Hello World  ";
+
+text.trim();           // "Hello World" - removes spaces
+text.includes("World"); // true - check if contains
+text.split(" ");        // ["Hello", "World"] - splits in array
+text.replace("World", "JavaScript"); // "  Hello JavaScript  "
+text.toUpperCase();     // "  HELLO WORLD  "
+text.toLowerCase();     // "  hello world  "
+text.substring(0, 5);   // "  Hell" - get part
+
+// Combineert
+const cleanedText = text.trim().toLowerCase();
+```
+
+**Praktische toepassingen:**
+- Input validatie (lengte checken, spaties verwijderen)
+- Zoeken (includes)
+- Filtren (split, includes)
+- Formatting (toUpperCase, substring)
+
+---
+
+### **Timers (setTimeout, setInterval)**
+
+Voer code uit na vertraging of regelmatig:
+
+```javascript
+// setTimeout - eenmalig na vertraging (in milliseconden)
+setTimeout(function() {
+    console.log("Dit gebeurt na 2 seconden");
+}, 2000);
+
+// setInterval - herhaal om de X milliseconden
+const intervalId = setInterval(function() {
+    console.log("Dit herhaalt elke seconde");
+}, 1000);
+
+// Stop de interval
+clearInterval(intervalId);
+```
+
+**Voorbeelden:**
+- Auto-verbergen van meldingen
+- Aftelklok (countdown timer)
+- Slideshow met fotos
+- Pulserende animatie
+- Refresh gegevens om de X seconden
+- Flitsende waarschuwing
+
+---
+
+### **Node navigatie**
+
+Navigeer door de DOM-tree:
+
+```javascript
+// HTML structuur
+// <ul id="list">
+//   <li class="item" id="item1">Item 1</li>  // target
+//   <li class="item" id="item2">Item 2</li>
+// </ul>
+
+const target = document.getElementById("item1");
+
+// Parent
+const parent = target.parentNode; // <ul>
+
+// Siblings
+const nextSibling = target.nextElementSibling; // item2
+const prevSibling = target.previousElementSibling; // null
+
+// Children
+const parentChildren = parent.children; // [item1, item2]
+const firstChild = parent.firstElementChild; // item1
+```
+
+**Wanneer nodig:**
+- Verwijder een element via `parentNode.removeChild()`
+- Voeg element in naast ander element
+- Zoek omhoog naar parent met bepaalde class
+
+---
+
+### **Cookies met levensduur**
+
+Stel cookies in die blijven (anders dan sessionStorage):
+
+```javascript
+// Cookie instellen (dias = days)
+function setCookie(name, value, days) {
+    const date = new Date();
+    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+    const expires = "expires=" + date.toUTCString();
+    document.cookie = name + "=" + value + ";" + expires + ";path=/";
+}
+
+// Cookie lezen
+function getCookie(name) {
+    const nameEQ = name + "=";
+    const cookies = document.cookie.split(";");
+    for (let i = 0; i < cookies.length; i++) {
+        let cookie = cookies[i].trim();
+        if (cookie.indexOf(nameEQ) === 0) {
+            return cookie.substring(nameEQ.length);
+        }
+    }
+    return "";
+}
+
+// Gebruik
+setCookie("userName", "Jan", 30); // 30 days
+const storedName = getCookie("userName");
+```
+
+**Verschillen van localStorage:**
+- localStorage: tot je het handmatig wist
+- cookies: vervallen na X tijd
+- cookies: verzonden naar server
+
+---
+
+### **Fetch API - Externe data laden**
+
+Laad data van externe bron (bestand, API):
+
+```javascript
+fetch("data.json")
+    .then(response => response.json()) // Parse JSON
+    .then(data => {
+        console.log(data); // gebruikt data
+        renderData(data);   // verwerk het
+    })
+    .catch(error => console.log("Error:", error));
+```
+
+**Versimpelde versie:**
+
+```javascript
+async function loadData() {
+    try {
+        const response = await fetch("data.json");
+        const data = await response.json();
+        console.log(data);
+    } catch (error) {
+        console.log("Error:", error);
+    }
+}
+
+loadData();
+```
+
+**Mogelijke gegevensbronnen:**
+- Lokaal JSON bestand (bijv. producten, users, quotes, etc.)
+- Openbare API (weer, cryptocurrency, jokes, etc.)
+- Je eigen backend server
+
+**Voorbeeld data.json:**
+```json
+[
+    { "id": 1, "name": "Item 1", "beschrijving": "..." },
+    { "id": 2, "name": "Item 2", "beschrijving": "..." }
+]
+```
+
+---
+
+## Stap 2: Maak een checklist van wat je nog nodig hebt
+
+Ga door "Hoe Slagen" en check welke functies je al hebt:
+
+- [ ] Event listeners
+- [ ] Knoppen met acties
+- [ ] Formulier validatie
+- [ ] Dynamische elementen
+- [ ] Arrays
+- [ ] localStorage
+- [ ] Custom data-attributen
+- [ ] String methodes
+- [ ] Timers
+- [ ] Node navigatie
+- [ ] Conditionele logica
+- [ ] Functies
+- [ ] CSS-selectoren
+- [ ] Cookies
+- [ ] Fetch API
+
+**Zorg dat je minimaal 15 verschillende JavaScript functies implementeert.**
+
+---
+
+## Stap 3: Plan logisch waar functies passen
+
+Bedenk voor je onderwerp waar deze functies zouden passen:
+
+**Voorbeeld voor E-shop:**
+- Arrays: product lijst
+- localStorage: winkelwagen opslaan
+- Fetch API: producten laden van JSON
+- Custom data-attributen: product IDs, prices
+- Dynamische elementen: items toevoegen aan winkelwagen
+
+**Voorbeeld voor Blog:**
+- Arrays: comments opslaan
+- localStorage: leesvoortgang
+- Fetch API: posts laden
+- String methodes: search/filter
+- Timers: meldingen auto-verbergen
+
+**Voorbeeld voor Quiz:**
+- Arrays: vragen en antwoorden
+- localStorage: score opslaan
+- Fetch API: vragen laden
+- Timers: tijd per vraag
+- Dynamische elementen: volgende vraag tonen
+
+---
+
+## Stap 4: Implementeer stap voor stap
+
+Start klein. Voeg niet alles tegelijk toe:
+
+1. Kies één feature die je mist
+2. Bestudeer de code hierboven
+3. Pas het aan je project aan
+4. Test het in browser
+5. Commit naar GitHub
+6. Herhaal stap 1-5
+
+---
+
+## Stap 5: Test alles goed
+
+**Checklist:**
+
+- [ ] Browser console geeft geen errors
+- [ ] Alle knoppen werken
+- [ ] Formulieren worden goed gevalideerd
+- [ ] Dynamische elementen verschijnen/verdwijnen correct
+- [ ] Data wordt opgeslagen in localStorage
+- [ ] Data persists na page refresh
+- [ ] Fetch API laadt data correct
+- [ ] Cookies zijn ingesteld (check in DevTools)
+- [ ] String manipulaties geven correcte output
+
+---
+
+## Stap 6: Final commit
+
+Als alles werkt:
+
+1. Zorg dat je code opgeruimd is
+2. Voeg commentaar toe waar nodig
+3. Test alles nog een keer
+4. Commit naar GitHub: `"Add advanced JavaScript features - ready for presentation"`
+5. Push
+
+---
+
+## Tips en tricks
+
+**Console debugging:**
+```javascript
+console.log(value);        // Print waarde
+console.error("Error!");   // Fout bericht
+console.table(array);      // Print array in tabel
+```
+
+**Breakpoints in DevTools:**
+- F12 → Sources tab
+- Klik op regelnummer
+- Stap door code met F10/F11
+
+**localStorage inspecteren:**
+- F12 → Application tab
+- Local Storage
+- Zie alle opgeslagen data
+
+**Cookies inspecteren:**
+- F12 → Application tab
+- Cookies
+- Zie alle cookies
+
+---
+
+## Volgende stap
+
+Je bent klaar voor de **eindpresentatie en verdediging**!
+
+Zie "Hoe Slagen" voor:
+- Wat er verwacht wordt in je PowerPoint (5 slides)
+- Hoe je project moet werken in de demo
+- Wat er in Q&A kan worden gevraagd

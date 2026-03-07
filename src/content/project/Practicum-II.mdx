@@ -1,1 +1,284 @@
-Coming soon… probably after coffee.
+## Doelstelling
+
+In dit practicum bouw je voort op je project uit Practicum I. Je gaat je website structureren met **meerdere pagina's**, een **navigatiebalk** en eerste **JavaScript interactiviteit** toevoegen stap voor stap.
+
+Aan het einde van dit practicum moet je project minstens **5 HTML pagina's** hebben met duidelijke **navigatie** en enkele **basis JavaScript functies** die gebruikersinteracties afhandelen.
+
+---
+
+## Kernpunten voor dit practicum
+
+✓ Minstens 5 HTML pagina's structureren  
+✓ Navigatiebalk implementeren  
+✓ Unieke titel (`<title>`) voor elke pagina  
+✓ Basisstijlen voor consistentie  
+✓ Eerste JavaScript event listeners toepassen  
+✓ Functies schrijven om code herbruikbaar te maken  
+
+---
+
+## Stap 1: Plan je pagina's
+
+Bedenk welke **5+ pagina's** je website nodig heeft op basis van je onderwerp. Enkele voorbeelden:
+
+- **Home/Index** - Landingspagina met introductie
+- **Informatieve pagina's** - Details over je onderwerp
+- **Interactieve pagina** - Waar gebruikers iets kunnen doen (knop klikken, iets selecteren, etc.)
+- **Contact/Formulier pagina** - Of een feedbackpagina
+- **About/FAQ** - Meer informatie over je project
+
+**Tip:** Zorg dat elke pagina een duidelijk doel heeft en dat logisch aansluit bij je onderwerp.
+
+---
+
+## Stap 2: Herbruikbare HTML structuur
+
+Maak een consistent template voor alle pagina's. Elk HTML-bestand moet minstens bevatten:
+
+```html
+<!DOCTYPE html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Unieke pagina titel</title>
+    <link rel="stylesheet" href="src/styles/main.css" />
+  </head>
+  <body>
+    <!-- Navigatiebalk -->
+    <nav>
+      <!-- Links naar alle pagina's -->
+    </nav>
+
+    <main>
+      <!-- Jouw pagina-specifieke inhoud -->
+    </main>
+
+    <footer>
+      <!-- Footer met copyright, etc -->
+    </footer>
+
+    <script src="src/script.js"></script>
+  </body>
+</html>
+```
+
+**Belangrijk:**
+
+- Elke pagina moet een **unieke `<title>`** hebben
+- De `<title>` verschijnt in de browser tab
+- Zorg dat navigatie op elke pagina identiek is
+- Gebruik dezelfde stylesheet (`main.css`) op alle pagina's
+
+---
+
+## Stap 3: Navigatiebalk implementeren
+
+Voeg een navigatie-sectie toe aan alle pagina's die links naar alle pagina's bevat:
+
+```html
+<nav>
+  <a href="index.html">Home</a>
+  <a href="pagina2.html">Pagina 2</a>
+  <a href="pagina3.html">Pagina 3</a>
+  <a href="pagina4.html">Pagina 4</a>
+  <a href="pagina5.html">Pagina 5</a>
+</nav>
+```
+
+**Tips voor styling:**
+
+- Maak de navigatie opvallend (bijv. fixed aan de top, dark background)
+- Voeg hover-effecten toe (kleur verandering, underline, etc.)
+- Merk de huidige pagina op (bijv. ander kleur dan andere links)
+
+---
+
+## Stap 4: Eerste CSS stijlen
+
+Zorg voor minstens **3 verschillende CSS stijlen** die je consistent toepast:
+
+**Voorbeeld 1: Buttons**
+
+```css
+.btn {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #45a049;
+}
+```
+
+**Voorbeeld 2: Cards/Containers**
+
+```css
+.card {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+```
+
+**Voorbeeld 3: Forms**
+
+```css
+input,
+textarea {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  border-color: #4caf50;
+}
+```
+
+**Zorg dat je deze stijlen consistent gebruikt door classes toe te wijzen:**
+
+```html
+<button class="btn">Klik hier</button>
+<div class="card">Inhoud</div>
+<input type="text" class="form-input" />
+```
+
+---
+
+## Stap 5: Eerste JavaScript event listeners
+
+Voeg interactiviteit toe door event listeners toe te voegen aan knoppen of andere elementen op je pagina's.
+
+**Template voor je JavaScript (src/script.js):**
+
+```javascript
+// Wacht tot pagina volledig geladen is
+window.addEventListener("load", setup);
+
+const setup = () => {
+  console.log("Pagina geladen, setup gestart!");
+
+  // Haal elementen op
+  const button = document.getElementById("myButton");
+
+  // Voeg event listener toe
+  if (button) {
+    button.addEventListener("click", () => {
+      // Wat moet er gebeuren wanneer erop geklikt wordt?
+      console.log("Knop geklikt!");
+    });
+  }
+
+  console.log("Setup voltooid");
+};
+```
+
+**Mogelijke interacties die je kan toevoegen:**
+
+- Knop die tekst verandert op de pagina
+- Knop die een afbeelding wisselt
+- Knop die een menu toont/verbergt
+- Toggle buttons (aan/uit)
+- Elementen waarmee iets gebeurt (hover, click, etc.)
+
+---
+
+## Stap 6: Reusable functies
+
+Schrijf functies die je meerdere keren kan gebruiken:
+
+```javascript
+// Functie die tekst van een element verandert
+const updateText = (elementId, newText) => {
+  const element = document.getElementById(elementId);
+  if (element) {
+    element.textContent = newText;
+  }
+};
+
+// Functie die een class toevoegt/verwijdert
+const toggleClass = (elementId, className) => {
+  const element = document.getElementById(elementId);
+  if (element) {
+    element.classList.toggle(className);
+  }
+};
+
+// Deze functies kan je vanuit meerdere event listeners gebruiken
+button1.addEventListener("click", () => {
+  toggleClass("menu", "hidden");
+});
+
+button2.addEventListener("click", () => {
+  updateText("title", "Nieuwe titel!");
+});
+```
+
+---
+
+## Stap 7: Test je project
+
+**Checklist:**
+
+- [ ] 5 HTML pagina's aangemaakt
+- [ ] Elke pagina heeft unieke `<title>`
+- [ ] Navigatiebalk op alle pagina's aanwezig
+- [ ] Alle links in navigatie werken
+- [ ] CSS stylesheet gelinkt op alle pagina's
+- [ ] Minstens 3 CSS stijles gedefinieerd
+- [ ] JavaScript bestand gelinkt op alle pagina's
+- [ ] Event listeners werken (check met console.log)
+- [ ] Geen fouten in browser console
+
+**In browser testen:**
+
+1. Open de Developer Tools (F12)
+2. Ga naar Console tab
+3. Je logmeldingen moeten verschijnen
+4. Test elk interactief element
+
+---
+
+## Stap 8: Commit naar GitHub
+
+1. Sla al je wijzigingen op
+2. Open GitHub Desktop
+3. Commit met duidelijk bericht, bijv: `"Add 5 pages, navigation and basic JavaScript"`
+4. Push naar GitHub
+
+---
+
+## Planning voor volgende practica
+
+**Practicum III** zal geavanceerde functies toevoegen als:
+
+- Dynamische DOM-manipulatie (elementen toevoegen/verwijderen)
+- Arrays en data beheer
+- Formulieren met validatie
+- localStorage en cookies
+- Fetch API
+- Node navigatie
+- Custom data-attributen
+- En meer...
+
+Deze Practicum II is de **basis** waarop je verder kan bouwen in Practicum III.
+
+---
+
+## Tips bij vastlopen
+
+- **Pagina laadt niet?** Check de console (F12) voor errors
+- **Link naar pagina werkt niet?** Controleer dat het bestandsnaam juist gespeld is
+- **CSS toevoegen werkt niet?** Zorg dat het pad naar stylesheet correct is (`src/styles/main.css`)
+- **JavaScript werkt niet?** Controleer of je `window.addEventListener("load", setup)` hebt
+- **Console geeft errors?** Lees de error boodschap aandachtig - daarin zit veel informatie
