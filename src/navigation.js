@@ -400,7 +400,7 @@ export const navigation = {
     {
       to: "/oefeningen/2-oplossing",
       label: "Oplossing DOM Events Basis",
-      isActive: true,
+      isActive: false,
     },
   ],
 

@@ -18,7 +18,7 @@ Dit practicum geeft richtlijnen hoe je de resterende JavaScript functies kan imp
 ✓ Custom data-attributen (`data-*`)  
 ✓ String methodes voor tekstmanipulatie  
 ✓ Node navigatie (parentNode, childNodes, siblings)  
-✓ Conditionele logica  
+✓ Conditionele logica
 
 ---
 
@@ -53,24 +53,25 @@ Voor elk van de doelen hieronder, bedenk HOE je dit in je project kan toepassen:
 Voeg formulier validatie toe aan een formulier op een van je pagina's:
 
 ```javascript
-form.addEventListener("submit", function(event) {
-    event.preventDefault();
-    
-    // Haal waarden op
-    const inputValue = document.getElementById("input").value.trim();
-    
-    // Valideer
-    if (inputValue === "" || inputValue.length < 3) {
-        console.log("Input ongeldig");
-        return;
-    }
-    
-    // Verwerk data
-    console.log("Formulier ingevuld:", inputValue);
+form.addEventListener("submit", function (event) {
+  event.preventDefault();
+
+  // Haal waarden op
+  const inputValue = document.getElementById("input").value.trim();
+
+  // Valideer
+  if (inputValue === "" || inputValue.length < 3) {
+    console.log("Input ongeldig");
+    return;
+  }
+
+  // Verwerk data
+  console.log("Formulier ingevuld:", inputValue);
 });
 ```
 
 **Tips:**
+
 - Zorg voor duidelijke foutmeldingen bij ongeldige input
 - Gebruik `.trim()` om spaties aan begin/einde te verwijderen
 - Te kort? Gebruik `.length` om aantal karakters te checken
@@ -85,18 +86,19 @@ Voeg de mogelijkheid toe iets aan je pagina toe te voegen/verwijderen. Dit kan a
 const createButton = document.getElementById("create");
 const container = document.getElementById("container");
 
-createButton.addEventListener("click", function() {
-    // Maak nieuw element
-    const newElement = document.createElement("div");
-    newElement.textContent = "Ik ben net gemaakt!";
-    newElement.className = "new-item";
-    
-    // Voeg toe aan pagina
-    container.appendChild(newElement);
+createButton.addEventListener("click", function () {
+  // Maak nieuw element
+  const newElement = document.createElement("div");
+  newElement.textContent = "Ik ben net gemaakt!";
+  newElement.className = "new-item";
+
+  // Voeg toe aan pagina
+  container.appendChild(newElement);
 });
 ```
 
 **Voorbeelden per onderwerp:**
+
 - **E-shop:** Voeg product naar winkelwagen toe
 - **Blog:** Voeg commentaar toe aan bericht
 - **Quiz:** Voeg vraag toe wanneer antwoord goed is
@@ -114,24 +116,25 @@ Sla data op in een array en manipuleer deze:
 let items = [];
 
 function addItem(itemText) {
-    items.push(itemText); // Voeg toe
+  items.push(itemText); // Voeg toe
 }
 
 function removeItem(index) {
-    items.splice(index, 1); // Verwijder 1 element
+  items.splice(index, 1); // Verwijder 1 element
 }
 
 function getAllItems() {
-    return items; // Haal alles op
+  return items; // Haal alles op
 }
 
 // Array methodes
-items.filter(item => item.includes("belangrijk")); // Filter
+items.filter((item) => item.includes("belangrijk")); // Filter
 items.sort(); // Sorteer
 items.length; // Lengte
 ```
 
 **Voorbeelden:**
+
 - Array van producten, gebruikers, berichten, likes, etc.
 - Sorteer array (A-Z, nieuwste eerst, prijzen oplopend, etc.)
 - Filter array (alleen actieve items, alleen goedkoop, etc.)
@@ -145,12 +148,12 @@ Sla gebruikersdata op zodat het blijft na page refresh:
 ```javascript
 // Sla data op
 function saveData(key, value) {
-    localStorage.setItem(key, value);
+  localStorage.setItem(key, value);
 }
 
 // Haal data op
 function getData(key) {
-    return localStorage.getItem(key);
+  return localStorage.getItem(key);
 }
 
 // Voorbeelden
@@ -172,6 +175,7 @@ const savedUser = JSON.parse(localStorage.getItem("user"));
 ```
 
 **Mogelijkheden:**
+
 - Gebruikersnaam onthouden
 - Instellingen (theme, taal, etc.)
 - Favorieten opslaan
@@ -187,24 +191,23 @@ Voeg extra informatie aan HTML elementen toe:
 
 ```html
 <!-- HTML -->
-<div class="product" data-id="123" data-price="29.99">
-    Mijn product
-</div>
+<div class="product" data-id="123" data-price="29.99">Mijn product</div>
 ```
 
 ```javascript
 // JavaScript - data ophalen
 const product = document.querySelector(".product");
-const id = product.getAttribute("data-id");      // "123"
-const price = product.dataset.price;              // "29.99"
+const id = product.getAttribute("data-id"); // "123"
+const price = product.dataset.price; // "29.99"
 
 // Data gebruiken
 if (id === "123") {
-    console.log("Dit is het juiste product!");
+  console.log("Dit is het juiste product!");
 }
 ```
 
 **Gebruikerscases:**
+
 - Product-IDs, gebruikers-IDs opslaan
 - Prices, categories opslaan
 - Statuses, states tracken
@@ -219,19 +222,20 @@ Manipuleer tekst in JavaScript:
 ```javascript
 const text = "  Hello World  ";
 
-text.trim();           // "Hello World" - removes spaces
+text.trim(); // "Hello World" - removes spaces
 text.includes("World"); // true - check if contains
-text.split(" ");        // ["Hello", "World"] - splits in array
+text.split(" "); // ["Hello", "World"] - splits in array
 text.replace("World", "JavaScript"); // "  Hello JavaScript  "
-text.toUpperCase();     // "  HELLO WORLD  "
-text.toLowerCase();     // "  hello world  "
-text.substring(0, 5);   // "  Hell" - get part
+text.toUpperCase(); // "  HELLO WORLD  "
+text.toLowerCase(); // "  hello world  "
+text.substring(0, 5); // "  Hell" - get part
 
 // Combineert
 const cleanedText = text.trim().toLowerCase();
 ```
 
 **Praktische toepassingen:**
+
 - Input validatie (lengte checken, spaties verwijderen)
 - Zoeken (includes)
 - Filtren (split, includes)
@@ -245,13 +249,13 @@ Voer code uit na vertraging of regelmatig:
 
 ```javascript
 // setTimeout - eenmalig na vertraging (in milliseconden)
-setTimeout(function() {
-    console.log("Dit gebeurt na 2 seconden");
+setTimeout(function () {
+  console.log("Dit gebeurt na 2 seconden");
 }, 2000);
 
 // setInterval - herhaal om de X milliseconden
-const intervalId = setInterval(function() {
-    console.log("Dit herhaalt elke seconde");
+const intervalId = setInterval(function () {
+  console.log("Dit herhaalt elke seconde");
 }, 1000);
 
 // Stop de interval
@@ -259,6 +263,7 @@ clearInterval(intervalId);
 ```
 
 **Voorbeelden:**
+
 - Auto-verbergen van meldingen
 - Aftelklok (countdown timer)
 - Slideshow met fotos
@@ -294,6 +299,7 @@ const firstChild = parent.firstElementChild; // item1
 ```
 
 **Wanneer nodig:**
+
 - Verwijder een element via `parentNode.removeChild()`
 - Voeg element in naast ander element
 - Zoek omhoog naar parent met bepaalde class
@@ -307,23 +313,23 @@ Stel cookies in die blijven (anders dan sessionStorage):
 ```javascript
 // Cookie instellen (dias = days)
 function setCookie(name, value, days) {
-    const date = new Date();
-    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-    const expires = "expires=" + date.toUTCString();
-    document.cookie = name + "=" + value + ";" + expires + ";path=/";
+  const date = new Date();
+  date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+  const expires = "expires=" + date.toUTCString();
+  document.cookie = name + "=" + value + ";" + expires + ";path=/";
 }
 
 // Cookie lezen
 function getCookie(name) {
-    const nameEQ = name + "=";
-    const cookies = document.cookie.split(";");
-    for (let i = 0; i < cookies.length; i++) {
-        let cookie = cookies[i].trim();
-        if (cookie.indexOf(nameEQ) === 0) {
-            return cookie.substring(nameEQ.length);
-        }
+  const nameEQ = name + "=";
+  const cookies = document.cookie.split(";");
+  for (let i = 0; i < cookies.length; i++) {
+    let cookie = cookies[i].trim();
+    if (cookie.indexOf(nameEQ) === 0) {
+      return cookie.substring(nameEQ.length);
     }
-    return "";
+  }
+  return "";
 }
 
 // Gebruik
@@ -332,6 +338,7 @@ const storedName = getCookie("userName");
 ```
 
 **Verschillen van localStorage:**
+
 - localStorage: tot je het handmatig wist
 - cookies: vervallen na X tijd
 - cookies: verzonden naar server
@@ -344,40 +351,42 @@ Laad data van externe bron (bestand, API):
 
 ```javascript
 fetch("data.json")
-    .then(response => response.json()) // Parse JSON
-    .then(data => {
-        console.log(data); // gebruikt data
-        renderData(data);   // verwerk het
-    })
-    .catch(error => console.log("Error:", error));
+  .then((response) => response.json()) // Parse JSON
+  .then((data) => {
+    console.log(data); // gebruikt data
+    renderData(data); // verwerk het
+  })
+  .catch((error) => console.log("Error:", error));
 ```
 
 **Versimpelde versie:**
 
 ```javascript
 async function loadData() {
-    try {
-        const response = await fetch("data.json");
-        const data = await response.json();
-        console.log(data);
-    } catch (error) {
-        console.log("Error:", error);
-    }
+  try {
+    const response = await fetch("data.json");
+    const data = await response.json();
+    console.log(data);
+  } catch (error) {
+    console.log("Error:", error);
+  }
 }
 
 loadData();
 ```
 
 **Mogelijke gegevensbronnen:**
+
 - Lokaal JSON bestand (bijv. producten, users, quotes, etc.)
 - Openbare API (weer, cryptocurrency, jokes, etc.)
 - Je eigen backend server
 
 **Voorbeeld data.json:**
+
 ```json
 [
-    { "id": 1, "name": "Item 1", "beschrijving": "..." },
-    { "id": 2, "name": "Item 2", "beschrijving": "..." }
+  { "id": 1, "name": "Item 1", "beschrijving": "..." },
+  { "id": 2, "name": "Item 2", "beschrijving": "..." }
 ]
 ```
 
@@ -412,6 +421,7 @@ Ga door "Hoe Slagen" en check welke functies je al hebt:
 Bedenk voor je onderwerp waar deze functies zouden passen:
 
 **Voorbeeld voor E-shop:**
+
 - Arrays: product lijst
 - localStorage: winkelwagen opslaan
 - Fetch API: producten laden van JSON
@@ -419,6 +429,7 @@ Bedenk voor je onderwerp waar deze functies zouden passen:
 - Dynamische elementen: items toevoegen aan winkelwagen
 
 **Voorbeeld voor Blog:**
+
 - Arrays: comments opslaan
 - localStorage: leesvoortgang
 - Fetch API: posts laden
@@ -426,6 +437,7 @@ Bedenk voor je onderwerp waar deze functies zouden passen:
 - Timers: meldingen auto-verbergen
 
 **Voorbeeld voor Quiz:**
+
 - Arrays: vragen en antwoorden
 - localStorage: score opslaan
 - Fetch API: vragen laden
@@ -478,23 +490,27 @@ Als alles werkt:
 ## Tips en tricks
 
 **Console debugging:**
+
 ```javascript
-console.log(value);        // Print waarde
-console.error("Error!");   // Fout bericht
-console.table(array);      // Print array in tabel
+console.log(value); // Print waarde
+console.error("Error!"); // Fout bericht
+console.table(array); // Print array in tabel
 ```
 
 **Breakpoints in DevTools:**
+
 - F12 → Sources tab
 - Klik op regelnummer
 - Stap door code met F10/F11
 
 **localStorage inspecteren:**
+
 - F12 → Application tab
 - Local Storage
 - Zie alle opgeslagen data
 
 **Cookies inspecteren:**
+
 - F12 → Application tab
 - Cookies
 - Zie alle cookies
@@ -506,6 +522,7 @@ console.table(array);      // Print array in tabel
 Je bent klaar voor de **eindpresentatie en verdediging**!
 
 Zie "Hoe Slagen" voor:
+
 - Wat er verwacht wordt in je PowerPoint (5 slides)
 - Hoe je project moet werken in de demo
 - Wat er in Q&A kan worden gevraagd
