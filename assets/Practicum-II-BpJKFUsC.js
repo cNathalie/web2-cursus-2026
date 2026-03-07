@@ -1,0 +1,1 @@
+import{j as o}from"./index-DzIaAJwL.js";function e(n){const t={p:"p",...n.components};return o.jsx(t.p,{children:"Coming soon… probably after coffee."})}function c(n={}){const{wrapper:t}=n.components||{};return t?o.jsx(t,{...n,children:o.jsx(e,{...n})}):e(n)}export{c as default};
