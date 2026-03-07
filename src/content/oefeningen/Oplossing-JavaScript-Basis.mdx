@@ -1,0 +1,35 @@
+```js
+// 1. Variabelen
+const naam = "Nathalie";
+let leeftijd = 34;
+const isStudent = false;
+const hobbys = ["lezen", "programmeren", "wandelen"];
+const partner = null;
+let favorieteKleur; // undefined
+
+// 2. Object
+const persoon = {
+  naam: naam,
+  leeftijd: leeftijd,
+  isStudent: isStudent,
+  hobbys: hobbys,
+  partner: partner,
+  favorieteKleur: favorieteKleur,
+};
+
+// 3. Functie beschrijfPersoon
+function beschrijfPersoon(p) {
+  return `${p.naam} is ${p.leeftijd} jaar oud en heeft ${p.hobbys.length} hobby’s.`;
+}
+
+// 4. Functie telHobbies
+const telHobbys = (lijst) => lijst.length;
+
+// 5. Output
+const beschrijving = beschrijfPersoon(persoon);
+console.log(beschrijving);
+console.log("Aantal hobby’s:", telHobbys(persoon.hobbys));
+console.log("Is student:", persoon.isStudent);
+console.log("Partner:", persoon.partner);
+console.log("Favoriete kleur:", persoon.favorieteKleur);
+```

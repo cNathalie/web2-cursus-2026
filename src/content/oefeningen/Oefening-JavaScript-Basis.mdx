@@ -1,0 +1,77 @@
+## Herhalingsoefening na hoofdstuk ‘JavaScript - Basis’
+
+Doel: herhaling van variabelen, datatypes, objecten en functies in JavaScript.
+Uitvoering: dit programma werkt volledig in de console. Je moet geen HTML‑elementen ophalen.
+Maak deze opdracht in een JS file in een nieuw project in VSCode
+
+### Vooraf
+
+- Om je JavaScript code te kunnen uitvoeren moet je Node.js geïnstalleerd hebben. Je kan in de cursus [Project - Startpunt](https://cnathalie.github.io/web2-cursus-2026/project/startpunt) terugvinden hoe je dit doet.
+- Wanneer Node.js is geïnstalleerd moet je een Terminal openen in Visual Studio Code om de output van je code te kunnen zien. Ook hiervan zie je een stappenplan in de cursus Project - Startpunt.
+- Je kan je code runnen door in de Terminal vanuit de map waar je JS bestand staat het commando “node [naam van je bestand]” in te geven.
+
+```shell
+cd [naam van je project map]
+node [naam van je JS bestand]
+```
+
+- Je kan ook de Visual Studio Code extension [Code Runner](https://marketplace.visualstudio.com/items?itemName=formulahendry.code-runner) installeren en dan de play-knop rechts bovenaan je scherm aanklikken
+- Het kan zijn dat je in de Terminal eerst toestemming moet geven om het script te runnen.
+
+### Situatie
+
+Je gaat een klein programma schrijven dat informatie bijhoudt over een fictieve persoon.
+Je gebruikt hiervoor variabelen, een object en verschillende functies.
+
+### Opdracht
+
+#### 1. Maak variabelen aan
+
+Maak voor elk van onderstaande gegevens een aparte variabele:
+
+- een naam (String)
+- een leeftijd (Number)
+- of de persoon student is (Boolean)
+- een lijst met hobby’s (Array van Strings)
+- een partner (Null)
+- een favoriete kleur (Undefined)
+
+Gebruik const waar mogelijk, en let als de waarde in de toekomst veranderbaar zou kunnen zijn.
+
+#### 2. Maak een object persoon
+
+Maak een object dat alle bovenstaande variabelen bevat als eigenschappen.
+
+#### 3. Schrijf een functie (arrow function)
+
+Maak een functie beschrijfPersoon die:
+
+- één parameter verwacht (het persoon-object)
+- een string teruggeeft die de persoon beschrijft
+  bijvoorbeeld: `${p.naam} is ${p.leeftijd} jaar oud en heeft ${p.hobbies.length} hobby’s.` (je kiest zelf de exacte zin)
+- Gebruik geen console.log in de functie, enkel return.
+
+#### 4. Schrijf een functie (arrow function)
+
+Maak een arrow function telHobbys die:
+
+- een lijst hobby’s als parameter krijgt
+- het aantal hobby’s returnt
+- Gebruik geen console.log in de functie, enkel return.
+
+#### 5. Toon het resultaat in de console
+
+Roep de functies op met het persoon object.
+Toon / log in de console:
+
+- de teruggegeven tekst van beschrijfPersoon()
+- het aantal hobby’s via telHobbys()
+- alle eigenschappen van het persoon-object
+
+### Extra (optioneel)
+
+Kies één extra uitbreiding:
+
+- Voeg een tweede persoon toe en vergelijk hun leeftijden.
+- Voeg een functie toe die teruggeeft of de persoon meerderjarig is.
+- Pas aan de hand van een functie een waarde aan (bv. favoriete kleur) en toon het verschil.

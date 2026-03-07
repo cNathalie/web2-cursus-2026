@@ -5,7 +5,7 @@ import { observeCodeBlocks } from "../scripts/CopyCode";
 import "../styles/MdxPage.css";
 
 // This component dynamically imports an MDX page.
-export default function MdxPage({ folder, course, symbol }) {
+export default function MdxPage({ folder, course, symbol, isActive = true }) {
   const [Content, setContent] = useState(null);
   const [loading, setLoading] = useState(true);
   const [err, setErr] = useState(null);
@@ -65,10 +65,28 @@ export default function MdxPage({ folder, course, symbol }) {
 
   if (!Content) return null;
 
+  if (!isActive) {
+    return (
+      <div>
+        <ChapterHeader title={course.replaceAll("-", " ")} symbol={symbol} />
+        <h2>Helaas, deze pagina is nog vergrendeld...</h2>
+        <p class="card-text placeholder-wave">
+          <span class="placeholder col-7 bg-warning"></span>
+          <span class="placeholder col-10"></span>
+          <span class="placeholder col-4 bg-warning"></span>
+          <span class="placeholder col-6"></span>
+          <span class="placeholder col-8 bg-warning"></span>
+          <span class="placeholder col-12"></span>
+          <span class="placeholder col-12 bg-warning"></span>
+        </p>
+      </div>
+    );
+  }
+
   return (
     <div ref={contentRef}>
       <ChapterHeader title={course.replaceAll("-", " ")} symbol={symbol} />
-      <Content /> 
+      <Content />
       <a
         href="#"
         style={{

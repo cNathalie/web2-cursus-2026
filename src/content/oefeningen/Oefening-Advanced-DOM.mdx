@@ -1,0 +1,243 @@
+## Oefening: Interactieve Todo-List
+
+In deze oefening oefen je de concepten uit de hoofdstukken **DOM-Tree** en **Events**. Je gaat een interactieve todo-list bouwen waarbij gebruikers kunnen:
+
+- Items toevoegen aan een lijst
+- Items als voltooid markeren
+- Items verwijderen uit de lijst
+- Het aantal voltooide items zien
+
+---
+
+## Eindresultaat
+
+Wanneer je klaar bent, ziet je applicatie er als volgt uit:
+
+
+
+---
+
+## Stap 1: HTML-structuur maken
+
+Maak een bestand `todo.html` met volgende HTML-structuur:
+
+```html
+<!DOCTYPE html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo-List</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1 id="title">Mijn Todo-List</h1>
+
+      <ul id="todoList" class="todo-list">
+        <li class="todo-item">
+          <input type="checkbox" class="checkbox" />
+          <span class="todo-text">Huiswerk Wiskunde</span>
+          <button class="delete-btn">🗑</button>
+        </li>
+        <li class="todo-item">
+          <input type="checkbox" class="checkbox" checked />
+          <span class="todo-text">Boeken lezen</span>
+          <button class="delete-btn">🗑</button>
+        </li>
+        <li class="todo-item">
+          <input type="checkbox" class="checkbox" />
+          <span class="todo-text">Sporten</span>
+          <button class="delete-btn">🗑</button>
+        </li>
+      </ul>
+
+      <div class="input-group">
+        <input
+          type="text"
+          id="newTodoInput"
+          placeholder="Voeg een nieuw item toe..."
+        />
+        <button id="addBtn">Toevoegen</button>
+      </div>
+
+      <p id="counter"></p>
+    </div>
+
+    <script src="main.js"></script>
+  </body>
+</html>
+```
+
+---
+
+## Stap 2: CSS styling
+
+Maak een bestand `styles.css`:
+
+```css
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  max-width: 500px;
+  width: 100%;
+}
+
+h1 {
+  color: #333;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.todo-list {
+  list-style: none;
+  margin-bottom: 2rem;
+}
+
+.todo-item {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 5px;
+  margin-bottom: 0.5rem;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.todo-item:hover {
+  background: #e9ecef;
+  transform: translateX(5px);
+}
+
+.todo-item.completed .todo-text {
+  text-decoration: line-through;
+  color: #999;
+}
+
+.checkbox {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.todo-text {
+  flex: 1;
+  color: #333;
+}
+
+.delete-btn {
+  background: #ff6b6b;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.delete-btn:hover {
+  background: #ff5252;
+}
+
+.input-group {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+#newTodoInput {
+  flex: 1;
+  padding: 0.75rem;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+#newTodoInput:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+#addBtn {
+  padding: 0.75rem 1.5rem;
+  background: #667eea;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+#addBtn:hover {
+  background: #5568d3;
+}
+
+#counter {
+  text-align: center;
+  color: #666;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+```
+
+---
+
+## Stap 3: JavaScript-interactiviteit
+
+Maak een bestand `main.js` en implementeer daarin de volgende functies:
+
+### Vereisten:
+
+1. **Setup-functie**: Een `window load` event dat een `setup()` functie aanroept
+2. **Elementen opvragen**: Gebruik `getElementById()` en `getElementsByClassName()` om alle nodige HTML-elementen op te halen
+3. **Counter updaten**: Als een checkbox wordt aangeklikt, update het aantal voltooide items
+4. **Item toevoegen**: Bij het klikken op de "Toevoegen"-knop:
+   - Lees de input-waarde uit
+   - Maak een nieuw list item aan
+   - Voeg dit item toe aan de DOM
+   - Clear de input-veld
+   - Update de counter
+5. **Item verwijderen**: Bij het klikken op de verwijder-knop (🗑), verwijder het item en update de counter
+6. **Checkbox styling**: Wanneer een checkbox wordt aangeklikt, voeg de `completed` class toe aan het li-element
+
+### Tips:
+
+- Gebruik `addEventListener()` voor het toevoegen van event listeners
+- Gebruik `classList.toggle()` of `classList.add()` voor het toevoegen/verwijderen van classes
+- Zet event listeners op alle delete-buttons en checkboxes
+- Gebruik `textContent` of `innerHTML` om nieuwe elementen te maken met `createElement()` en `appendChild()`
+- De counter moet het format `"Voltooide items: X/Y"` hebben, waar X het aantal voltooide items is en Y het totale aantal
+
+
+---
+
+## Checklist
+
+- HTML-bestand gemaakt met de juiste structuur
+- CSS-bestand gemaakt en gelinkt
+- JavaScript-bestand met `window load` event
+- Elementen kunnen opgehaald worden via DOM-methodes
+- Checkboxes werken en updaten de counter
+- Nieuwe items kunnen toegevoegd worden
+- Items kunnen verwijderd worden
+- Counter toont het juiste aantal voltooide items
+- Code is proper geformateerd en voorzien van commentaar

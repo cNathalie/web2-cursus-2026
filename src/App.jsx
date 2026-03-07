@@ -19,26 +19,34 @@ function App() {
   return (
     <BrowserRouter basename="/web2-cursus-2026">
       <Navbar
+        id="main-navbar"
         bg="dark"
         data-bs-theme="dark"
         fixed="top"
         style={{ display: "flex", flexDirection: "column" }}
       >
         <span
+          id="disclaimer"
           style={{
             color: "grey",
             fontStyle: "italic",
-            marginLeft: "1rem",
-            fontSize: "0.8rem",
+            marginLeft: "auto",
+            marginRight: "auto",
+            fontSize: "0.9rem",
             marginBottom: "1rem",
+            maxWidth: "50%",
+            textAlign: "center",
           }}
         >
-          © Nathalie Courteaux {new Date().getFullYear()}. Deze cursus mag niet
-          worden vermenigvuldigd, verspreid of gebruikt voor commerciële of
-          winstgevende doeleinden.
+          © Nathalie Courteaux {new Date().getFullYear()} <br />
+          Deze cursus mag niet worden vermenigvuldigd, verspreid of gebruikt
+          voor commerciële of winstgevende doeleinden. Het gebruik, geheel of
+          gedeeltelijk, door andere leerkrachten of derden is uitsluitend
+          toegestaan na voorafgaande, schriftelijke en uitdrukkelijke
+          toestemming van de auteur.
         </span>
 
-        <Container>
+        <Container id="navigation">
           <LinkContainer to="/">
             <Navbar.Brand>Web 2</Navbar.Brand>
           </LinkContainer>
@@ -111,6 +119,9 @@ function App() {
                 <NavDropdown.Item>Hoe te verwerken</NavDropdown.Item>
               </LinkContainer>
             </NavDropdown>
+            <LinkContainer to="/oefeningen">
+              <Nav.Link>Oefeningen</Nav.Link>
+            </LinkContainer>
             <LinkContainer to="/project">
               <Nav.Link>Project</Nav.Link>
             </LinkContainer>
@@ -613,6 +624,36 @@ function App() {
                   folder="typescript"
                   course={label.replaceAll(" ", "-")}
                   {...(symbol ? { symbol } : {})}
+                />
+              }
+            />
+          ))}
+        </Route>
+
+        <Route
+          path="/oefeningen"
+          element={
+            <Chapter
+              chapter="Oefeningen"
+              links={navigation.excercisesLinks}
+              expand={false}
+            />
+          }
+        >
+          <Route
+            index
+            element={<ChapterCover title="Practice makes perfect" />}
+          />
+
+          {navigation.excercisesLinks.map(({ to, label, symbol, isActive }) => (
+            <Route
+              path={to.replace("/oefeningen/", "")}
+              element={
+                <MdxPage
+                  folder="oefeningen"
+                  course={label.replaceAll(" ", "-")}
+                  symbol={symbol}
+                  isActive={isActive}
                 />
               }
             />

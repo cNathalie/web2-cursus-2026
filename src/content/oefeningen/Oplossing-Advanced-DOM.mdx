@@ -1,0 +1,582 @@
+## Voorbeeldoplossing: Interactieve Todo-List
+
+Dit is een complete werkende voorbeeldoplossing voor de oefening "Interactieve Todo-List". Bestudeer goed hoe de concepten uit DOM-Tree en Events hier toegepast worden.
+
+---
+
+## HTML (`todo.html`)
+
+```html
+<!DOCTYPE html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo-List</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1 id="title">Mijn Todo-List</h1>
+
+      <ul id="todoList" class="todo-list">
+        <li class="todo-item">
+          <input type="checkbox" class="checkbox" />
+          <span class="todo-text">Huiswerk Wiskunde</span>
+          <button class="delete-btn">🗑</button>
+        </li>
+        <li class="todo-item">
+          <input type="checkbox" class="checkbox" checked />
+          <span class="todo-text">Boeken lezen</span>
+          <button class="delete-btn">🗑</button>
+        </li>
+        <li class="todo-item">
+          <input type="checkbox" class="checkbox" />
+          <span class="todo-text">Sporten</span>
+          <button class="delete-btn">🗑</button>
+        </li>
+      </ul>
+
+      <div class="input-group">
+        <input
+          type="text"
+          id="newTodoInput"
+          placeholder="Voeg een nieuw item toe..."
+        />
+        <button id="addBtn">Toevoegen</button>
+      </div>
+
+      <p id="counter"></p>
+    </div>
+
+    <script src="main.js"></script>
+  </body>
+</html>
+```
+
+---
+
+## CSS (`styles.css`)
+
+```css
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  max-width: 500px;
+  width: 100%;
+}
+
+h1 {
+  color: #333;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.todo-list {
+  list-style: none;
+  margin-bottom: 2rem;
+}
+
+.todo-item {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 5px;
+  margin-bottom: 0.5rem;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.todo-item:hover {
+  background: #e9ecef;
+  transform: translateX(5px);
+}
+
+.todo-item.completed .todo-text {
+  text-decoration: line-through;
+  color: #999;
+}
+
+.checkbox {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.todo-text {
+  flex: 1;
+  color: #333;
+}
+
+.delete-btn {
+  background: #ff6b6b;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.delete-btn:hover {
+  background: #ff5252;
+}
+
+.input-group {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+#newTodoInput {
+  flex: 1;
+  padding: 0.75rem;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+#newTodoInput:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+#addBtn {
+  padding: 0.75rem 1.5rem;
+  background: #667eea;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+#addBtn:hover {
+  background: #5568d3;
+}
+
+#counter {
+  text-align: center;
+  color: #666;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+```
+
+---
+
+## JavaScript (`main.js`)
+
+```javascript
+// ========================================
+// Window load event (BELANGRIJK!)
+// ========================================
+// We wachten tot het window load event plaatsvindt
+// zodat alle HTML-elementen volledig geladen zijn
+// voordat we JavaScript code uitvoeren.
+
+window.addEventListener("load", setup);
+
+// ========================================
+// Setup functie
+// ========================================
+// Dit is de functie die wordt uitgevoerd wanneer
+// de pagina volledig is geladen.
+
+function setup() {
+  console.log("Pagina geladen, setup gestart!");
+
+  // Haal alle nodige elementen op uit de DOM
+  // Hier gebruiken we getElementById() zoals uit
+  // het hoofdstuk "Elementen opvragen" geleerd
+
+  const todoList = document.getElementById("todoList");
+  const addBtn = document.getElementById("addBtn");
+  const newTodoInput = document.getElementById("newTodoInput");
+  const counterDisplay = document.getElementById("counter");
+
+  // Haal alle checkboxes op met getElementsByClassName()
+  // Dit geeft een HTMLCollection terug
+  const checkboxes = document.getElementsByClassName("checkbox");
+
+  // Haal alle delete-buttons op
+  const deleteButtons = document.getElementsByClassName("delete-btn");
+
+  // ========================================
+  // Functie: Counter updaten
+  // ========================================
+  // Deze functie telt hoeveel items voltooid zijn
+  // en update de weergave
+
+  function updateCounter() {
+    // Haal alle items op
+    const todoItems = document.getElementsByClassName("todo-item");
+
+    // Tel hoeveel items de class "completed" hebben
+    let completedCount = 0;
+
+    // We loopen door alle items (dit is een andere manier
+    // dan getElementsByClassName, maar werkt hetzelfde)
+    for (let i = 0; i < todoItems.length; i++) {
+      if (todoItems[i].classList.contains("completed")) {
+        completedCount++;
+      }
+    }
+
+    // Tel totaal aantal items
+    const totalCount = todoItems.length;
+
+    // Update de tekst in de counter
+    // Dit gebruiken we textContent (zoals geleerd in het hoofdstuk)
+    counterDisplay.textContent = `Voltooide items: ${completedCount}/${totalCount}`;
+  }
+
+  // ========================================
+  // Functie: Event listeners toevoegen
+  // ========================================
+  // Deze functie voegt event listeners toe aan
+  // checkboxes en delete-buttons
+
+  function addEventListeners(checkboxList, buttonList) {
+    // Loop door alle checkboxes
+    for (let i = 0; i < checkboxList.length; i++) {
+      const checkbox = checkboxList[i];
+
+      // Voeg een click event listener toe
+      // Als de checkbox wordt geklikt, voer handleCheckbox uit
+      checkbox.addEventListener("click", function () {
+        handleCheckbox(this);
+      });
+    }
+
+    // Loop door alle delete-buttons
+    for (let i = 0; i < buttonList.length; i++) {
+      const deleteBtn = buttonList[i];
+
+      // Voeg een click event listener toe
+      deleteBtn.addEventListener("click", function () {
+        handleDelete(this);
+      });
+    }
+  }
+
+  // ========================================
+  // Functie: Checkbox handler
+  // ========================================
+  // Deze functie wordt uitgevoerd wanneer
+  // op een checkbox wordt geklikt
+
+  function handleCheckbox(checkbox) {
+    // Haal het parent <li> element op
+    // Hier gebruiken we parentElement (family-tree relatie)
+    const todoItem = checkbox.parentElement;
+
+    // Toggle de "completed" class
+    // Dit voegt de class toe als hij er niet is,
+    // en verwijdert hem als hij er wel is
+    todoItem.classList.toggle("completed");
+
+    // Update de counter
+    updateCounter();
+  }
+
+  // ========================================
+  // Functie: Delete handler
+  // ========================================
+  // Deze functie wordt uitgevoerd wanneer
+  // op de delete-button wordt geklikt
+
+  function handleDelete(button) {
+    // Haal het parent <li> element op
+    const todoItem = button.parentElement;
+
+    // Verwijder het element uit de DOM
+    // removeChild() verwijdert een child-node
+    todoItem.parentElement.removeChild(todoItem);
+
+    // Update de counter
+    updateCounter();
+  }
+
+  // ========================================
+  // Functie: Nieuw item toevoegen
+  // ========================================
+
+  function handleAddTodo() {
+    // Haal de waarde uit het input-veld
+    // Hier gebruiken we value property van het input element
+    const newTodoText = newTodoInput.value.trim();
+
+    // Check of het input-veld niet leeg is
+    if (newTodoText === "") {
+      alert("Voer alsjeblieft een item in!");
+      return;
+    }
+
+    // Maak een nieuw <li> element aan
+    // createElement() is een DOM-method om elementen aan te maken
+    const newLi = document.createElement("li");
+    newLi.className = "todo-item";
+
+    // Stel de innerHTML in van het nieuwe element
+    // Dit bevat een checkbox, tekst en delete-button
+    newLi.innerHTML = `
+            <input type="checkbox" class="checkbox">
+            <span class="todo-text">${newTodoText}</span>
+            <button class="delete-btn">🗑</button>
+        `;
+
+    // Voeg het nieuwe element toe aan de todo-list
+    // appendChild() voegt een child-node toe aan het einde
+    todoList.appendChild(newLi);
+
+    // Clear het input-veld
+    newTodoInput.value = "";
+
+    // Haal de checkbox en delete-button van het nieuw toegevoegde element op
+    const newCheckbox = newLi.querySelector(".checkbox");
+    const newDeleteBtn = newLi.querySelector(".delete-btn");
+
+    // Voeg event listeners toe aan het nieuwe element
+    newCheckbox.addEventListener("click", function () {
+      handleCheckbox(this);
+    });
+
+    newDeleteBtn.addEventListener("click", function () {
+      handleDelete(this);
+    });
+
+    // Update de counter
+    updateCounter();
+  }
+
+  // ========================================
+  // Event listeners instellen
+  // ========================================
+
+  // Voeg event listeners toe aan alle bestaande checkboxes en buttons
+  addEventListeners(checkboxes, deleteButtons);
+
+  // Voeg een event listener toe aan de "Toevoegen" knop
+  addBtn.addEventListener("click", handleAddTodo);
+
+  // Bonus: Maak het mogelijk om met Enter een item toe te voegen
+  newTodoInput.addEventListener("keypress", function (event) {
+    // Check of de toets die ingedrukt werd Enter is
+    if (event.key === "Enter") {
+      handleAddTodo();
+    }
+  });
+
+  // ========================================
+  // Initiële setup
+  // ========================================
+
+  // Update de counter bij het laden van de pagina
+  // (omdat het tweede item bij het starten al aangevinkt is)
+  updateCounter();
+
+  console.log("Setup voltooid!");
+}
+```
+
+---
+
+## Stap-voor-stap uitleg van de code
+
+### 1. **Window Load Event**
+
+```javascript
+window.addEventListener("load", setup);
+```
+
+Dit zorgt dat onze `setup` functie pas wordt uitgevoerd als de pagina volledig geladen is. Dit is belangrijk omdat we elementen uit de DOM moeten ophalen.
+
+### 2. **Elementen opvragen (DOM-Tree)**
+
+```javascript
+const todoList = document.getElementById("todoList");
+const checkboxes = document.getElementsByClassName("checkbox");
+```
+
+Hier gebruiken we de methodes uit het hoofdstuk "Elementen opvragen" om HTML-elementen op te halen.
+
+### 3. **Event Listeners toevoegen (Events)**
+
+```javascript
+checkbox.addEventListener("click", function () {
+  handleCheckbox(this);
+});
+```
+
+We voegen event listeners toe aan elementen. Wanneer een event plaatsvindt (click), wordt de functie uitgevoerd.
+
+### 4. **DOM manipulatie**
+
+```javascript
+todoItem.classList.toggle("completed");
+```
+
+Met `classList` kunnen we classes toevoegen en verwijderen. Dit past de styling aan.
+
+### 5. **Event Handler Functions**
+
+`handleCheckbox()` en `handleDelete()` zijn functies die worden uitgevoerd wanneer bepaalde events plaatsvinden.
+
+---
+
+## Belangrijke concepten uit DOM-Tree en Events
+
+| Concept              | Voorbeeld in code                     |
+| -------------------- | ------------------------------------- |
+| Document opvragen    | `document.getElementById()`           |
+| Element Node         | `<li>` elementen                      |
+| Parent-Child relatie | `checkbox.parentElement`              |
+| Event Listener       | `addEventListener("click", ...)`      |
+| Event Handler        | `handleCheckbox()` functie            |
+| DOM manipulatie      | `appendChild()`, `classList.toggle()` |
+| Element ophalen      | `document.getElementsByClassName()`   |
+
+---
+
+## Veelgemaakte fouten om te vermijden
+
+### ❌ **Fout 1: Geen window load event**
+
+```javascript
+// FOUT - elementen zijn nog niet geladen!
+const todoList = document.getElementById("todoList");
+```
+
+### ✅ **Correct**
+
+```javascript
+window.addEventListener("load", setup);
+
+function setup() {
+  const todoList = document.getElementById("todoList");
+  // Nu zijn alle elementen geladen
+}
+```
+
+---
+
+### ❌ **Fout 2: Event listeners niet toevoegen aan nieuwe elementen**
+
+```javascript
+// FOUT - het nieuwe element krijgt geen event listener
+const newLi = document.createElement("li");
+dialogList.appendChild(newLi);
+// De checkbox in newLi werkt niet!
+```
+
+### ✅ **Correct**
+
+```javascript
+const newLi = document.createElement("li");
+todoList.appendChild(newLi);
+
+// Event listeners toevoegen aan het nieuw gemaakte element
+const newCheckbox = newLi.querySelector(".checkbox");
+newCheckbox.addEventListener("click", handleCheckbox);
+```
+
+---
+
+### ❌ **Fout 3: classList method vergeten**
+
+```javascript
+// FOUT - classList.add is de juiste method
+todoItem.classlist.add("completed"); // classlist bestaat niet!
+```
+
+### ✅ **Correct**
+
+```javascript
+todoItem.classList.add("completed");
+// of
+todoItem.classList.toggle("completed");
+```
+
+---
+
+## Bonus: Uitgebreide versie met localStorage
+
+Wil je je todo-list opslaan zodat deze blijft bestaan na een page refresh? Voeg deze code toe:
+
+```javascript
+// Sla items op in localStorage
+function saveTodos() {
+  const todoItems = document.getElementsByClassName("todo-item");
+  const todos = [];
+
+  for (let i = 0; i < todoItems.length; i++) {
+    const text = todoItems[i].querySelector(".todo-text").textContent;
+    const completed = todoItems[i].classList.contains("completed");
+    todos.push({ text, completed });
+  }
+
+  // Sla als JSON op in localStorage
+  localStorage.setItem("todos", JSON.stringify(todos));
+}
+
+// Laad items van localStorage
+function loadTodos() {
+  const savedTodos = localStorage.getItem("todos");
+
+  if (savedTodos) {
+    const todos = JSON.parse(savedTodos);
+
+    // Wis huidige lijst
+    const todoList = document.getElementById("todoList");
+    todoList.innerHTML = "";
+
+    // Vul lijst opnieuw in
+    todos.forEach((todo) => {
+      const newLi = document.createElement("li");
+      newLi.className = "todo-item";
+      if (todo.completed) newLi.classList.add("completed");
+
+      newLi.innerHTML = `
+                <input type="checkbox" class="checkbox" ${todo.completed ? "checked" : ""}>
+                <span class="todo-text">${todo.text}</span>
+                <button class="delete-btn">🗑</button>
+            `;
+
+      todoList.appendChild(newLi);
+    });
+  }
+}
+
+// Roep loadTodos() aan in setup()
+// en saveTodos() na elke wijziging
+```
+
+---
+
+## Toets jezelf
+
+- Begrijp je waarom we `window.addEventListener("load", setup)` gebruiken?
+- Kun je uitleggen wat het verschil is tussen `textContent` en `innerHTML`?
+- Kun je uitleggen wat event bubbling is en hoe het werkt in deze code?
+- Snap je hoe `classList.toggle()` werkt?
+- Kunt je zelf een event listener schrijven?

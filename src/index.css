@@ -11,7 +11,10 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  margin-top: 50px;
+
+  /* Dynamic navbar height - calculated by JavaScript */
+  --navbar-height: 80px;
+  margin-top: var(--navbar-height);
 }
 
 a {

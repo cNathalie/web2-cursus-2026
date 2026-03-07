@@ -1,0 +1,338 @@
+## Voorbeeldoplossing: Interactieve Fotoalbum
+
+Dit is een complete werkende voorbeeldoplossing voor de oefening "Interactieve Fotoalbum".
+
+## JavaScript (`main.js`)
+
+```javascript
+// ========================================
+// SETUP FUNCTIE
+// ========================================
+
+const setup = () => {
+  console.log("Pagina geladen, setup gestart!");
+
+  // ========================================
+  // ELEMENTEN OPVRAGEN
+  // ========================================
+  // Hier gebruiken we getElementById() om alle HTML-elementen op te halen
+  // die we gaan manipuleren
+
+  const photoImage = document.getElementById("photoImage");
+  const photoTitle = document.getElementById("photoTitle");
+  const photoDescription = document.getElementById("photoDescription");
+  const photoCounter = document.getElementById("photoCounter");
+
+  const prevBtn = document.getElementById("prevBtn");
+  const nextBtn = document.getElementById("nextBtn");
+  const favoriteBtn = document.getElementById("favoriteBtn");
+  const toggleDescBtn = document.getElementById("toggleDescBtn");
+
+  // ========================================
+  // EVENT LISTENERS TOEVOEGEN
+  // ========================================
+  // Dit zijn de event listeners die reageren op gebruikersinvoer
+
+  // "Vorige" knop
+  prevBtn.addEventListener("click", () => {
+    // Verminder de index met 1
+    showPhoto(currentPhotoIndex - 1);
+  });
+
+  // "Volgende" knop
+  nextBtn.addEventListener("click", () => {
+    // Verhoog de index met 1
+    showPhoto(currentPhotoIndex + 1);
+  });
+
+  // "Favoriet" knop
+  favoriteBtn.addEventListener("click", toggleFavorite);
+
+  // "Beschrijving" knop
+  toggleDescBtn.addEventListener("click", toggleDescription);
+
+  // ========================================
+  // INITIALISATIE
+  // ========================================
+  // Bij het laden van de pagina, tonen we meteen de eerste foto
+
+  showPhoto(0);
+
+  console.log("Setup voltooid!");
+};
+
+// ========================================
+// WINDOW LOAD EVENT
+// ========================================
+// Dit zorgt dat onze JavaScript pas wordt uitgevoerd
+// als de HTML pagina volledig is geladen.
+// Dit is ESSENTIEEL voor het ophalen van DOM-elementen!
+// Deze regel moet helemaal onderaan staan, zodat alle functies en variabelen al gedefinieerd zijn voordat
+// we setup() aanroepen.
+
+window.addEventListener("load", setup);
+
+// ========================================
+// FOTO INFORMATIE
+// ========================================
+// Dit is een array met objecten die foto-informatie bevatten
+
+const photos = [
+  {
+    title: "Een mooie zonsondergang",
+    description:
+      "Dit is een prachtige foto van een zonsondergang boven het strand. Genomen op een mooie zomeravond met een professionele camera.",
+    imageSrc: ".imgs/sunset.jpg",
+  },
+  {
+    title: "Bergen in de sneeuw",
+    description:
+      "De bergtoppen bedekt met sneeuw. Een koude winterdag met helder blauwe lucht.",
+    imageSrc: ".imgs/mountains.jpg",
+  },
+  {
+    title: "Bloemen in het bos",
+    description:
+      "Kleurrijke wilde bloemen groeien tussen de bomen. Een teken dat de lente is aangekomen.",
+    imageSrc: ".imgs/flowers.jpg",
+  },
+  {
+    title: "Nacht met sterren",
+    description:
+      "Een heeldere nacht waar je duizenden sterren kan zien. Genomen ver weg van de stad.",
+    imageSrc: ".imgs/stars.jpg",
+  },
+  {
+    title: "Strand tijdens zonsopgang",
+    description:
+      "De zon komt op boven het strand. Het water gloeit in oranje en roze kleuren.",
+    imageSrc: ".imgs/sunrise.jpg",
+  },
+];
+
+// ========================================
+// STATE - VARIABELEN
+// ========================================
+// Met deze variabelen houden we bij welke foto we zien
+// en welke foto's favoriet zijn
+
+let currentPhotoIndex = 0;
+let favorites = [];
+
+// ========================================
+// FUNCTIES
+// ========================================
+
+// Functie 1: Toon een foto
+const showPhoto = (index) => {
+  // Controleer grenzen: zorg dat we niet onder 0 of boven het aantal foto's gaan
+  // Check of de index onder 0 gaat (vorige knop op eerste foto)
+  if (index < 0) {
+    currentPhotoIndex = photos.length - 1;
+
+    // Check of de index hoger is dan het aantal foto's (volgende knop op laatste foto)
+  } else if (index >= photos.length) {
+    currentPhotoIndex = 0;
+
+    // Anders is de index geldig
+  } else {
+    currentPhotoIndex = index;
+  }
+
+  // Haal de huidige foto op uit de array
+  const photo = photos[currentPhotoIndex];
+
+  // Update de titel (textContent is veiliger dan innerHTML)
+  photoTitle.textContent = photo.title;
+
+  // Update de beschrijving
+  photoDescription.textContent = photo.description;
+
+  // Update het fotogetal (bijv. "Foto 2 van 5")
+  // currentPhotoIndex + 1 omdat array's op 0 beginnen
+  photoCounter.textContent = `Foto ${currentPhotoIndex + 1} van ${photos.length}`;
+
+  // Update de afbeelding (in praktijk gebruik je plaatjes)
+  photoImage.src = photo.imageSrc;
+
+  // Verberg beschrijving wanneer we naar volgende foto gaan
+  // Voeg de "hidden" class toe
+  photoDescription.classList.add("hidden");
+  toggleDescBtn.textContent = "Beschrijving tonen";
+};
+
+// Functie 2: Toggle beschrijving
+const toggleDescription = () => {
+  // toggle() voegt een class toe als die er niet is,
+  // en verwijdert hem als die er wel is
+  photoDescription.classList.toggle("hidden");
+
+  // Verander de knoptekst afhankelijk van state
+  if (photoDescription.classList.contains("hidden")) {
+    toggleDescBtn.textContent = "Beschrijving tonen";
+  } else {
+    toggleDescBtn.textContent = "Beschrijving verbergen";
+  }
+};
+
+// Functie 3: Toggle favoriet status
+const toggleFavorite = () => {
+  // Check of de huidige foto al favoriet is
+  if (favorites.includes(currentPhotoIndex)) {
+    // Verwijder uit favorites
+    favorites = favorites.filter((index) => index !== currentPhotoIndex);
+    favoriteBtn.classList.remove("favorite");
+  } else {
+    // Voeg toe aan favorites
+    favorites.push(currentPhotoIndex);
+    favoriteBtn.classList.add("favorite");
+  }
+
+  console.log("Favorite foto's:", favorites);
+};
+```
+
+---
+
+## Stap-voor-stap uitleg
+
+### **Window Load Event**
+
+```javascript
+window.addEventListener("load", setup);
+```
+
+We wachten tot de pagina volledig is geladen voordat setup() wordt aangeroepen.
+
+### **Elementen opvragen**
+
+```javascript
+const photoImage = document.getElementById("photoImage");
+const prevBtn = document.getElementById("prevBtn");
+```
+
+We halen alle HTML-elementen op die we gaan gebruiken.
+
+### **Array met data**
+
+```javascript
+const photos = [
+  { title: "...", description: "...", imageSrc: "..." },
+  { title: "...", description: "...", imageSrc: "..." },
+];
+```
+
+De foto-informatie wordt opgeslagen in een array met objecten.
+
+### **State variabelen**
+
+```javascript
+let currentPhotoIndex = 0;
+let favorites = [];
+```
+
+Deze houden bij welke foto we zien en welke favoriet zijn.
+
+### **Functies**
+
+```javascript
+function showPhoto(index) {
+  // Update de foto-informatie
+}
+```
+
+Deze functies voeren logica uit wanneer events plaatsvinden.
+
+### **Event Listeners**
+
+```javascript
+prevBtn.addEventListener("click", function () {
+  showPhoto(currentPhotoIndex - 1);
+});
+```
+
+Wanneer op "Vorige" wordt geklikt, wordt showPhoto() aangeroepen.
+
+---
+
+## Belangrijkste DOM-Concepts uit deze oplossing
+
+| Concept                  | Voorbeeld                                            |
+| ------------------------ | ---------------------------------------------------- |
+| Elementen opvragen       | `document.getElementById("id")`                      |
+| textContent updaten      | `title.textContent = "nieuwe titel"`                 |
+| Element opvragen         | `element.classList.toggle("class")`                  |
+| Event listener toevoegen | `button.addEventListener("click", functie)`          |
+| classList manipulatie    | `element.classList.add/remove/toggle()`              |
+| Voorwaardelijk statement | `if (favorites.includes(...))`                       |
+| Array methoden           | `array.push()`, `array.filter()`, `array.includes()` |
+
+---
+
+## Veelgemaakte fouten
+
+### ❌ _Fout 1: Elementen opvragen BUITEN window.load_
+
+```javascript
+// FOUT - elementen bestaan nog niet!
+const button = document.getElementById("btn");
+window.addEventListener("load", setup);
+```
+
+### _Correct_
+
+```javascript
+window.addEventListener("load", setup);
+
+function setup() {
+  const button = document.getElementById("btn"); // Nu bestaan ze wel
+}
+```
+
+---
+
+### ❌ _Fout 2: innerHTML gebruiken voor plain text_
+
+```javascript
+// FOUT - innerHTML parsed HTML, niet nodig en onveilig voor plain text
+photoTitle.innerHTML = photo.title; // kan XSS veroorzaken!
+```
+
+### _Correct_
+
+```javascript
+photoTitle.textContent = photo.title; // veilig en simpel
+```
+
+---
+
+### ❌ _Fout 3: Event listener op button die niet bestaat_
+
+```javascript
+// FOUT - button bestaat misschien niet
+button.addEventListener("click", functie);
+```
+
+### _Correct_
+
+```javascript
+// eerst ophalen, dan event toevoegen
+const button = document.getElementById("btn");
+button.addEventListener("click", functie);
+```
+
+---
+
+## Bonus: Keyboard Navigation
+
+Wil je dat gebruikers met pijltjestoetsen kunnen navigeren? Voeg dit toe in `setup()`:
+
+```javascript
+document.addEventListener("keydown", function (event) {
+  if (event.key === "ArrowLeft") {
+    showPhoto(currentPhotoIndex - 1);
+  } else if (event.key === "ArrowRight") {
+    showPhoto(currentPhotoIndex + 1);
+  }
+});
+```
