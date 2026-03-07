@@ -8,15 +8,6 @@
   </head>
   <body>
     <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-    <script>
-      // GitHub Pages SPA redirect
-      // Store the current path and redirect to root
-      // This allows React Router to handle the route
-      const path = window.location.pathname.replace(/\/$/, "");
-      if (path && path !== "/web2-cursus-2026/") {
-        sessionStorage.setItem("redirect", path);
-      }
-    </script>
+    <script type="module" src="/web2-cursus-2026/src/main.jsx"></script>
   </body>
 </html>
