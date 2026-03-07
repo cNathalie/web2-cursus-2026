@@ -1,0 +1,98 @@
+Event Bubbling is een
+mechanisme waarbij een event dat plaatsvindt op een element, ook
+plaatsvindt op alle bovenliggende elementen van dat element. Stel dat je een knop
+hebt binnen een div. Wanneer je op de knop klikt, zal het click event ook
+plaatsvinden op de div. Voer onderstaande code uit in de console en klik
+op de blauwe knop.
+
+```javascript
+// Haal de rode Event bubbling card op
+const ancestor = document.getElementById("ancestor");
+
+// Haal de paarse div op
+const parent = document.getElementById("parent");
+
+// Haal de blauwe knop op
+const child = document.getElementById("child");
+
+// Voeg een event listener toe aan de card (ancestor)
+ancestor.addEventListener("click", () => {
+  console.log("Ancestor clicked");
+});
+
+// Voeg event listener toe aan de div (parent)
+parent.addEventListener("click", () => {
+  console.log("Parent clicked");
+}); // Voeg event listener toe aan de knop (child)
+child.addEventListener("click", () => {
+  console.log("Child clicked");
+});
+```
+
+<div
+  id="ancestor"
+  className="inline-dynamic-example"
+  style={{ backgroundColor: "red" }}
+>
+  <h3>Ancestor</h3>
+  <div
+    id="parent"
+    className="inline-dynamic-example"
+    style={{ backgroundColor: "green" }}
+  >
+    <h3>Parent</h3>
+    <button
+      id="child"
+      className="inline-dynamic-example"
+      style={{ backgroundColor: "blue" }}
+    >
+      Child
+    </button>
+  </div>
+</div>
+
+Je merkt dat zowel 'Ancestor clicked', 'Parent clicked' als 'Child clicked' in de console
+worden gelogd. Dit is omdat het click event op de knop blijft omhoog
+gegooid worden. Elke ancestor van de knop, waar een click-event listener
+opstaat, zal ook activeren en uitgevoerd worden. Dit kan handig zijn, maar
+soms wil je niet dat het event verder gaat naar de parent elementen. Dit
+is waar `event.stopPropagation()` van pas komt.
+
+## `event.stopPropagation()`
+
+Wanneer je in een event listener functie gebruik maakt van
+`event.preventDefault()` dan zal je merken dat het event niet voorbij dat
+element wordt opgegooid. Clear je console en voer onderstaande code uit in
+de console en klik nogmaals op de knop in het blauwe kader.
+
+```javascript
+// Haal de rode Event bubbling card op const ancestor =
+const ancestor2 = document.getElementById("ancestor");
+
+// Haal de paarse div op const parent
+const parent2 = document.getElementById("parent");
+
+// Haal de blauwe knop op const child
+const child2 = document.getElementById("child");
+
+// Voeg een event listener toe aan de ancestor
+ancestor2.addEventListener("click", () => {
+  console.log("Ancestor clicked");
+});
+
+// Voeg event listener toe aan de div
+parent2.addEventListener("click", () => {
+  console.log("Parent clicked");
+});
+
+// Voeg event listener toe aan de knop (child)
+child2.addEventListener("click", () => {
+  // Voorkom dat het event verder gaat naar de bovenliggende elementen
+  event.stopPropagation();
+  console.log("Child clicked");
+});
+```
+
+Deze keer wordt enkel 'Child clicked' in de console
+gelogd. Het event wordt gestopt bij de knop en gaat niet verder naar de
+parent elementen.
