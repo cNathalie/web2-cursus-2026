@@ -312,7 +312,7 @@ function App() {
               element={
                 <MdxPage
                   folder="events"
-                  course={label.replace(" ", "-")}
+                  course={label.replaceAll(" ", "-")}
                   {...(symbol ? { symbol } : {})}
                 />
               }

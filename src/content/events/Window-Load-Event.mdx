@@ -1,0 +1,159 @@
+# Waarom `window.addEventListener("load", setup)` soms boven en soms onder `setup` moet staan
+
+Deze uitleg gaat over **hoisting** en **toegankelijkheid** van functies op het moment dat je `window.addEventListener("load", setup);` uitvoert.
+
+---
+
+- **Function declaration (`function setup() {}`)** → wordt volledig **gehoist** (naam **én** body). Je mag `addEventListener` **boven** de definitie plaatsen.
+- **Arrow function (`const setup = () => {}`)** → is een **functie-expressie** gebonden aan een variabele. Alleen de **verklaring** van de variabele wordt (deels) gehoist, **niet** de waarde. Bij `let/const` zit die bovendien in de **Temporal Dead Zone (TDZ)** tot de regel waar ze gedefinieerd wordt. Je móét dus `addEventListener` **onder** de definitie plaatsen.
+
+---
+
+## Wat is “hoisting”?
+
+de runt:
+
+JavaScript voert een **creation phase** uit vóór je co
+
+- **Function declarations** worden volledig vooraf geregistreerd (de naam verwijst meteen naar de echte functie).
+- **Variabele declaraties** worden wel “gezien”, maar:
+  - bij `var` krijgt de variabele de waarde `undefined` tot aan de toewijzing;
+  - bij `let`/`const` bestaat de binding, maar ze is **niet toegankelijk** (TDZ) tot de uitvoeringsregel waar je ze initialiseert.
+
+---
+
+## Gevolg voor de twee gevallen
+
+### Function declaration
+
+```js
+window.addEventListener("load", setup);
+
+function setup() {
+  console.log("Ready!");
+}
+```
+
+**Werkt prima.** Tijdens de creation phase is `setup` al een **volwaardige functie**. Wanneer `addEventListener` dit uitvoert, bestaat `setup` dus al.
+
+### Arrow function (functie-expressie)
+
+```js
+window.addEventListener("load", setup); // ❌ Fout (TDZ)
+const setup = () => {
+  console.log("Ready!");
+};
+```
+
+Hier is `setup` een `const`-variabele die pas **op deze regel** wordt geïnitialiseerd met de arrow function. Daarboven zit `setup` nog in de **TDZ**—je kunt er nog niet naar verwijzen. Daarom moet je bij functie-expressies (arrow of klassiek) **eerst definiëren, dan gebruiken**:
+
+```js
+const setup = () => {
+  console.log("Ready!");
+};
+
+window.addEventListener("load", setup); // ✅
+```
+
+> Let op: zelfs met `var setup = () => {}` kun je niet veilig boven de toewijzing gebruiken:
+>
+> ```js
+> window.addEventListener("load", setup); // setup is undefined → TypeError
+> var setup = () => {};
+> ```
+>
+> `var` wordt wel gehoist, maar alleen als `undefined`. Pas na de toewijzing is het een functie.
+
+---
+
+## Samenvatting in één zin
+
+- **Function declaration**: mag **boven** `addEventListener`, omdat de functie volledig gehoist wordt.
+- **Arrow function (of andere functie-expressie)**: moet **onder** `addEventListener`, omdat de variabele pas later geïnitialiseerd wordt (en bij `let/const` vóór die tijd in de TDZ zit).
+
+---
+
+## Goede afspraken, maken goede vrienden
+
+We kunnen deze regels natuurlijk volgen, maar het is ook een goed idee om een consistente stijl te hanteren in je codebase. We spreken af dat:
+
+- De `setup` functie altijd **boven** `window.addEventListener("load", setup)` staat. Zo is het meteen duidelijk dat `setup` gedefinieerd is voordat we ernaar verwijzen,
+  en hoeven we niet na te denken over hoisting of TDZ.
+- De `setup` functie is de **orchestmeester** van onze pagina, dus het is logisch dat die bovenaan staat. De `setup` functie is het draaiboek van ons JavaScript toneel, de details ervan vindt je terug onder de `setup`.
+- We gebruiken **arrow functions** voor alle functies, inclusief `setup`. Dat zorgt voor een uniforme stijl en voorkomt verwarring over hoisting.
+- Andere functies die door `setup` worden aangeroepen, staan ook onder `setup`. Zo is de volgorde van functies altijd van boven naar beneden, wat de leesbaarheid ten goede komt.
+- We gebruiken nooit `var`.
+
+Waarom moet `window.addEventListener("load", setup)` niet volledig onderaan het schript staan?
+Het window load event wordt pas afgevuurd wanneer de hele pagina klaar is: HTML geparsed, stylesheets, afbeeldingen én scripts zijn geladen en uitgevoerd.
+
+### Voorbeeld geraamte
+
+```js
+// Orchestmeester functie (staat bovenaan)
+const setup = () => {
+  // Initialisatiecode hier
+  // ...
+  showPhoto(0);
+};
+window.addEventListener("load", setup);
+
+// Andere functies die door setup worden aangeroepen, staan hier onder
+const showPhoto = (index) => {
+  // ...
+};
+const toggleDescription = () => {
+  // ...
+};
+const toggleFavorite = () => {
+  // ...
+};
+```
+
+---
+
+## Mini-oefenbestand om dit gedrag te demonstreren:
+
+Plak dit in een HTML-bestand en open de console om het gedrag te zien.
+
+Waarom een html document? Omdat `window.addEventListener("load", setup)` alleen werkt in een browseromgeving,
+niet in Node.js.
+
+Opgelet, we zetten hier JavaScript en HTML door elkaar, maar dit is puur voor demonstratiedoeleinden.
+In een echt project zou je de JavaScript in een apart `.js` bestand zetten en dat inladen via een
+`<script src="..."></script>` tag.
+
+```html
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="utf-8" />
+    <title>Hoisting demo</title>
+  </head>
+  <body>
+    <h1>Hoisting: function declaration vs arrow function</h1>
+    <script>
+      // --- Case A: function declaration ---
+      window.addEventListener("load", setupDecl);
+      function setupDecl() {
+        console.log("[Declaration] Ready!");
+      }
+
+      // --- Case B: arrow function (correct) ---
+      const setupArrow = () => {
+        console.log("[Arrow] Ready!");
+      };
+      window.addEventListener("load", setupArrow);
+
+      // --- Case C: arrow function (fout) ---
+      window.addEventListener("load", setupWrong); // Referentie vóór initialisatie fout
+
+      const setupWrong = () => {
+        console.log(
+          "[Wrong] Dit zal niet bereiken als je hierboven al crasht.",
+        );
+      };
+    </script>
+  </body>
+</html>
+```

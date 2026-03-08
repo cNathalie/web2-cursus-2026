@@ -122,6 +122,11 @@ export const navigation = {
       label: "Event Delegation",
       symbol: NeedToKnowSymbol,
     },
+    {
+      to: "/events/window-load",
+      label: "Window Load Event",
+      symbol: NeedToKnowSymbol,
+    },
   ],
 
   typesLinks: [

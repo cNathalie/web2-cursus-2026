@@ -23,6 +23,42 @@ De volgende zaken **moeten _allemaal_** aanwezig zijn in je project om te kunnen
   - Het bezoeken van de webapplicatie moet ervoor zorgen dat er een Cookie met een levensduur wordt ingesteld in de browser.
   - Gebruik van de Fetch API om gegevens op te halen van een externe bron (bijv. een JSON bestand).
 
+# Nette code
+We spreken af dat we onze code netjes organiseren, zodat het makkelijk te lezen en te begrijpen is. Dat betekent dat:
+
+- Per html pagina een apart JavaScript bestand, en dat we deze netjes linken in de HTML.
+- We gebruiken duidelijke en consistente namen voor variabelen, functies en bestanden.
+- De `setup` functie altijd **boven** `window.addEventListener("load", setup)` staat. Zo is het meteen duidelijk dat `setup` gedefinieerd is voordat we ernaar verwijzen,
+  en hoeven we niet na te denken over hoisting of TDZ.
+- De `setup` functie is de **orchestmeester** van onze pagina, dus het is logisch dat die bovenaan staat. De `setup` functie is het draaiboek van ons JavaScript toneel, de details ervan vindt je terug onder de `setup`.
+- Andere functies die door `setup` worden aangeroepen, staan ook onder `setup`. Zo is de volgorde van functies altijd van boven naar beneden, wat de leesbaarheid ten goede komt.
+- We gebruiken **arrow functions** voor alle functies, inclusief `setup`. Dat zorgt voor een uniforme stijl en voorkomt verwarring over hoisting.
+- We gebruiken nooit `var`.
+
+
+### Voorbeeld geraamte
+
+```js
+// Orchestmeester functie (staat bovenaan)
+const setup = () => {
+  // Initialisatiecode hier
+  // ...
+  showPhoto(0);
+};
+window.addEventListener("load", setup);
+
+// Andere functies die door setup worden aangeroepen, staan hier onder
+const showPhoto = (index) => {
+  // ...
+};
+const toggleDescription = () => {
+  // ...
+};
+const toggleFavorite = () => {
+  // ...
+};
+```
+
 # PowerPoint presentatie
 
 Je moet een korte PowerPoint presentatie geven (maximaal 5 slides) waarin je de volgende zaken bespreekt:
