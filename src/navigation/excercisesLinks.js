@@ -11,4 +11,10 @@ export const excercisesLinks = [
     label: "Oplossing DOM Events Basis",
     isActive: false,
   },
+  { to: "/oefeningen/3", label: "Oefening Advanced DOM", isActive: false },
+  {
+    to: "/oefeningen/3-oplossing",
+    label: "Oplossing Advanced DOM",
+    isActive: false,
+  },
 ];

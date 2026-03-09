@@ -70,14 +70,14 @@ export default function MdxPage({ folder, course, symbol, isActive = true }) {
       <div>
         <ChapterHeader title={course.replaceAll("-", " ")} symbol={symbol} />
         <h2>Helaas, deze pagina is nog vergrendeld...</h2>
-        <p class="card-text placeholder-wave">
-          <span class="placeholder col-7 bg-warning"></span>
-          <span class="placeholder col-10"></span>
-          <span class="placeholder col-4 bg-warning"></span>
-          <span class="placeholder col-6"></span>
-          <span class="placeholder col-8 bg-warning"></span>
-          <span class="placeholder col-12"></span>
-          <span class="placeholder col-12 bg-warning"></span>
+        <p className="card-text placeholder-glow">
+          <span className="placeholder col-7 bg-warning"></span>
+          <span className="placeholder col-10"></span>
+          <span className="placeholder col-4 bg-warning"></span>
+          <span className="placeholder col-6"></span>
+          <span className="placeholder col-8 bg-warning"></span>
+          <span className="placeholder col-12"></span>
+          <span className="placeholder col-12 bg-warning"></span>
         </p>
       </div>
     );
