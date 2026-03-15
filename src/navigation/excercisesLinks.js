@@ -9,11 +9,21 @@ export const excercisesLinks = [
   {
     to: "/oefeningen/2-oplossing",
     label: "Oplossing DOM Events Basis",
-    isActive: false,
+    isActive: true,
   },
-  { to: "/oefeningen/3", label: "Oefening Advanced DOM", isActive: false },
+  {
+    to: "/oefeningen/3",
+    label: "Oefening CSS Types Attributes",
+    isActive: true,
+  },
   {
     to: "/oefeningen/3-oplossing",
+    label: "Oplossing CSS Types Attributes",
+    isActive: false,
+  },
+  { to: "/oefeningen/4", label: "Oefening Advanced DOM", isActive: false },
+  {
+    to: "/oefeningen/4-oplossing",
     label: "Oplossing Advanced DOM",
     isActive: false,
   },

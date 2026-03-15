@@ -1,0 +1,132 @@
+## Herhalingsoefening na hoofdstukken 'Types', 'Elements-Attributes' en 'CSS-Manipulation'
+
+Doel: herhaling van strings, elementen aanmaken, attributen instellen en CSS manipuleren in JavaScript.
+Uitvoering: dit programma werkt in de browser. Je maakt een HTML bestand met een script tag waarin je JavaScript schrijft. Open het HTML bestand in je browser om het resultaat te zien.
+Maak deze opdracht in een nieuw project in VSCode.
+
+### Vooraf
+
+- Maak een nieuw project in VSCode.
+- Maak een bestand `index.html` met de basis HTML structuur (zie stap 1).
+- Maak een bestand `styles.css` met basis CSS styling (zie stap 2).
+- Maak een bestand `script.js` voor je JavaScript code.
+- Voeg een `<link>` tag toe in de `<head>` voor de CSS en een `<script>` tag aan het einde van de `<body>` voor de JS.
+- Open `index.html` in je browser om je code te testen.
+
+### Situatie
+
+Je gaat een eenvoudig profiel kaartje maken voor een persoon. Je gebruikt JavaScript om een div element aan te maken, attributen in te stellen, CSS stijlen toe te passen en tekst toe te voegen met behulp van strings.
+
+### Opdracht
+
+#### 1. Maak de HTML structuur
+
+Maak een `index.html` bestand met de volgende inhoud:
+
+```html
+<!DOCTYPE html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profiel Kaartje</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <h1>Mijn Profiel</h1>
+    <div id="container"></div>
+    <script src="script.js"></script>
+  </body>
+</html>
+```
+
+#### 2. Maak de CSS styling
+
+Maak een `styles.css` bestand met de volgende inhoud om de pagina een mooi uiterlijk te geven:
+
+```css
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #333;
+  margin: 0;
+  padding: 40px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+h1 {
+  color: #ffffff;
+  margin-bottom: 30px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  font-size: 2.5em;
+  font-weight: 300;
+}
+
+#container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 800px;
+}
+
+#profile {
+  color: rgba(7, 85, 78, 0.897);
+  font-size: xx-large;
+}
+
+```
+
+#### 3. Creëer een div element
+
+In `script.js`, schrijf code om een nieuw `div` element toe te voegen aan de pagina met `insertAdjacentHTML()`. 
+Geef het een id "profile" en een class "kaart". Bijvoorbeeld: 
+
+````javascript
+container.insertAdjacentHTML('beforeend', '<div id="profile" class="kaart"></div>');
+````
+
+#### 4. Haal het element op
+
+Gebruik `document.getElementById()` om het zojuist toegevoegde div element op te halen en sla het op in een variabele `profile`.
+
+#### 5. Stel attributen in
+
+Gebruik `setAttribute()` om de volgende attributen in te stellen op het div element:
+
+- `data-name` met waarde "John Doe" of een andere naam van jouw keuze
+- `data-age` met waarde "25" of een andere leeftijd van jouw keuze
+
+#### 6. Manipuleer CSS stijlen
+
+Gebruik de `.style` property om de volgende stijlen toe te passen op het div element:
+
+- Achtergrondkleur: "lightblue"
+- Breedte: "300px"
+- Hoogte: "200px"
+- Rand: "2px solid black"
+- Padding: "10px"
+- Tekst uitlijnen: "center"
+
+#### 7. Voeg tekst toe met strings en data-attributen
+
+Gebruik `getAttribute()` om de naam en leeftijd op te halen uit de data-attributen.
+Maak een string variabele `description` met waarde " is jaar oud en houdt van programmeren."
+Gebruik string concatenatie (+) om een volledige zin te maken: `name + description`, waarbij je de leeftijd invult.
+Stel de `innerText` van het div element in op deze volledige zin.
+
+#### 8. Controleer attributen
+
+Gebruik `console.log()` om de waarden van de `data-name` en `data-age` attributen op te vragen met `getAttribute()` en toon ze in de console.
+
+### Extra (optioneel)
+
+Kies één extra uitbreiding:
+
+- Voeg een tweede attribuut toe en toon het in de console.
+- Verander de achtergrondkleur naar groen als de leeftijd groter is dan 20 (gebruik een if statement).
+- Voeg een tweede div toe met andere gegevens.

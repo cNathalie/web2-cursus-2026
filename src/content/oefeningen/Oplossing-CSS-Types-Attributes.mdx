@@ -1,0 +1,81 @@
+## Voorbeeldoplossing: Profiel Kaartje
+
+Dit is een complete werkende voorbeeldoplossing voor de oefening "Herhalingsoefening na hoofdstukken 'Types', 'Elements-Attributes' en 'CSS-Manipulation'". Bestudeer goed hoe de concepten uit Strings, Elementen toevoegen, Attributen instellen en CSS manipuleren hier toegepast worden.
+
+---
+
+## JavaScript (`script.js`)
+
+```javascript
+/// ========================================
+// Setup functie
+// ========================================
+// Dit is de functie die wordt uitgevoerd wanneer
+// de pagina volledig is geladen.
+const setup = () => {
+  console.log("Pagina geladen, setup gestart!");
+
+  // ========================================
+  // Stap 3: Creëer een div element
+  // ========================================
+  // Gebruik insertAdjacentHTML() om een div toe te voegen
+  // Dit komt uit het hoofdstuk over DOM manipulatie
+  const container = document.getElementById("container");
+  container.insertAdjacentHTML(
+    "beforeend",
+    '<div id="profile" class="kaart"></div>',
+  );
+
+  // ========================================
+  // Stap 4: Haal het element op
+  // ========================================
+  // Gebruik getElementById() om het element op te halen
+  const profile = document.getElementById("profile");
+
+  // ========================================
+  // Stap 5: Stel attributen in
+  // ========================================
+  // Gebruik setAttribute() om data-attributen toe te voegen
+  // Dit komt uit het hoofdstuk "Attributen"
+  profile.setAttribute("data-name", "John Doe");
+  profile.setAttribute("data-age", "25");
+
+  // ========================================
+  // Stap 6: Manipuleer CSS stijlen
+  // ========================================
+  // Gebruik de .style property om CSS eigenschappen te veranderen
+  // Dit komt uit het hoofdstuk "CSS-Manipulatie"
+  profile.style.backgroundColor = "lightblue";
+  profile.style.width = "300px";
+  profile.style.height = "200px";
+  profile.style.border = "2px solid black";
+  profile.style.padding = "10px";
+  profile.style.textAlign = "center";
+
+  // ========================================
+  // Stap 7: Voeg tekst toe met strings en data-attributen
+  // ========================================
+  // Gebruik getAttribute() om waarden op te halen
+  // Combineer met string concatenatie uit het hoofdstuk "String"
+  const name = profile.getAttribute("data-name");
+  const age = profile.getAttribute("data-age");
+  const description = ` is ${age} jaar oud en houdt van programmeren.`;
+  const fullSentence = name + description;
+  profile.innerText = fullSentence;
+
+  // ========================================
+  // Stap 8: Controleer attributen
+  // ========================================
+  // Gebruik console.log() om de attributen te tonen
+  console.log("Name:", profile.getAttribute("data-name"));
+  console.log("Age:", profile.getAttribute("data-age"));
+};
+
+// ========================================
+// Window load event (BELANGRIJK!)
+// ========================================
+// We wachten tot het window load event plaatsvindt
+// zodat alle HTML-elementen volledig geladen zijn
+// voordat we JavaScript code uitvoeren.
+window.addEventListener("load", setup);
+```
