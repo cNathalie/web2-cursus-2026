@@ -19,7 +19,7 @@ export const excercisesLinks = [
   {
     to: "/oefeningen/3-oplossing",
     label: "Oplossing CSS Types Attributes",
-    isActive: false,
+    isActive: true,
   },
   { to: "/oefeningen/4", label: "Oefening Advanced DOM", isActive: false },
   {
