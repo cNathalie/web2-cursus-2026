@@ -4,7 +4,7 @@ in het tabblad "Elements" en subtabblad "Properties". We bespreken de meest gebr
 ---
 
 <div className="inline-dynamic-example">
-  <div id="my-div">Hello, world!</div>
+  <div id="id1">Hello, world!</div>
 </div>
 
 ```html
@@ -17,7 +17,7 @@ De naam van de node, altijd in hoofdletters.
 
 ```js
 // We halen deze div op
-const node = document.querySelector("#my-div");
+const node = document.querySelector("#id1");
 console.log(node.nodeName);
 ```
 
@@ -30,14 +30,24 @@ De waarde van de node.
 - Text nodes: de tekst van de node
 
 <div className="inline-dynamic-example">
-  <div id="my-div">Hello, world!</div>
+  <div id="id2">Hello, world!</div>
 </div>
-```js // We halen deze div op const node = document.querySelector('#my-div'); console.log(node.nodeValue);
-``` ## `parentNode` De ouder node van deze node.
+```js 
+// We halen deze div op 
+const node = document.querySelector('#id2'); 
+console.log(node.nodeValue);
+``` 
+
+## `parentNode` 
+
+De ouder node van deze node.
+<div className="inline-dynamic-example">
+  <div id="id3">Hello, world!</div>
+</div>
 
 ```js
 // We halen deze div op
-const node = document.querySelector("#my-div");
+const node = document.querySelector("#id3");
 console.log(node.parentNode);
 ```
 
