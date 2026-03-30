@@ -5,14 +5,14 @@ Er zijn verschillende input varianten die je kan gebruiken in een invulformulier
 Een tekstveld is een van de meest voorkomende input types. Hier kan de gebruiker tekst invoeren. We halen de waarde van een tekstveld op met de `.value` property.
 
 <div className="inline-dynamic-example">
-  <input id="text-input" type="text" placeholder="Voer hier tekst in" />
+  <input id="textInput" type="text" placeholder="Voer hier tekst in" />
 </div>
 ```html
-<input id="text-input" type="text" placeholder="Voer hier tekst in" />
+<input id="textInput" type="text" placeholder="Voer hier tekst in" />
 ```
 
 ```js
-const input = document.querySelector("#text-input");
+const input = document.querySelector("#textInput");
 const inputValue = input.value;
 console.log(inputValue);
 ```
@@ -24,21 +24,21 @@ We halen de waarde van een wachtwoordveld op met de .value property.
 
 <div className="inline-dynamic-example">
   <input
-    id="password-input"
+    id="passwordInput"
     type="password"
     placeholder="Voer hier je wachtwoord in"
   />
 </div>
 ```html
 <input
-  id="password-input"
+  id="passwordInput"
   type="password"
   placeholder="Voer hier je wachtwoord in"
 />
 ```
 
 ```js
-const passwordInput = document.querySelector("#password-input");
+const passwordInput = document.querySelector("#passwordInput");
 const passwordValue = passwordInput.value;
 console.log(passwordValue);
 ```
@@ -49,14 +49,14 @@ Een checkbox is een vakje waar de gebruiker een vinkje in kan zetten.
 We halen de waarde van een checkbox op met de .checked property.
 
 <div className="inline-dynamic-example">
-  <input id="checkbox-input" type="checkbox" /> Ik ga akkoord met de voorwaarden
+  <input id="checkboxInput" type="checkbox" /> Ik ga akkoord met de voorwaarden
 </div>
 ```html
-<input id="checkbox-input" type="checkbox" /> Ik ga akkoord met de voorwaarden
+<input id="checkboxInput" type="checkbox" /> Ik ga akkoord met de voorwaarden
 ```
 
 ```js
-const checkbox = document.querySelector("#checkbox-input");
+const checkbox = document.querySelector("#checkboxInput");
 const isChecked = checkbox.checked;
 console.log(isChecked);
 ```
