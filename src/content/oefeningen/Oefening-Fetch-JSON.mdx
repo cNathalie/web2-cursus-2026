@@ -1,0 +1,224 @@
+## Herhalingsoefening na hoofdstukken 'Fetch API & JSON'
+
+**Doel**: herhaling van fetch API, het verwerken van JSON data, en asynchrone programmering met .then().catch() en async/await.
+
+**Uitvoering**: dit programma werkt met HTML elementen en haalt data op via HTTP requests.
+Maak deze opdracht in een nieuw project in VSCode
+
+### Vooraf
+
+- Je hebt een HTML bestand, een CSS bestand en een JavaScript bestand nodig.
+- Je kan je project lokaal testen met een live server (VS Code extensie [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer)) of een ander development server.
+- Voor de externe API request gebruiken we de Star Wars API (gratis, geen API key nodig): `https://swapi.info/api/planets/1`
+- Voor de lokale JSON file, maak je een bestand aan in je project (bijvoorbeeld `bibliotheek.json`)
+
+(Je mag ook een andere API of JSON file gebruiken, maar zorg dat deze publiek toegankelijk is.)
+
+### Situatie
+
+Je gaat een webpagina maken die data ophaalt via twee verschillende methodes:
+
+1. **Methode 1 (Promise chaining)**: Data ophalen van een externe public API en weergeven met `.then().catch()`
+2. **Methode 2 (Async/await)**: Data ophalen van een lokale JSON file en weergeven met `async/await` en `try/catch`
+
+Elke methode kan via een aparte knop aangeroepen worden, zodat de gebruiker kan kiezen welke data getoond wordt.
+
+### Opdracht
+
+#### 1. Maak een HTML-bestand
+
+Maak een HTML-bestand met:
+
+- Een titel (h1)
+- Twee knoppen: één voor "Haal Star Wars data op" en één voor "Haal bibliotheek data op"
+- Twee containers (div-elementen) met id's: `starwars-result` en `bibliotheek-result` voor het tonen van resultaten
+- Een container voor foutmeldingen: `error-message`
+- Link naar je CSS-bestand en JavaScript-bestand
+
+```html
+<!DOCTYPE html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fetch API & JSON Oefening</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>Fetch API & JSON Oefening</h1>
+
+    <button id="btn-starwars">Haal Star Wars data op</button>
+    <button id="btn-bibliotheek">Haal bibliotheek data op</button>
+
+    <div id="error-message" class="error"></div>
+
+    <div id="starwars-result"></div>
+    <div id="bibliotheek-result"></div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
+```
+
+#### 2. Maak een CSS-bestand
+
+Style je pagina met:
+
+- Een leesbare layout met wat spacing
+- Mooie aandacht voor de knoppen (hover-effect)
+- Een duidelijke weergave van de data
+- Styling voor foutmeldingen (rood/opvallend)
+- Optioneel: laad-indicator (spinner) tijdens het ophalen van data
+
+Minimale CSS-voorbeeld:
+
+```css
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  background-color: #f5f5f5;
+}
+
+h1 {
+  margin-bottom: 30px;
+  color: #333;
+}
+
+button {
+  padding: 10px 20px;
+  margin: 10px 10px 10px 0;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+#starwars-result,
+#bibliotheek-result {
+  background-color: white;
+  padding: 20px;
+  margin-top: 20px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+
+.error {
+  color: red;
+  padding: 10px;
+  margin: 10px 0;
+  background-color: #ffe0e0;
+  border-radius: 5px;
+  display: none;
+}
+
+.error.show {
+  display: block;
+}
+```
+
+#### 3. Maak een JSON-bestand (bibliotheek.json)
+
+Maak een `bibliotheek.json` bestand in je project map met test data:
+
+```json
+{
+  "bibliotheek": "Openbare Bibliotheek Aalst",
+  "boeken": [
+    {
+      "id": 1,
+      "titel": "The Hobbit",
+      "auteur": "J.R.R. Tolkien",
+      "jaar": 1937,
+      "beschikbaar": true
+    },
+    {
+      "id": 2,
+      "titel": "Harry Potter en de Steen der Wijzen",
+      "auteur": "J.K. Rowling",
+      "jaar": 1997,
+      "beschikbaar": true
+    },
+    {
+      "id": 3,
+      "titel": "1984",
+      "auteur": "George Orwell",
+      "jaar": 1949,
+      "beschikbaar": false
+    },
+    {
+      "id": 4,
+      "titel": "De Hobbit",
+      "auteur": "J.R.R. Tolkien",
+      "jaar": 1937,
+      "beschikbaar": true
+    }
+  ]
+}
+```
+
+#### 4. Methode 1: Promise chaining met .then() en .catch()
+
+Schrijf een functie `haalStarWarsData()` die:
+
+- Gebruikt `fetch()` om data op te halen van: `https://swapi.info/api/planets/1`
+- De response omzet naar JSON
+- Vervolgens de data verwerkt: naam, aantal inwoners, klimaat, etc. weergeven als HTML
+- Een error afhandelt
+- Het resultaat toont in het `starwars-result` element
+
+```javascript
+const haalStarWarsData = () => {
+  // Jouw code hier
+  fetch("https://swapi.info/api/planets/1")
+    .then //....
+    ();
+};
+```
+
+#### 5. Methode 2: Async/await met try/catch
+
+Schrijf een functie `haalBibliotheekData()` die:
+
+- Async is gedeclareerd
+- Gebruikt `fetch()` om `bibliotheek.json` op te halen
+- De response omzet naar JSON
+- De boeken afdrukt op een nette manier
+- Afhandelingen gebeuren in een `try/catch` blok
+- Het resultaat wordt getoond in het `bibliotheek-result` element
+
+```javascript
+const haalBibliotheekData = async () => {
+  try {
+    // Verwerk en toon de data
+  } catch (error) {
+    // Foutafhandeling
+  }
+};
+```
+
+#### 6. Event listeners koppelen
+
+Koppel beide functies aan de knoppen:
+
+- De `btn-starwars` knop roept `haalStarWarsData()` op
+- De `btn-bibliotheek` knop roept `haalBibliotheekData()` op
+
+Zorg ervoor dat je DOM-elementen goed vindt en events juist implementeert.
+
+#### 7. Toon de data netjes
+
+- Voor Star Wars data: toon naam, bevolking, klimaat, terrein als een nette HTML structuur
+- Voor bibliotheek data: toon alle boeken uit de array in een lijst of tabel met titel, auteur, jaar en beschikbaarheid
+- Zorg voor **foutafhandeling** op beide manieren en toon een duidelijke foutmelding

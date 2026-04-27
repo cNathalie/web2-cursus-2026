@@ -27,4 +27,11 @@ export const excercisesLinks = [
     label: "Oplossing Advanced DOM",
     isActive: false,
   },
+  ,
+  { to: "/oefeningen/5", label: "Oefening Fetch JSON", isActive: true },
+  {
+    to: "/oefeningen/5-oplossing",
+    label: "Oplossing Fetch JSON",
+    isActive: false,
+  },
 ];

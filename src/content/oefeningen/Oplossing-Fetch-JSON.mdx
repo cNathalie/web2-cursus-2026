@@ -1,0 +1,231 @@
+## Voorbeeldoplossing: Fetch API & JSON Oefening
+
+Deze oplossing demonstreert hoe je met twee methoden data kan ophalen en verwerken.
+
+### JavaScript (script.js)
+
+```javascript
+// ============================================
+// SETUP: Event Listeners en Initialisatie
+// ============================================
+
+const setup = () => {
+  // Voeg event listeners toe aan knoppen
+  globals.btnStarwars.addEventListener("click", haalStarWarsData);
+  globals.btnBibliotheek.addEventListener("click", haalBibliotheekData);
+};
+
+// Zorg dat setup wordt aangeroepen wanneer de pagina volledig geladen is
+window.addEventListener("load", setup);
+
+// ============================================
+// DOM ELEMENTEN
+// ============================================
+
+const globals = {
+  btnStarwars: document.getElementById("btn-starwars"),
+  btnBibliotheek: document.getElementById("btn-bibliotheek"),
+  starwarsResult: document.getElementById("starwars-result"),
+  bibliotheekResult: document.getElementById("bibliotheek-result"),
+  errorMessage: document.getElementById("error-message"),
+};
+
+// ============================================
+// METHODE 1: PROMISE CHAINING (.then() & .catch())
+// ============================================
+
+const haalStarWarsData = () => {
+  // Clear previous results
+  globals.starwarsResult.innerHTML =
+    '<p class="loading">Data wordt opgehaald...</p>';
+  globals.errorMessage.classList.remove("show");
+  globals.bibliotheekResult.innerHTML = "";
+
+  fetch("https://swapi.info/api/planets/1")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      // Verwerk de gegevens
+      const planetHTML = renderStarWarsPlanet(data);
+      globals.starwarsResult.innerHTML = planetHTML;
+    })
+    .catch((error) => {
+      showError(`Fout bij het ophalen van Star Wars data: ${error.message}`);
+      globals.starwarsResult.innerHTML = "";
+    });
+};
+
+const renderStarWarsPlanet = (planet) => {
+  // Zet omgevallen numerieke strings om naar nummers (array function)
+  const diameter =
+    planet.diameter === "unknown"
+      ? "Onbekend"
+      : `${Number(planet.diameter).toLocaleString("nl-NL")} km`;
+  const population =
+    planet.population === "unknown"
+      ? "Onbekend"
+      : Number(planet.population).toLocaleString("nl-NL");
+
+  // Zet films array om naar links (array method: map)
+  const filmsHTML =
+    planet.films && planet.films.length > 0
+      ? planet.films
+          .map((film, index) => `<li>Film ${index + 1}: ${film}</li>`)
+          .join("")
+      : "<li>Geen films bekend</li>";
+
+  return `
+        <div class="planet-info">
+            <h2>${planet.name}</h2>
+            <div class="info-item">
+                <strong>Diameter:</strong> ${diameter}
+            </div>
+            <div class="info-item">
+                <strong>Populatie:</strong> ${population}
+            </div>
+            <div class="info-item">
+                <strong>Klimaat:</strong> ${planet.climate || "Onbekend"}
+            </div>
+            <div class="info-item">
+                <strong>Terrein:</strong> ${planet.terrain || "Onbekend"}
+            </div>
+            <div class="info-item">
+                <strong>Zwaartekracht:</strong> ${planet.gravity || "Onbekend"}
+            </div>
+            <div class="info-item">
+                <strong>Rotatie periode:</strong> ${planet.rotation_period || "Onbekend"} uur
+            </div>
+            <div style="grid-column: 1 / -1;">
+                <strong>Verschenen in films:</strong>
+                <ul>${filmsHTML}</ul>
+            </div>
+        </div>
+    `;
+};
+
+// ============================================
+// METHODE 2: ASYNC/AWAIT & TRY/CATCH
+// ============================================
+
+const haalBibliotheekData = async () => {
+  // Clear previous results
+  globals.bibliotheekResult.innerHTML =
+    '<p class="loading">Data wordt opgehaald...</p>';
+  globals.errorMessage.classList.remove("show");
+  globals.starwarsResult.innerHTML = "";
+
+  try {
+    const response = await fetch("bibliotheek.json");
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const data = await response.json();
+
+    // Verwerk de bibliotheek data
+    const bibliotheekHTML = renderBibliotheek(data);
+    globals.bibliotheekResult.innerHTML = bibliotheekHTML;
+  } catch (error) {
+    showError(`Fout bij het ophalen van bibliotheek data: ${error.message}`);
+    globals.bibliotheekResult.innerHTML = "";
+  }
+};
+
+const renderBibliotheek = (data) => {
+  const { bibliotheek, boeken } = data;
+
+  // Sorteer boeken op titel (array method: sort)
+  const sortedBoeken = boeken.sort((a, b) => a.titel.localeCompare(b.titel));
+
+  // Maak HTML voor elk boek (array method: map)
+  const boekenHTML = sortedBoeken
+    .map((boek) => {
+      const beschikbaarClass = boek.beschikbaar ? "available" : "unavailable";
+      const beschikbaarText = boek.beschikbaar
+        ? "Beschikbaar"
+        : "Niet beschikbaar";
+
+      return `
+                <li class="book-item">
+                    <h3>${boek.titel}</h3>
+                    <div class="book-meta">
+                        <span><strong>Auteur:</strong> ${boek.auteur}</span>
+                        <span><strong>Jaar:</strong> ${boek.jaar}</span>
+                        <span class="availability ${beschikbaarClass}">${beschikbaarText}</span>
+                    </div>
+                </li>
+            `;
+    })
+    .join("");
+
+  // Toon statistieken
+  const beschikbareBibliotheek = boeken.filter((b) => b.beschikbaar).length;
+  const totaalbijzonderheden = boeken.length;
+
+  return `
+        <h2>${bibliotheek}</h2>
+        <p><strong>Aantal boeken:</strong> ${totaalbijzonderheden} | 
+           <strong>Beschikbaar:</strong> ${beschikbareBibliotheek}</p>
+        <ul class="book-list">
+            ${boekenHTML}
+        </ul>
+    `;
+};
+
+// ============================================
+// UTILITY FUNCTIES
+// ============================================
+
+const showError = (message) => {
+  globals.errorMessage.textContent = message;
+  globals.errorMessage.classList.add("show");
+};
+
+
+
+```
+
+### Belangrijke Concepten in deze Oplossing
+
+#### 1. **Promise Chaining (Methode 1)**
+
+- `.then()` ketens voor opeenvolgende operaties
+- Response omzetten naar JSON
+- Foutafhandeling met `.catch()`
+
+#### 2. **Async/Await (Methode 2)**
+
+- `async` functie declaratie
+- `await` voor het wachten op promises
+- `try/catch` blok voor foutafhandeling
+
+#### 3. **Array Methods**
+
+- `.map()` - elementen transformeren (films, boeken renderen)
+- `.sort()` - sorteer boeken alfabetisch
+- `.filter()` - filter beschikbare boeken
+- `.join()` - combineer array elementen tot string
+
+#### 4. **Setup Function**
+
+- `setup()` functie die alle event listeners instelt
+- Wordt aangeroepen via `window.addEventListener('load', setup)`
+- Zorgt dat DOM volledig geladen is voordat listeners ingesteld worden
+
+#### 5. **Rendering Functions**
+
+- `renderStarWarsPlanet()` - zet planet object om naar HTML
+- `renderBibliotheek()` - zet bibliotheek data om naar HTML
+- Scheiding van data en presentatie
+
+### Tips voor Aanpassingen
+
+- **Meer planeten**: Verander `planets/1` in een loop en haal planeten 1-5 op
+- **Filteren**: Voeg een zoekbalk toe die de boeken filtert met `.filter()`
+- **Sorteren**: Voeg opties toe om op auteur, jaar of beschikbaarheid te sorteren
+- **Error handling**: Voeg specifieke error messages toe voor verschillende fouttypen
